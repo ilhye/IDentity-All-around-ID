@@ -1,0 +1,73 @@
+-- DESIGN PATTERN 
+    * Blueprint - considered good practice for larger projects due to its modularity. It organizes components such as routes, templates, and static files, which allows for easier testing of individual features without interfering with others. Additionally, this structure promotes better collaboration among team members.
+
+-- NAMING CONVENTION
+    * kebab case: id, for, HTML files
+    * snake case: name, variables, functions, Python files
+    * camel case: classes
+
+-- BRANCHES
+    -------------------------------------------------------------------------------------------------
+    | Branch Name      | Purpose                                                    | Source Branch |
+    -------------------------------------------------------------------------------------------------
+    | master           | Represents the production-ready code. It contains stable  | -              |
+    |                  | and tested code that is deployed.                         |                |
+    -------------------------------------------------------------------------------------------------
+    | dev              | Used for active development. It aggregates features and   | master         |
+    |                  | fixes that are under development.                         |                |
+    -------------------------------------------------------------------------------------------------
+    | release/1.0.0    | Created to prepare a specific version for release. Used   | develop        |
+    |                  | for final testing, bug fixes, and tweaks.                 |                |
+    -------------------------------------------------------------------------------------------------
+    | staging          | Mimics the production environment for testing and         | develop        |
+    |                  | quality assurance before releasing to master              |                |
+    -------------------------------------------------------------------------------------------------
+    | feature          | Dedicated to developing a specific feature. Merged into   | develop        |
+    |                  | dev when the feature is complete.                         |                |
+    -------------------------------------------------------------------------------------------------
+
+-- TECHNOLOGIES
+    * Python
+    * HTML
+    * Flask
+    * Firebase
+    * Selenium
+    * ChromeDriver
+    * Web browser
+    * Code Editor
+
+-- PACKAGES
+    * Flask
+    * Firebase-admin
+    * Selenium
+
+-- PACKAGES
+    * Flask
+    * Firebase-admin
+    * Selenium
+
+-- FILE STRUCTURE
+    project/
+    ├── app/                           # Application package
+    │   ├── feature_name/              # A generic feature (Blueprint)
+    │   │   ├── templates/             # Templates specific to the feature
+    │   │   ├── static/                # Static files specific to the feature
+    │   │   ├── routes.py              # HTTP routes
+    │   │   └── __init__.py            # Initialize Blueprint
+    │   ├── database/                  # Folder for firebase
+    │   │   ├── config.py/             # Initializes firebase
+    │   │   ├── credentials.json/      # Firebase configuration
+    │   │   ├── firebase_services.py   # Firebase business logic
+    │   ├── templates/                 # Shared templates
+    │   ├── static/                    # Shared static files
+    │   ├── tests/                     # Tests app
+    ├── run.py                         # Run application
+
+-- FILES DEFINITION
+    * __init__.py - used to mark a directory as a Python package, allowing its modules to be imported.
+    * app\__init__.py - entry points, create flask application, and register blueprint
+    * auth\__init__.py - creates blueprint for auth module
+    * run.py - used to run flask app
+    * static - contains css and js files
+    * templates - contains html files
+    * routes.py - enables routing/switch pages
