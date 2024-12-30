@@ -1,0 +1,34 @@
+.logo {
+  background-color: #0461cf;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 150px;
+}
+
+.question {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.impairment-btn {
+  font-size: 1em;
+  background-color: #0461cf;
+  display: block;
+  width: 50%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.impairment-btn:hover {
+  background-color: #0047a0;
+}
+
+.text-to-speech {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}

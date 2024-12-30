@@ -1,0 +1,36 @@
+{% extends 'index.html' %} 
+
+{% block styles %}<link rel="stylesheet" href="{{ url_for('auth.static', filename='get-started.css') }}">{% endblock %}
+{% block title %} Get Started {% endblock %}
+
+{% block body %}
+  <div class="logo mb-5">
+    <h5 class="logo-text text-center m-0 text-white">IDentity</h5>
+  </div>
+
+  <div
+    class="text-center d-flex flex-column justify-content-center align-items-center"
+  >
+    <h1 class="question">
+      Do you identify with any of the following accessibility needs? <br />
+      <b>Select all that apply</b> <br />
+      <img class="text-to-speech" src="{{ url_for('static', filename='images/volume-up.svg')}}" alt="speech" />
+    </h1>
+    <button class="impairment-btn" id="vision" onclick="loading('blindness')">
+      Impaired Vision
+    </button>
+    <button class="impairment-btn" id="reading" onclick="loading('dyslexia')">
+      Dyslexic
+    </button>
+    <button class="impairment-btn" id="mobility" onclick="loading('mobility')">
+      Mobility
+    </button>
+
+    <div class="loader d-none" id="loader">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Please Wait</p>
+    </div>
+  </div>
+{% endblock %}
