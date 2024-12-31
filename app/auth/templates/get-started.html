@@ -1,4 +1,4 @@
-{% extends 'index.html' %} 
+{% extends 'layout.html' %} 
 
 {% block styles %}<link rel="stylesheet" href="{{ url_for('auth.static', filename='get-started.css') }}">{% endblock %}
 
@@ -13,7 +13,7 @@
     <h1 class="question">
       Do you identify with any of the following accessibility needs? <br />
       <b>Select all that apply</b> <br />
-      <img class="text-to-speech" src="{{ url_for('static', filename='images/volume-up.svg')}}" alt="speech" />
+      <img class="text-to-speech" src="{{ url_for('pages.static', filename='images/volume-up.svg')}}" alt="speech" />
     </h1>
     <button class="impairment-btn" id="vision" onclick="loading('blindness')">
       Impaired Vision

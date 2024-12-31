@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automated Button Click</title>
+  </head>
+  <body>
+    <p id="speak">Modern Family</p>
+    <script>
+      // Uses web speech API to speak text
+      const p = document.getElementById("speak");
+
+      // Function to perform speech synthesis
+      // SpeechSynthesisUtterance is a Web Speech API that represents a speech request
+      function speak(text) {
+        const textToSpeak = text;
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        window.speechSynthesis.speak(utterance);
+        console.log("Speech synthesis triggered: " + textToSpeak);
+      }
+
+      // Add event listener to the button
+      p.addEventListener("click", (event) => {
+        const text = p.textContent
+        speak(text);
+      });
+
+      // Automatically trigger the button click every 1 second
+      setInterval(() => {
+        p.click();
+      }, 2000);
+    </script>
+  </body>
+</html>
