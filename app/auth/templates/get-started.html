@@ -12,7 +12,7 @@
 <div
   class="text-center d-flex flex-column justify-content-center align-items-center"
 >
-  <h1 class="question">
+  <h1 class="question" id="speak-1">
     Do you identify with any of the following accessibility needs? <br />
     <b>Select all that apply</b> <br />
     <img
@@ -22,19 +22,9 @@
       onclick="textToSpeech(this)"
     />
   </h1>
-  <button class="impairment-btn" id="vision">Impaired Vision</button>
-  <button class="impairment-btn" id="color-blindness">Color blindness</button>
-  <button class="impairment-btn" id="mobility">Mobility</button>
-  <!--
-    <div class="loader d-none" id="loader">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p>Please Wait</p>
-    </div>
-    -->
-    <p id="speak-1">one two three</p>
-    <p id="speak-2">four five six</p>
+  <button class="impairment-btn" id="speak-2">Impaired Vision</button>
+  <button class="impairment-btn" id="speak-3">Color blindness</button>
+  <button class="impairment-btn" id="speak-4">Mobility</button>
 </div>
 {% endblock %}
 {% block scripts %}
