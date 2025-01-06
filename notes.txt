@@ -71,3 +71,8 @@
     * static - contains css and js files
     * templates - contains html files
     * routes.py - enables routing/switch pages
+
+
+-- CASE:
+    1. automatic tts without trigger [ pending ]
+    2. 

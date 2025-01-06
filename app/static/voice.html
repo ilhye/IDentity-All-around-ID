@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatic TTS</title>
+</head>
+<body>
+  <p id="speak">Modern Family</p>
+  <p id="speak-2">Was</p>
+  <p id="speak-3">A Hit Show</p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Select all <p> elements with IDs starting with "speak"
+       const wordsToSpeak = document.querySelectorAll('*[id^="speak"]');
+      //const wordsToSpeak = document.getElementsByTagName('p');
+      const synth = window.speechSynthesis;
+
+      // Loop through each paragraph and speak its text content
+      for (let i = 0; i < wordsToSpeak.length; i++){
+        const utterance = new SpeechSynthesisUtterance(wordsToSpeak[i].textContent);
+        synth.speak(utterance);
+      }
+    });
+  </script>
+</body>
+</html>
