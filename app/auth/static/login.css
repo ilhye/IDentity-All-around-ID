@@ -1,0 +1,64 @@
+body {
+  background-image: url("/static/images/people-bg.png");
+  background-repeat: repeat;
+  background-size: auto;
+  background-color: #f4f9ff;
+}
+
+.description {
+  color: #A8A8A8;
+}
+
+.login {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0px auto 20px auto;
+  width: 400px;
+}
+
+.login-form button, .form-field, .login-extras {
+  width: 325px;
+}
+
+.login-form input {
+  border: 1px solid black;
+}
+
+.line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin: 40px 0;
+  background-color: #d4d4d4;
+}
+
+.line::before {
+  content: "Or sign in with";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #8b8b8b;
+  padding: 0 15px;
+}
+
+.login-option button{
+  border-radius: 15px;
+  border: transparent;
+}
+
+.remember-pass, .reset-pass, .line {
+  font-size: 14px;
+}
+
+.sign-up {
+  color:black;
+  font-size: 14px;
+}
+
+.sign-up span {
+  font-weight: bold;
+}

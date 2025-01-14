@@ -4,3 +4,7 @@ from . import auth_bp
 @auth_bp.route('/get-started')
 def get_started():
     return render_template('get-started.html', include_navbar=False)
+
+@auth_bp.route('/login')
+def login():
+    return render_template('login.html', include_navbar=False)
