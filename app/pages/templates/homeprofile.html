@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+    <!--Font Awesome-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet">
+    <!--CSS file-->
+    <link href="home-profile.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <h2 class="text-center">IDentity</h2>
+          <nav>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fa-solid fa-id-card"></i>
+                <a href="#id" class="id">ID's</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-user"></i>
+                <a href="#profile" class="profile">Profile</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-bell"></i>
+                <a href="#notifications" class="notification">Notification</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-gear"></i>
+                <a href="#settings" class="setting">Settings</a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col-md-9 p-4">
+          <!-- Profile Header -->
+          <header class="header mb-4">
+            <h1 class="profile-title">Profile</h1>
+
+            <div class="search-container">
+              <input
+                type="text"
+                class="search-bar"
+                placeholder="Search here..."
+                aria-label="Search" />
+              <button class="search-button"><i
+                  class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </header>
+
+          <!-- Profile Section -->
+          <section id="profile">
+            <div class="text-center mb-4">
+              <div class="rounded-circle bg-light mx-auto"
+                style="width: 100px; height: 100px;"></div>
+              <h2>@username</h2>
+              <p>John Doe</p>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div class="personal-info-section border rounded p-4 mb-4">
+              <div
+                class="section-header d-flex justify-content-between align-items-center mb-3">
+                <h3 class="section-title mb-0">Personal Information</h3>
+                <button class="edit-btn btn btn-primary">
+                  Edit <i class="fa-solid fa-pencil"></i>
+                </button>
+              </div>
+              <form>
+                <div class="row g-3">
+                  <!-- Row 1: First Name, Middle Name, Last Name, Extension -->
+                  <div class="col-md-10">
+                    <div class="row">
+                      <!-- I put the extra row here. Sorry about that lol -->
+                      <div class="col-md-4">
+                        <label for="first-name" class="form-label">First
+                          Name:</label>
+                        <input type="text" class="form-control" id="first-name"
+                          name="first-name">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="middle-name" class="form-label">Middle
+                          Name:</label>
+                        <input type="text" class="form-control" id="middle-name"
+                          name="middle-name">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="last-name" class="form-label">Last
+                          Name:</label>
+                        <input type="text" class="form-control" id="last-name"
+                          name="last-name">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <label for="extension" class="form-label">Extension:</label>
+                    <input type="text" class="form-control" id="extension"
+                      name="extension">
+                  </div>
+
+                  <!-- Row 2: Sex, Civil Status, Nationality -->
+                  <div class="col-md-4">
+                    <label for="sex" class="form-label">Sex:</label>
+                    <input type="text" class="form-control" id="sex" name="sex">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="civil-status" class="form-label">Civil
+                      Status:</label>
+                    <input type="text" class="form-control" id="civil-status"
+                      name="civil-status">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="nationality"
+                      class="form-label">Nationality:</label>
+                    <input type="text" class="form-control" id="nationality"
+                      name="nationality">
+                  </div>
+
+                  <!-- Row 3: Birthday, Birthplace, Occupation -->
+                  <div class="col-md-4">
+                    <label for="birthdate" class="form-label">Birthday:</label>
+                    <input type="date" class="form-control" id="birthdate"
+                      name="birthdate">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="birthplace"
+                      class="form-label">Birthplace:</label>
+                    <input type="text" class="form-control" id="birthplace"
+                      name="birthplace">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="occupation"
+                      class="form-label">Occupation:</label>
+                    <input type="text" class="form-control" id="occupation"
+                      name="occupation">
+                  </div>
+
+                  <!-- Row 4: Father's Name, Occupation -->
+                  <div class="col-md-8">
+                    <label for="father-name" class="form-label">Father's
+                      Name:</label>
+                    <input type="text" class="form-control" id="father-name"
+                      name="father-name">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="father-occupation"
+                      class="form-label">Occupation:</label>
+                    <input type="text" class="form-control"
+                      id="father-occupation" name="father-occupation">
+                  </div>
+
+                  <!-- Row 5: Mother's Name, Occupation -->
+                  <div class="col-md-8">
+                    <label for="mother-name" class="form-label">Mother's
+                      Name:</label>
+                    <input type="text" class="form-control" id="mother-name"
+                      name="mother-name">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="mother-occupation"
+                      class="form-label">Occupation:</label>
+                    <input type="text" class="form-control"
+                      id="mother-occupation" name="mother-occupation">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+              <div class="section-header">
+                <h3>Contact Information</h3>
+                <button class="edit-btn">
+                  Edit <i class="fa fa-pencil"></i>
+                </button>
+              </div>
+              <form>
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email">
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                  <label for="phone">Phone Number:</label>
+                  <input type="text" id="phone" name="phone">
+                </div>
+
+                <!-- Current Address -->
+                <div class="form-group">
+                  <label for="address">Current Address:</label>
+                  <div class="address-grid">
+                    <input type="text" id="country" name="country"
+                      placeholder="Country">
+                    <input type="text" id="region" name="region"
+                      placeholder="Region">
+                    <input type="text" id="city" name="city"
+                      placeholder="City/Municipality">
+                    <input type="text" id="province" name="province"
+                      placeholder="Province">
+                    <input type="text" id="barangay" name="barangay"
+                      placeholder="Barangay">
+                    <input type="text" id="street" name="street"
+                      placeholder="Block, Lot, Street, Floor">
+                    <input type="text" id="zip" name="zip"
+                      placeholder="ZIP Code">
+                    <input type="text" id="additional" name="additional"
+                      placeholder="Additional Information">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Account Information -->
+            <div class="account-info">
+              <div
+                class="section-header d-flex justify-content-between align-items-center mb-3">
+                <h3 class="section-title mb-0">Account Information</h3>
+                <button class="edit-btn btn btn-primary">
+                  Edit <i class="fa-solid fa-pencil"></i>
+                </button>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="username" class="form-label">Username:</label>
+                  <input type="text" class="form-control" id="username"
+                    name="username">
+                </div>
+                <div class="form-group">
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="password"
+                    name="password">
+                </div>
+                <div class="form-group">
+                  <label for="password-confirmation" class="form-label">Confirm
+                    Password:</label>
+                  <input type="password" class="form-control"
+                    id="password-confirmation" name="password-confirmation">
+                </div>
+              </form>
+            </div>
+
+            <!-- Identification Details -->
+            <div class="identification-info">
+              <div
+                class="section-header d-flex justify-content-between align-items-center mb-3">
+                <h3 class="section-title mb-0">Identification Details</h3>
+                <button class="edit-btn btn btn-primary">
+                  Edit <i class="fa-solid fa-pencil"></i>
+                </button>
+              </div>
+              <form>
+                <div class="form-group">
+                  <label for="profile-photo" class="form-label">Profile
+                    Photo:</label>
+                  <input type="file" class="form-control" id="profile-photo"
+                    name="profile-photo">
+                </div>
+                <div class="form-group">
+                  <label for="ss-number" class="form-label">Social Security
+                    Number:</label>
+                  <input type="text" class="form-control" id="ss-number"
+                    name="ss-number">
+                </div>
+                <div class="form-group">
+                  <label for="ph-number" class="form-label">PhilHealth
+                    Number:</label>
+                  <input type="text" class="form-control" id="ph-number"
+                    name="ph-number">
+                </div>
+                <div class="form-group">
+                  <label for="philsys-number" class="form-label">National ID
+                    Number:</label>
+                  <input type="text" class="form-control" id="philsys-number"
+                    name="philsys-number">
+                </div>
+                <div class="form-group">
+                  <label for="birth-certificate" class="form-label">Birth
+                    Certificate:</label>
+                  <input type="file" class="form-control" id="birth-certificate"
+                    name="birth-certificate">
+                </div>
+              </form>
+            </div>
+
+            <script
+              src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+          </body>
+        </html>
