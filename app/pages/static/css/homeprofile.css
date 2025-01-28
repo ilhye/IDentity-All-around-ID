@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: 'Lexend', sans-serif;
   margin: 0;
@@ -36,6 +37,7 @@ body {
   height: 60px;
   border-radius: 10px;
   margin: 0 auto;
+  border: 2px solid black;
 }
 
 .sidebar nav ul {
@@ -52,7 +54,7 @@ body {
   margin: 35px 40px;
   padding: 15px;
   background-color: #0461CF;
-  width: 320px;
+  width: 244px;
   height: 54px;
 }
 
@@ -72,6 +74,8 @@ body {
 
 .sidebar nav ul li:hover {
   background-color: #ffffff;
+  border-radius: 10px;
+  width: 250px;
 }
 
 .sidebar nav ul li:hover i,
@@ -82,13 +86,13 @@ body {
 /* Main Content Styles */
 .main-content {
   width: 80%;
-  padding: 20px 40px;
   box-sizing: border-box;
   overflow-y: auto;
-  display: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding-left: 100px;
 }
 
 /* Header Section */
@@ -102,7 +106,6 @@ body {
 /* Profile Title */
 .profile-title {
   font-size: 40px;
-  font-family: 'Lexend', sans-serif;
   font-weight: 700;
   color: #000000;
   margin: 0;
@@ -149,38 +152,56 @@ body {
   color: #5C95E6;
 }
 
-/* Profile Header Styles */
-.profile-header {
-  text-align: center;
-  margin-bottom: 30px;
+/* Profile Section */
+.profile {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 5px;
 }
 
-.avatar {
+.profile-header {
+  text-align: center;
+  margin-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.rounded-circle {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: lightgray;
+  background-color: rgb(71, 127, 195);
   margin: 0 auto 10px;
+  border-color: #000000;
 }
 
-.profile-header h2 {
-  margin: 10px 0 5px;
-  font-weight: 600;
-  font-size: 40px;
+.profile-header2 {
+  text-align: left;
+  margin-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-.profile-header p {
+.profile-header2 h2 {
+  margin: 0px 0 5px;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.profile-header2 p {
+  margin: 2px 0 0;
   color: #333;
   font-size: 16px;
 }
 
-/* Personal Information Section Styles */
-.info-section {
+/* Personal Information Section */
+.personal-info-section {
   border: 1px solid #000000;
   border-radius: 10px;
-  padding: 20px 30px;
+  padding: 30px 30px;
   margin-bottom: 20px;
   background-color: #ffffff;
+  padding-left: 40px;
 }
 
 .section-header {
@@ -247,31 +268,28 @@ input[type="date"]:focus {
   outline: none;
 }
 
-/* Contact Info Section Styles */
-.contact-info {
-  text-align: left;
+/* Contact Information Section */
+.contact-info,
+.account-info,
+.identification-info {
+  text-align: right;
 }
 
-.contact-info label {
+.contact-info label,
+.account-info label,
+.identification-info label {
   font-weight: 600;
   font-size: 16px;
 }
 
-.contact-info .form-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-
+#phone {
+  background-color: rgb(255, 255, 255);
+  color: white;
+  border: 1px solid rgb(0, 0, 0);
 }
 
-.contact-info input[type="text"],
-.contact-info input[type="email"],
-.contact-info input[type="date"] {
-  text-align: left;
-  padding: 8px 10px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  font-size: 16px;
+#phone::placeholder {
+  color: lightgray;
 }
 
 .contact-info input::placeholder {
