@@ -3,62 +3,54 @@
   rel="stylesheet"
   href="{{ url_for('auth.static', filename='login.css') }}"
 />{% endblock %} {% block body %}
-<div class="login">
-  <h1 class="text-center mb-1">Sign In</h1>
-  <small class="text-center d-block description"
-    >Enter your credentials to sign in to your account</small
-  >
-  <form
-    action=""
-    class="login-form m-auto d-flex justify-content-center align-items-center flex-column pt-3"
-  >
-    <div class="mb-4 form-field">
-      <label for="username" class="form-label">Username:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Enter your username"
-      />
-    </div>
-    <div class="mb-1 form-field">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="text"
-        class="form-control"
-        id="password"
-        placeholder="Enter your password"
-      />
-    </div>
-
-    <div class="row login-extras">
-      <div class="col-6 form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="remember-password"
-        />
-        <label class="form-check-label remember-pass" for="remember-password">
-          Remember me
-        </label>
-      </div>
-
-      <div class="col-6">
-        <p class="text-end reset-pass">Forgot password?</p>
-      </div>
-    </div>
-
-    <button type="button" class="btn btn-primary mt-2 p-2">Sign In</button>
-    <a href="" class="text-decoration-none mt-2 sign-up"
-      >Don't have an account? <span>Sign Up</span></a
+<div class="login d-flex justify-content-center align-items-center">
+  <div class="card p-4 shadow-lg bg-body rounded" style="width: 400px">
+    <h1 class="text-center mb-1">Sign In</h1>
+    <small class="text-center d-block description"
+      >Enter your credentials to sign in to your account</small
     >
+    <form action="" method="post" novalidate>
+      {{ form.hidden_tag()}}
 
-    <div class="line"></div>
+      <div class="mb-3 w-100 mt-3">
+        {{ form.username.label(class="form-label", for="username")}} {{
+        form.username (class="form-control", id="username", placeholder="Enter your username")}} 
+        {%if form.username.errors %} 
+          {% for error in form.username.errors %}
+          <div class="invalid-feedback d-block">* {{error}}</div>
+          {%endfor%} 
+        {%endif%}
+      </div>
+      <div class="mb-3">
+        {{ form.password.label(class="form-label", for="password")}} {{
+        form.password (class="form-control", id="password", placeholder="Enter your password")}}
+        {%if form.password.errors %} 
+          {% for error in form.password.errors %}
+          <div class="invalid-feedback d-block">* {{error}}</div>
+          {%endfor%} 
+        {%endif%}
+      </div>
+      <div class="row">
+        <div class="col">
+          {{form.remember_me (class="form-check-input",
+          id="remember-password")}} {{form.remember_me.label}}
+        </div>
+        <div class="col">
+          <p class="text-end reset-pass">Forgot password?</p>
+        </div>
+      </div>
+      {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
+      <div class="text-center">
+        <a href="" class="text-center text-decoration-none mt-2 sign-up">
+          Don't have an account? <span>Sign Up</span>
+        </a>
+      </div>
+      <div class="line"></div>
 
-    <div class="login-option">
-      <button class="p-2">Google</button>
-    </div>
-  </form>
+      <button type="button" class="btn btn-primary rounded p-2 w-100">
+        Google
+      </button>
+    </form>
+  </div>
 </div>
 {% endblock %} {% block scripts %} {% endblock %}
