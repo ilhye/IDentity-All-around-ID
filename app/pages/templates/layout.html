@@ -13,21 +13,18 @@
       rel="stylesheet"
       href="{{url_for('pages.static', filename='css/layout.css')}}"
     />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>IDetity-all-around-ID</title>
     {% block styles %}{% endblock %}
   </head>
   <body>
     <div class="container-fluid">
+      {% if include_navbar %}
       <div class="logo mb-2">
         <h5 class="logo-text text-center m-0 text-white">IDentity</h5>
       </div>
-      {% block body %}{% endblock %}
+      {% endif %} {% block body %}{% endblock %}
     </div>
     {% block scripts %} {% endblock %}
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
