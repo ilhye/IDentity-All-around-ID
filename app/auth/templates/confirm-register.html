@@ -1,4 +1,8 @@
-{% extends 'layout.html' %} {% block body %}
+{% extends 'layout.html' %}{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %} {% block body %}
 <!-- Display user information before saving to the database -->
 <div class="confirm-register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 800px">
@@ -14,9 +18,19 @@
           <input type="text" class="form-control" readonly value="{{ value }}" />
         </div>
         {% endfor %}
+        <div class="col-md-6">
+          <a href="{{ url_for('auth.account_register') }}" class="btn btn-secondary mt-4 w-100">Back</a>
+        </div>
+        <div class="col-md-6">
+          {{ form.submit(class="btn btn-primary mt-4 w-100") }}
+        </div>
       </div>
-      {{ form.submit(class="btn btn-primary mt-4 w-100") }}
+      
     </form>
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
   </div>
 </div>
 {%endblock%}
