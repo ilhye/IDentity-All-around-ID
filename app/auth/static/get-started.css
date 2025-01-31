@@ -1,3 +1,7 @@
+body {
+  background-color: #F4F9FF;
+}
+
 .logo {
   background-color: #0461cf;
   padding: 10px;
@@ -7,15 +11,15 @@
 }
 
 .question {
-  font-size: 2em;
+  font-size: 34px;
   line-height: 1.5;
 }
 
 .impairment-btn {
-  font-size: 1em;
+  font-size: 16px;
   background-color: #0461cf;
   display: block;
-  width: 50%;
+  width: 25%;
   border-radius: 10px;
   color: white;
   border: none;
@@ -27,7 +31,12 @@
   background-color: #0047a0;
 }
 
-.text-to-speech {
+.impairment-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+#text-to-speech {
   width: 40px;
   height: 40px;
   margin-left: 10px;

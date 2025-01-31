@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {% block body %}
+<!-- Display user information before saving to the database -->
+<div class="confirm-register d-flex justify-content-center align-items-center">
+  <div class="card p-5 shadow-lg bg-body rounded" style="width: 800px">
+    <h1 class="text-center mb-4">Confirm Information</h1>
+    <form action="{{ url_for('auth.confirm_register') }}" method="post">
+      {{ form.hidden_tag() }}
+      <div class="row">
+        {% for key, value in data.items() %}
+        <div class="col-md-3 mb-3">
+          <label class="form-label">{{ key | capitalize }}</label>
+        </div>
+        <div class="col-md-9 mb-3">
+          <input type="text" class="form-control" readonly value="{{ value }}" />
+        </div>
+        {% endfor %}
+      </div>
+      {{ form.submit(class="btn btn-primary mt-4 w-100") }}
+    </form>
+  </div>
+</div>
+{%endblock%}

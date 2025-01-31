@@ -5,26 +5,18 @@
   href="{{ url_for('auth.static', filename='get-started.css') }}"
 />{% endblock %} 
 {% block body %}
-<div class="logo mb-5">
-  <h5 class="logo-text text-center m-0 text-white">IDentity</h5>
-</div>
-
-<div
-  class="text-center d-flex flex-column justify-content-center align-items-center"
->
-  <h1 class="question" id="speak-1">
-    Do you identify with any of the following accessibility needs? <br />
-    <b>Select all that apply</b> <br />
-    <img
-      id="text-to-speech"
-      src="{{ url_for('pages.static', filename='images/volume-up.svg')}}"
-      alt="speech"
-      onclick="textToSpeech(this)"
-    />
-  </h1>
-  <button class="impairment-btn" id="speak-2">Impaired Vision</button>
-  <button class="impairment-btn" id="speak-3">Color blindness</button>
-  <button class="impairment-btn" id="speak-4">Mobility</button>
+<div class="text-center d-flex flex-column justify-content-center align-items-center">
+    <h1 class="question w-75" id="speak-1">
+        Do you identify with any of the following accessibility needs? <br />
+        <b>Select all that apply</b> <br />
+        <img id="text-to-speech"
+             src="{{ url_for('pages.static', filename='images/volume-up.svg')}}"
+             alt="speech"
+             onclick="textToSpeech(this)" />
+    </h1>
+        <button class="impairment-btn" id="speak-2"><a href="/auth/login">Impaired Vision</a></button>
+        <button class="impairment-btn" id="speak-3"><a href="/auth/login">Color blindness</a></button>
+        <button class="impairment-btn" id="speak-4"><a href="/auth/login">Mobility</a></button>
 </div>
 {% endblock %}
 {% block scripts %}
