@@ -110,11 +110,9 @@ class ConfirmRegister(FlaskForm):
 
 @auth_bp.route('/get-started')
 def get_started():
-    return render_template('get-started.html', include_navbar=False)
+    return render_template('get-started.html')
 
 # Login
-
-
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = Login()
@@ -126,7 +124,7 @@ def login():
             password = form.password.data
             form.username.data = ''
             form.password.data = ''
-            return redirect(url_for('home'))
+            return redirect(url_for('pages.page_one'))
         else:
             form.username.errors.append('Invalid username')
     return render_template('login.html', form=form, include_navbar=True)

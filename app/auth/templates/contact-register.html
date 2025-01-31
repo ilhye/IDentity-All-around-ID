@@ -39,50 +39,50 @@
         <div class="col-md-10">
           <div class="row">
             <div class="col-md-6">
-              {{form.city(class="form-control mb-3" + (" is-invalid" if
+              {{form.city(class="form-control" + (" is-invalid" if
               form.city.errors else ""), placeholder="Enter
               city")}}{% for error in form.city.errors %}
               <div class="invalid-feedback d-block">* {{ error }}</div>
               {% endfor %}
-
-              {{ form.barangay(class="form-control mb-3" + (" is-invalid" if
+              <br>
+              {{ form.barangay(class="form-control" + (" is-invalid" if
               form.barangay.errors else ""), placeholder="Enter
               barangay") }} {% for error in form.barangay.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-
-              {{ form.blkLotStrt(class="form-control mb-3" + (" is-invalid" if
+              <br>
+              {{ form.blkLotStrt(class="form-control" + (" is-invalid" if
               form.blkLotStrt.errors else ""), placeholder="Enter
               blkLotStrt", ) }} {% for error in form.blkLotStrt.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-
-              {{ form.province(class="form-control mb-3" + ("is-invalid" if
+              <br>
+              {{ form.province(class="form-control" + (" is-invalid" if
               form.province.errors else ""), placeholder="Enter
               province") }} {% for error in form.province.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
             </div>
             <div class="col-md-6">
-              {{ form.zipCode(class="form-control mb-3" + (" is-invalid" if
+              {{ form.zipCode(class="form-control" + (" is-invalid" if
               form.zipCode.errors else ""), placeholder="Enter
               zipCode") }} {% for error in
               form.zipCode.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %} 
-
-              {{ form.country(class="form-control mb-3"  + (" is-invalid" if
+              <br>
+              {{ form.country(class="form-control"  + (" is-invalid" if
               form.country.errors else ""), placeholder="Enter
               country") }} {% for error in form.country.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-
-              {{form.region(class="form-control mb-3" + (" is-invalid" if
+              <br>
+              {{form.region(class="form-control" + (" is-invalid" if
               form.region.errors else ""), placeholder="Enter
               region")}} {% for error in form.region.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-
+              <br>
               {{ form.addInfo(class="form-control mb-3", placeholder="Enter
               addInfo")}}
             </div>
@@ -103,6 +103,12 @@
         </div>
       </div>
     </form>
+    <p id="speak-1" class="text-white d-none">
+      Please enter email, phone number, city, barangay, block lot street, province, zipCode, country, region, and additional information
+    </p>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
 {% endblock %}

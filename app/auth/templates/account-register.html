@@ -41,6 +41,12 @@
         </div>
       </div>
     </form>
+    <p id="speak-1" class="text-white small d-none">
+      Please enter username, password, and confirm password
+    </p>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
 {% endblock %}
