@@ -1,10 +1,12 @@
 {% extends 'layout.html' %} {% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
-    <h1 class="text-center mb-1">Sign In</h1>
-    <small class="text-center d-block description"
+    <h1 class="text-center mb-1">Sign Up</h1>
+    <small class="text-center d-block description mb-4"
       >Enter your credentials to sign in to your account</small
     >
+
+    <h4 class="text-primary">B. Contact Information</h4>
     <form
       action="{{ url_for('auth.contact_register') }}"
       method="post"
@@ -17,8 +19,8 @@
           {{ form.email.label(class="form-label") }}
         </div>
         <div class="col-md-10 mb-3 mt-4">
-          {{ form.email(class="form-control is-invalid" if form.email.errors
-          else "form-control") }} {% for error in form.email.errors %}
+          {{ form.email(class="form-control" + (" is-invalid" if form.email.errors
+          else "")) }} {% for error in form.email.errors %}
           <div class="invalid-feedback d-block">* {{ error }}</div>
           {% endfor %}
         </div>
@@ -37,50 +39,50 @@
         <div class="col-md-10">
           <div class="row">
             <div class="col-md-6">
-              {{form.city(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+              {{form.city(class="form-control mb-3" + (" is-invalid" if
+              form.city.errors else ""), placeholder="Enter
               city")}}{% for error in form.city.errors %}
               <div class="invalid-feedback d-block">* {{ error }}</div>
               {% endfor %}
-              <br />
-              {{ form.barangay(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+
+              {{ form.barangay(class="form-control mb-3" + (" is-invalid" if
+              form.barangay.errors else ""), placeholder="Enter
               barangay") }} {% for error in form.barangay.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-              <br />
-              {{ form.blkLotStrt(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+
+              {{ form.blkLotStrt(class="form-control mb-3" + (" is-invalid" if
+              form.blkLotStrt.errors else ""), placeholder="Enter
               blkLotStrt", ) }} {% for error in form.blkLotStrt.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-              <br />
-              {{ form.province(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+
+              {{ form.province(class="form-control mb-3" + ("is-invalid" if
+              form.province.errors else ""), placeholder="Enter
               province") }} {% for error in form.province.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
             </div>
             <div class="col-md-6">
-              {{ form.zipCode(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
-              zipCode") }} {% if form.zipCode.errors %} {% for error in
+              {{ form.zipCode(class="form-control mb-3" + (" is-invalid" if
+              form.zipCode.errors else ""), placeholder="Enter
+              zipCode") }} {% for error in
               form.zipCode.errors %}
               <div class="invalid-feedback">{{error}}</div>
-              {% endfor %} {% endif %}
-              <br />
-              {{ form.country(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+              {% endfor %} 
+
+              {{ form.country(class="form-control mb-3"  + (" is-invalid" if
+              form.country.errors else ""), placeholder="Enter
               country") }} {% for error in form.country.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-              <br />
-              {{form.region(class="form-control mb-3 is-invalid" if
-              form.email.errors else "form-control", placeholder="Enter
+
+              {{form.region(class="form-control mb-3" + (" is-invalid" if
+              form.region.errors else ""), placeholder="Enter
               region")}} {% for error in form.region.errors %}
               <div class="invalid-feedback">{{error}}</div>
               {% endfor %}
-              <br />
+
               {{ form.addInfo(class="form-control mb-3", placeholder="Enter
               addInfo")}}
             </div>

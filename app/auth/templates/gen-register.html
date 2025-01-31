@@ -1,35 +1,37 @@
 {% extends 'layout.html' %} {% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
-    <h1 class="text-center mb-1">Sign In</h1>
-    <small class="text-center d-block description"
+    <h1 class="text-center mb-1">Sign Up</h1>
+    <small class="text-center d-block description mb-4"
       >Enter your credentials to sign in to your account</small
     >
+
+    <h4 class="text-primary">A. General Information</h4>
     <form action="{{ url_for('auth.gen_register') }}" method="post" novalidate>
       {{ form.hidden_tag() }}
       <div class="row">
-        <div class="col-md-3 mb-3 mt-4">
+        <div class="col-md-3 mb-3 mt-2">
           {{ form.fName.label(class="form-label", for="first-name") }} {{
           form.fName (class="form-control" + (" is-invalid" if form.fName.errors else ""), id="first-name",
           placeholder="Enter your first name") }} {% for error in form.fName.errors %}
           <div class="invalid-feedback d-block">* {{ error }}</div>
           {% endfor %}
         </div>
-        <div class="col-md-3 mb-3 mt-4">
+        <div class="col-md-3 mb-3 mt-2">
           {{ form.mName.label(class="form-label", for="middle-name") }} {{
           form.mName(class="form-control"  + (" is-invalid" if form.mName.errors else ""), id="middle-name",
           placeholder="Enter your middle name") }} {% for error in form.mName.errors %}
           <div class="invalid-feedback d-block">* {{ error }}</div>
           {% endfor %}
         </div>
-        <div class="col-md-3 mb-3 mt-4">
+        <div class="col-md-3 mb-3 mt-2">
           {{ form.lName.label(class="form-label", for="last-name") }} {{
           form.lName(class="form-control" + (" is-invalid" if form.lName.errors else ""), id="last-name",
           placeholder="Enter your last name") }} {% for error in form.lName.errors %}
           <div class="invalid-feedback d-block">* {{ error }}</div>
           {% endfor %}
         </div>
-        <div class="col-md-3 mb-3 mt-4">
+        <div class="col-md-3 mb-3 mt-2">
           {{ form.exName.label(class="form-label", for="extension-name") }} {{
           form.exName(class="form-control", id="extension-name",
           placeholder="(optional)") }}

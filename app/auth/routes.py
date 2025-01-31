@@ -3,11 +3,17 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
 from wtforms.validators import DataRequired, Email
 from app.backend.services import *
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from werkzeug.utils import secure_filename
+import os
 from . import auth_bp
+from app.backend.services import add_user
+
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 # These classes are used to create forms
-
-
 class Login(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired("Please enter your username")])
@@ -70,6 +76,13 @@ class ContactRegister(FlaskForm):
     addInfo = StringField('Additional Information')
     submit = SubmitField('Next')
 
+class IdentityRegister(FlaskForm):
+    profilePic = FileField('Profile Picture', validators=[FileRequired("Please upload your profile picture"), FileAllowed(['jpg', 'png'], 'Images only!')])
+    socialSecurity = StringField('Social Security Number')
+    philHealth = StringField('PhilHealth Number')
+    nationalID = StringField('National ID Number')
+    birthCert = FileField('Birth Certificate', validators=[FileAllowed(['pdf'], 'PDF only!')])
+    submit = SubmitField('Next')
 
 class AccountRegister(FlaskForm):
     username = StringField('Username', validators=[
@@ -196,8 +209,43 @@ def contact_register():
         form.country.data = ''
         form.addInfo.data = ''
 
-        return redirect(url_for('auth.account_register'))
+        return redirect(url_for('auth.identity_register'))
     return render_template('contact-register.html', form=form, include_navbar=True)
+
+@auth_bp.route('/identity-register', methods=['GET', 'POST'])
+def identity_register():
+    form = IdentityRegister()
+    
+    if form.validate_on_submit():
+        profile_pic = form.profilePic.data
+        birth_cert = form.birthCert.data
+
+        profile_pic_filename = secure_filename(profile_pic.filename)
+        birth_cert_filename = secure_filename(birth_cert.filename)
+
+        profile_pic_path = os.path.join(UPLOAD_FOLDER, profile_pic_filename)
+        birth_cert_path = os.path.join(UPLOAD_FOLDER, birth_cert_filename)
+
+        profile_pic.save(profile_pic_path)
+        birth_cert.save(birth_cert_path)
+
+        session['identity_register'] = {
+            'profilePic': profile_pic_path,
+            'socialSecurity': form.socialSecurity.data,
+            'philHealth': form.philHealth.data,
+            'nationalID': form.nationalID.data,
+            'birthCert': birth_cert_path
+        }
+
+        # Reset form data
+        form.profilePic.data = ''
+        form.socialSecurity.data = ''
+        form.philHealth.data = ''
+        form.nationalID.data = ''
+        form.birthCert.data = ''
+
+        return redirect(url_for('auth.account_register'))
+    return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
 
@@ -235,10 +283,12 @@ def confirm_register():
     data = {
         **session.get('gen_register', {}),
         **session.get('contact_register', {}),
-        **session.get('account_register', {})
+        **session.get('account_register', {}),
+        **session.get('identity_register', {})
     }
 
     if form.validate_on_submit():
+        add_user(data)
         flash('Registration Successful')
         add_user(data)
         return redirect(url_for('auth.login'))
