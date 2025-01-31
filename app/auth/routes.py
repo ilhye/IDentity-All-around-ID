@@ -7,7 +7,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from werkzeug.utils import secure_filename
 import os
 from . import auth_bp
-from app.backend.services import add_user
+from app.backend.services import add_user, create_user_with_email_and_password, verify_user_with_email_and_password
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -120,15 +120,16 @@ def login():
     form = Login()
 
     if form.validate_on_submit():
-        username = form.username.data
+        email = form.username.data
+        password = form.password.data
 
-        if check_username(username):
-            password = form.password.data
+        user = verify_user_with_email_and_password(email, password)
+        if user:
             form.username.data = ''
             form.password.data = ''
             return redirect(url_for('home'))
         else:
-            form.username.errors.append('Invalid username')
+            form.username.errors.append('Invalid email or password')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
@@ -256,14 +257,20 @@ def account_register():
 
     # Check if form is submitted
     if form.validate_on_submit():
-        username = form.username.data
-        if check_username(username):
-            flash('Username already exists. Please choose a different username.')
+        email = form.username.data
+        password = form.password.data
+        confirm_password = form.confirmPassword.data
+
+        if password != confirm_password:
+            form.confirmPassword.errors.append('Passwords do not match')
+        elif check_username(email):
+            flash('Email already exists. Please choose a different email.')
         else:
+            create_user_with_email_and_password(email, password)
             session['account_register'] = {
-                'username': username,
-                'password': form.password.data,
-                'confirmPassword': form.confirmPassword.data
+                'username': email,
+                'password': password,
+                'confirmPassword': confirm_password
             }
             # Reset form data
             form.username.data = ''
