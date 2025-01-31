@@ -16,3 +16,11 @@ def check_username(username):
             if value['username'] == username:
                 return True
     return False
+
+def update(username,password):
+    users = db.order_by_child('username').get()
+    for key, value in users.items():
+        if value['username'] == username:
+            db.child(key).update({'password': password})
+            return True
+    return False
