@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for, request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
 from wtforms.validators import DataRequired, Email
+from app.backend.services import add_user
 from . import auth_bp
 
 # These classes are used to create forms
@@ -212,6 +213,7 @@ def confirm_register():
 
     if form.validate_on_submit():
         flash('Registration Successful')
+        add_user(data)
         return redirect(url_for('auth.login'))
         
     return render_template('confirm-register.html', form=form, include_navbar=True, data=data)
