@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
 from wtforms.validators import DataRequired, Email
-from app.backend.services import add_user
+from app.backend.services import add_user, check_username
 from . import auth_bp
 
 # These classes are used to create forms
@@ -97,10 +97,14 @@ def login():
 
     if form.validate_on_submit():
         username = form.username.data
-        password = form.password.data
-        form.email.data = ''
-        form.password.data = ''
-        return redirect(url_for('home', username=username, password=password))
+
+        if check_username(username):
+            password = form.password.data
+            form.username.data = ''
+            form.password.data = ''
+            return redirect(url_for('home'))
+        else:
+            form.username.errors.append('Invalid username')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
@@ -117,7 +121,7 @@ def gen_register():
             'gender': form.gender.data,
             'civilStatus': form.civilStatus.data,
             'nationality': form.nationality.data,
-            'birthday': form.birthday.data,
+            'birthday': form.birthday.data.strftime('%Y-%m-%d'),
             'birthplace': form.birthplace.data,
             'occupation': form.occupation.data,
             'fatherName': form.fatherName.data,
@@ -187,17 +191,21 @@ def account_register():
 
     # Check if form is submitted
     if form.validate_on_submit():
-        session['account_register'] = {
-            'username': form.username.data,
-            'password': form.password.data,
-            'confirmPassword': form.confirmPassword.data
-        }
-        # Reset form data
-        form.username.data = ''
-        form.password.data = ''
-        form.confirmPassword.data = ''
+        username = form.username.data
+        if check_username(username):
+            flash('Username already exists. Please choose a different username.')
+        else:
+            session['account_register'] = {
+                'username': username,
+                'password': form.password.data,
+                'confirmPassword': form.confirmPassword.data
+            }
+            # Reset form data
+            form.username.data = ''
+            form.password.data = ''
+            form.confirmPassword.data = ''
 
-        return redirect(url_for('auth.confirm_register'))
+            return redirect(url_for('auth.confirm_register'))
     return render_template('account-register.html', form=form, include_navbar=True)
 
 # Confirm Register
