@@ -1,0 +1,43 @@
+body {
+  background-color: #F4F9FF;
+}
+
+.logo {
+  background-color: #0461cf;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 150px;
+}
+
+.question {
+  font-size: 34px;
+  line-height: 1.5;
+}
+
+.impairment-btn {
+  font-size: 16px;
+  background-color: #0461cf;
+  display: block;
+  width: 25%;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.impairment-btn:hover {
+  background-color: #0047a0;
+}
+
+.impairment-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+#text-to-speech {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}

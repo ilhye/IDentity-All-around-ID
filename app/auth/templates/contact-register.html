@@ -1,0 +1,116 @@
+{% extends 'layout.html' %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %}{% block body %}
+<div class="register d-flex justify-content-center align-items-center">
+  <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
+    <h1 class="text-center mb-1">Sign Up</h1>
+    <small class="text-center d-block description mb-4"
+      >Enter your credentials to sign in to your account</small
+    >
+
+    <h4 class="text-primary">B. Contact Information</h4>
+    <form
+      action="{{ url_for('auth.contact_register') }}"
+      method="post"
+      novalidate
+    >
+      {{ form.hidden_tag() }}
+
+      <div class="row">
+        <div class="col-md-2 mb-3 mt-4">
+          {{ form.email.label(class="form-label") }}
+        </div>
+        <div class="col-md-10 mb-3 mt-4">
+          {{ form.email(class="form-control" + (" is-invalid" if form.email.errors
+          else "")) }} {% for error in form.email.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-2 mb-3">
+          {{ form.phone.label(class="form-label") }}
+        </div>
+        <div class="col-md-10 mb-3">
+          {{ form.phone(class="form-control is-invalid" if form.email.errors
+          else "form-control") }} {% for error in form.phone.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-2">
+          <p>Current Address</p>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-6">
+              {{form.city(class="form-control mb-3" + (" is-invalid" if
+              form.city.errors else ""), placeholder="Enter
+              city")}}{% for error in form.city.errors %}
+              <div class="invalid-feedback d-block">* {{ error }}</div>
+              {% endfor %}
+
+              {{ form.barangay(class="form-control mb-3" + (" is-invalid" if
+              form.barangay.errors else ""), placeholder="Enter
+              barangay") }} {% for error in form.barangay.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %}
+
+              {{ form.blkLotStrt(class="form-control mb-3" + (" is-invalid" if
+              form.blkLotStrt.errors else ""), placeholder="Enter
+              blkLotStrt", ) }} {% for error in form.blkLotStrt.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %}
+
+              {{ form.province(class="form-control mb-3" + ("is-invalid" if
+              form.province.errors else ""), placeholder="Enter
+              province") }} {% for error in form.province.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %}
+            </div>
+            <div class="col-md-6">
+              {{ form.zipCode(class="form-control mb-3" + (" is-invalid" if
+              form.zipCode.errors else ""), placeholder="Enter
+              zipCode") }} {% for error in
+              form.zipCode.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %} 
+
+              {{ form.country(class="form-control mb-3"  + (" is-invalid" if
+              form.country.errors else ""), placeholder="Enter
+              country") }} {% for error in form.country.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %}
+
+              {{form.region(class="form-control mb-3" + (" is-invalid" if
+              form.region.errors else ""), placeholder="Enter
+              region")}} {% for error in form.region.errors %}
+              <div class="invalid-feedback">{{error}}</div>
+              {% endfor %}
+
+              {{ form.addInfo(class="form-control mb-3", placeholder="Enter
+              addInfo")}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-2">
+          <div class="previous-page mt-2 p-2">
+            <a
+              href="{{url_for('auth.gen_register')}}"
+              class="text-decoration-none"
+            >Previous Page</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-end">
+            {{form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25")}}
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
+  </div>
+</div>
+{% endblock %}

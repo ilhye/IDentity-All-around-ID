@@ -1,3 +1,4 @@
-chromedriver.exe
-credentials.json
+venv/
 __pycache__/
+.vs
+credentials.json

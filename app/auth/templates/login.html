@@ -1,0 +1,54 @@
+{% extends 'layout.html' %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='login.css') }}"
+/>{% endblock %} {% block body %}
+<div class="login d-flex justify-content-center align-items-center">
+  <div class="card p-4 shadow-lg bg-body rounded" style="width: 400px">
+    <h1 class="text-center mb-1">Sign In</h1>
+    <small class="text-center d-block text-secondary">
+      Enter your credentials to sign in to your account
+    </small>
+    <form action="" method="post" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="mb-3 w-100 mt-3">
+        {{ form.username.label(class="form-label", for="username")}} {{
+        form.username (class="form-control border border-dark" + (" is-invalid" if
+        form.username.errors else ""), id="username", placeholder="Enter your
+        username")}} {% for error in form.username.errors %}
+        <div class="invalid-feedback d-block">* {{error}}</div>
+        {%endfor%}
+      </div>
+      <div class="mb-1">
+        {{ form.password.label(class="form-label", for="password")}} {{
+        form.password (class="form-control border border-dark" + (" is-invalid" if
+        form.password.errors else ""), id="password", placeholder="Enter your
+        password")}} {% for error in form.password.errors %}
+        <div class="invalid-feedback d-block">* {{error}}</div>
+        {%endfor%}
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          {{form.remember_me (class="form-check-input border border-dark",
+          id="remember-password")}} {{form.remember_me.label (class="form-check-label small")}}
+        </div>
+        <div class="col text-end">
+          <a href="{{ url_for('auth.forgot_password')}}" class="text-decoration-none small text-body">Forgot Password?</a>
+        </div>
+      </div>
+      {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
+      <div class="text-center mt-1">
+        <a href="{{url_for('auth.gen_register')}}" class="text-decoration-none small text-body">
+          Don't have an account? <span>Sign Up</span>
+        </a>
+      </div>
+      <div class="line text-secondary"></div>
+
+      <button type="button" class="btn btn-primary rounded p-2 w-100" type="button">
+        <i class="fa-brands fa-google me-3"></i>Login with Google
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block scripts %} {% endblock %}

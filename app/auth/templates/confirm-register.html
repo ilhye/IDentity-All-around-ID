@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %} {% block body %}
+<!-- Display user information before saving to the database -->
+<div class="confirm-register d-flex justify-content-center align-items-center">
+  <div class="card p-5 shadow-lg bg-body rounded" style="width: 800px">
+    <h1 class="text-center mb-4">Confirm Information</h1>
+    <form action="{{ url_for('auth.confirm_register') }}" method="post">
+      {{ form.hidden_tag() }}
+      <div class="row">
+        {% for key, value in data.items() %}
+        <div class="col-md-3 mb-3">
+          <label class="form-label">{{ key | capitalize }}</label>
+        </div>
+        <div class="col-md-9 mb-3">
+          <input type="text" class="form-control" readonly value="{{ value }}" />
+        </div>
+        {% endfor %}
+        <div class="col-md-6">
+          <a href="{{ url_for('auth.account_register') }}" class="btn btn-secondary mt-4 w-100">Back</a>
+        </div>
+        <div class="col-md-6">
+          {{ form.submit(class="btn btn-primary mt-4 w-100") }}
+        </div>
+      </div>
+      
+    </form>
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
+  </div>
+</div>
+{%endblock%}
