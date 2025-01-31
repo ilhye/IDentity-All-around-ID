@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for, request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
 from wtforms.validators import DataRequired, Email
+from app.backend.services import *
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from werkzeug.utils import secure_filename
 import os
@@ -20,6 +21,7 @@ class Login(FlaskForm):
                              DataRequired("Please enter your password")])
     remember_me = BooleanField('Remember Me', default=False)
     submit = SubmitField('Login')
+
 
 class GenRegister(FlaskForm):
     fName = StringField('First Name', validators=[
@@ -50,6 +52,7 @@ class GenRegister(FlaskForm):
     motherOccupation = StringField('Mother Occupation', validators=[
                                    DataRequired("Please enter your mother's occupation")])
     submit = SubmitField('Next')
+
 
 class ContactRegister(FlaskForm):
     email = StringField('Email', validators=[DataRequired(
@@ -90,35 +93,47 @@ class AccountRegister(FlaskForm):
                                     DataRequired("Please confirm your password")])
     submit = SubmitField('Register')
 
+
 class ForgotPassword(FlaskForm):
     username = StringField('Email', validators=[DataRequired(
-        "Please enter your email address"), Email("Please enter a valid email address")])
+        "Please enter your username")])
     new_password = PasswordField('New Password', validators=[
                                  DataRequired("Please enter your new password")])
     submit = SubmitField('Submit')
+
 
 class ConfirmRegister(FlaskForm):
     submit = SubmitField('Submit')
 
 # Home
+
+
 @auth_bp.route('/get-started')
 def get_started():
     return render_template('get-started.html', include_navbar=False)
 
 # Login
+
+
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = Login()
 
     if form.validate_on_submit():
         username = form.username.data
-        password = form.password.data
-        form.email.data = ''
-        form.password.data = ''
-        return redirect(url_for('home', username=username, password=password))
+
+        if check_username(username):
+            password = form.password.data
+            form.username.data = ''
+            form.password.data = ''
+            return redirect(url_for('home'))
+        else:
+            form.username.errors.append('Invalid username')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
+
+
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
 def gen_register():
     form = GenRegister()
@@ -132,7 +147,7 @@ def gen_register():
             'gender': form.gender.data,
             'civilStatus': form.civilStatus.data,
             'nationality': form.nationality.data,
-            'birthday': form.birthday.data,
+            'birthday': form.birthday.data.strftime('%Y-%m-%d'),
             'birthplace': form.birthplace.data,
             'occupation': form.occupation.data,
             'fatherName': form.fatherName.data,
@@ -161,6 +176,8 @@ def gen_register():
     return render_template('gen-register.html', form=form, include_navbar=True)
 
 # Contact Register
+
+
 @auth_bp.route('/contact-register', methods=['GET', 'POST'])
 def contact_register():
     form = ContactRegister()
@@ -231,26 +248,34 @@ def identity_register():
     return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
+
+
 @auth_bp.route('/account-register', methods=['GET', 'POST'])
 def account_register():
     form = AccountRegister()
 
     # Check if form is submitted
     if form.validate_on_submit():
-        session['account_register'] = {
-            'username': form.username.data,
-            'password': form.password.data,
-            'confirmPassword': form.confirmPassword.data
-        }
-        # Reset form data
-        form.username.data = ''
-        form.password.data = ''
-        form.confirmPassword.data = ''
+        username = form.username.data
+        if check_username(username):
+            flash('Username already exists. Please choose a different username.')
+        else:
+            session['account_register'] = {
+                'username': username,
+                'password': form.password.data,
+                'confirmPassword': form.confirmPassword.data
+            }
+            # Reset form data
+            form.username.data = ''
+            form.password.data = ''
+            form.confirmPassword.data = ''
 
-        return redirect(url_for('auth.confirm_register'))
+            return redirect(url_for('auth.confirm_register'))
     return render_template('account-register.html', form=form, include_navbar=True)
 
 # Confirm Register
+
+
 @auth_bp.route('/confirm-register', methods=['GET', 'POST'])
 def confirm_register():
     form = ConfirmRegister()
@@ -265,11 +290,14 @@ def confirm_register():
     if form.validate_on_submit():
         add_user(data)
         flash('Registration Successful')
+        add_user(data)
         return redirect(url_for('auth.login'))
-        
+
     return render_template('confirm-register.html', form=form, include_navbar=True, data=data)
 
 # Forgot Password
+
+
 @auth_bp.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     form = ForgotPassword()
@@ -279,9 +307,12 @@ def forgot_password():
         username = form.username.data
         new_password = form.new_password.data
 
-        # Reset form data
-        form.username.data = ''
-        form.new_password.data = ''
+        if update(username, new_password):
+            form.username.data = ''
+            form.new_password.data = ''
+            flash('Password reset successful')
+        else:
+            form.username.errors.append('Invalid username')
 
-        return redirect(url_for('home', username=username, new_password=new_password))
+        return redirect(url_for('auth.login'))
     return render_template('forgot-password.html', form=form, include_navbar=True)
