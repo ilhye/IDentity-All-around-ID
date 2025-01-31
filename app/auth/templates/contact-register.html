@@ -1,5 +1,4 @@
-{% extends 'layout.html' %}
-{% block body %}
+{% extends 'layout.html' %} {% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
     <h1 class="text-center mb-1">Sign In</h1>
@@ -7,7 +6,7 @@
       >Enter your credentials to sign in to your account</small
     >
     <form
-      action="{{ url_for('auth.account_register') }}"
+      action="{{ url_for('auth.contact_register') }}"
       method="post"
       novalidate
     >
