@@ -17,8 +17,7 @@ def check_username(username):
     users = db.order_by_child('username').get()
     if users:
         for key, value in users.items():
-            if value.get('username') == username: 
-                print(username)
+            if value.get('username') == username:
                 return True
         print(username)
     return False

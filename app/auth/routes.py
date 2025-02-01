@@ -130,7 +130,7 @@ def login():
             password = form.password.data
             form.username.data = ''
             form.password.data = ''
-            return redirect(url_for('pages.page_one'))
+            return redirect(url_for('pages.profile'))
         else:
             form.username.errors.append('Invalid username or password')
     return render_template('login.html', form=form, include_navbar=True)
@@ -253,8 +253,6 @@ def identity_register():
     return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
-
-
 @auth_bp.route('/account-register', methods=['GET', 'POST'])
 def account_register():
     form = AccountRegister()
