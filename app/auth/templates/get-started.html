@@ -5,8 +5,8 @@
   href="{{ url_for('auth.static', filename='get-started.css') }}"
 />{% endblock %} 
 {% block body %}
-<div class="text-center d-flex flex-column justify-content-center align-items-center">
-    <h1 class="question w-75" id="speak-1">
+<div class="text-center d-flex flex-column justify-content-center align-items-center mt-5 p-5">
+    <h1 class="question w-75 .fs-3" id="speak-1">
         Do you identify with any of the following accessibility needs? <br />
         <b>Select all that apply</b> <br />
         <img id="text-to-speech"
@@ -14,12 +14,11 @@
              alt="speech"
              onclick="textToSpeech(this)" />
     </h1>
-        <button class="impairment-btn" id="speak-2"><a href="/auth/login">Impaired Vision</a></button>
-        <button class="impairment-btn" id="speak-3"><a href="/auth/login">Color blindness</a></button>
-        <button class="impairment-btn" id="speak-4"><a href="/auth/login">Mobility</a></button>
+        <button class="impairment-btn fs-5" id="speak-2" onclick="setAccessibility('vision')"><a href="/auth/login">Impaired Vision</a></button>
+        <button class="impairment-btn fs-5" id="speak-3" onclick="setAccessibility('mobility')"><a href="/auth/login">Mobility</a></button>
 </div>
-{% endblock %}
+
 {% block scripts %}
-<!---->
 <script src="{{ url_for('static', filename='voice.js') }}"></script>
+{% endblock %}
 {% endblock %}

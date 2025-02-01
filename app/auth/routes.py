@@ -106,15 +106,11 @@ class ConfirmRegister(FlaskForm):
     submit = SubmitField('Submit')
 
 # Home
-
-
 @auth_bp.route('/get-started')
 def get_started():
-    return render_template('get-started.html', include_navbar=False)
+    return render_template('get-started.html')
 
 # Login
-
-
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = Login()
@@ -122,19 +118,16 @@ def login():
     if form.validate_on_submit():
         email = form.username.data
         password = form.password.data
-
-        user = verify_user_with_username_and_password(email, password)
-        if user:
+    
+        if check_account_exists(username, password):
             form.username.data = ''
             form.password.data = ''
-            return redirect(url_for('home'))
+            return redirect(url_for('pages.page_one'))
         else:
             form.username.errors.append('Invalid email or password')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
-
-
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
 def gen_register():
     form = GenRegister()
@@ -177,8 +170,6 @@ def gen_register():
     return render_template('gen-register.html', form=form, include_navbar=True)
 
 # Contact Register
-
-
 @auth_bp.route('/contact-register', methods=['GET', 'POST'])
 def contact_register():
     form = ContactRegister()
@@ -249,8 +240,6 @@ def identity_register():
     return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
-
-
 @auth_bp.route('/account-register', methods=['GET', 'POST'])
 def account_register():
     form = AccountRegister()
@@ -263,15 +252,18 @@ def account_register():
 
         if password != confirm_password:
             form.confirmPassword.errors.append('Passwords do not match')
-        elif check_username(username):
-            flash('Email already exists. Please choose a different email.')
+        if check_username(username):
+            form.username.errors.append('Username already exists. Please choose a different username.')
+
+        if form.password.data != form.confirmPassword.data:
+            form.confirmPassword.errors.append('Passwords do not match')
         else:
             create_user_with_username_and_password(username, password)
             session['account_register'] = {
                 'username': username,
                 'password': password,
                 'confirmPassword': confirm_password
-            }
+                'password': form.password.data,
             # Reset form data
             form.username.data = ''
             form.password.data = ''
@@ -281,8 +273,6 @@ def account_register():
     return render_template('account-register.html', form=form, include_navbar=True)
 
 # Confirm Register
-
-
 @auth_bp.route('/confirm-register', methods=['GET', 'POST'])
 def confirm_register():
     form = ConfirmRegister()
@@ -296,15 +286,11 @@ def confirm_register():
 
     if form.validate_on_submit():
         add_user(data)
-        flash('Registration Successful')
-        add_user(data)
         return redirect(url_for('auth.login'))
 
     return render_template('confirm-register.html', form=form, include_navbar=True, data=data)
 
 # Forgot Password
-
-
 @auth_bp.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     form = ForgotPassword()

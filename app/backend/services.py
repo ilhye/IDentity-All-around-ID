@@ -16,8 +16,16 @@ def check_username(username):
             if value['username'] == username:
                 return True
     return False
-
-def update(username, password):
+  
+def check_account_exists(username, password):
+    users = db.order_by_child('username').get()
+    if users:
+        for key, value in users.items():
+            if value['username'] == username and value['password'] == password:
+                return True
+    return False
+    
+def update(username,password):
     users = db.order_by_child('username').get()
     for key, value in users.items():
         if value['username'] == username:
