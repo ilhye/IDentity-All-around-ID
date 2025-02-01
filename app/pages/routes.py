@@ -5,6 +5,11 @@ from . import pages_bp
 def page_one():
     return "Page One"
 
+@pages_bp.route('/notifications')
+def notifications():
+    return render_template('Notification.html')
+
 @pages_bp.route('/profile')
 def profile():
     return render_template('profile.html')
+
