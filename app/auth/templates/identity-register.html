@@ -2,7 +2,19 @@
 <link
   rel="stylesheet"
   href="{{ url_for('auth.static', filename='register.css') }}"
-/>{% endblock %} {% block body %}
+/>
+<style>
+  body {
+    font-size: 16px;
+  }
+  .form-section .col-md-12 {
+    margin-bottom: 1rem;
+  }
+  .form-section .col-md-6 {
+    margin-bottom: 1rem;
+  }
+</style>
+{% endblock %} {% block body %}
 <div class="identification d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 850px">
     <h1 class="text-center mb-1">Sign Up</h1>
