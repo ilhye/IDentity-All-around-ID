@@ -17,3 +17,11 @@ def home_id():
     if form.validate_on_submit():
         return redirect(url_for('pages.home_id'))
     return render_template('homeid.html')
+
+@pages_bp.route('/notifications')
+def notifications():
+    return render_template('Notification.html')
+
+@pages_bp.route('/profile')
+def profile():
+    return render_template('profile.html')

@@ -14,6 +14,8 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # These classes are used to create forms
+
+
 class Login(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired("Please enter your username")])
@@ -75,13 +77,17 @@ class ContactRegister(FlaskForm):
     addInfo = StringField('Additional Information')
     submit = SubmitField('Next')
 
+
 class IdentityRegister(FlaskForm):
-    profilePic = FileField('Profile Picture', validators=[FileRequired("Please upload your profile picture"), FileAllowed(['jpg', 'png'], 'Images only!')])
+    profilePic = FileField('Profile Picture', validators=[FileRequired(
+        "Please upload your profile picture"), FileAllowed(['jpg', 'png'], 'Images only!')])
     socialSecurity = StringField('Social Security Number')
     philHealth = StringField('PhilHealth Number')
     nationalID = StringField('National ID Number')
-    birthCert = FileField('Birth Certificate', validators=[FileAllowed(['pdf'], 'PDF only!')])
+    birthCert = FileField('Birth Certificate', validators=[
+                          FileAllowed(['pdf'], 'PDF only!')])
     submit = SubmitField('Next')
+
 
 class AccountRegister(FlaskForm):
     username = StringField('Username', validators=[
@@ -109,11 +115,9 @@ class ConfirmRegister(FlaskForm):
 
 @auth_bp.route('/get-started')
 def get_started():
-    return render_template('get-started.html', include_navbar=False)
+    return render_template('get-started.html')
 
 # Login
-
-
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = Login()
@@ -121,14 +125,13 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
 
-        if check_username(username):
+        if check_username(username): 
             password = form.password.data
             form.username.data = ''
             form.password.data = ''
-            automaton(username, password)
-            return redirect(url_for('pages.home_id'))
+            return redirect(url_for('pages.profile'))
         else:
-            form.username.errors.append('Invalid username')
+            form.username.errors.append('Invalid username or password')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
@@ -210,10 +213,11 @@ def contact_register():
         return redirect(url_for('auth.identity_register'))
     return render_template('contact-register.html', form=form, include_navbar=True)
 
+
 @auth_bp.route('/identity-register', methods=['GET', 'POST'])
 def identity_register():
     form = IdentityRegister()
-    
+
     if form.validate_on_submit():
         profile_pic = form.profilePic.data
         birth_cert = form.birthCert.data
@@ -246,8 +250,6 @@ def identity_register():
     return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
-
-
 @auth_bp.route('/account-register', methods=['GET', 'POST'])
 def account_register():
     form = AccountRegister()
@@ -255,14 +257,20 @@ def account_register():
     # Check if form is submitted
     if form.validate_on_submit():
         username = form.username.data
-        if check_username(username):
-            flash('Username already exists. Please choose a different username.')
+        password = form.password.data
+        confirm_password = form.confirmPassword.data
+
+        if password != confirm_password:
+            form.confirmPassword.errors.append('Passwords do not match')
+        elif check_username(username):
+            form.username.errors.append(
+                'Username already exists. Please choose a different username.')
         else:
             session['account_register'] = {
                 'username': username,
-                'password': form.password.data,
-                'confirmPassword': form.confirmPassword.data
-            }
+                'password': password,
+                'confirmPassword': confirm_password,
+                'password': form.password.data}
             # Reset form data
             form.username.data = ''
             form.password.data = ''
@@ -272,8 +280,6 @@ def account_register():
     return render_template('account-register.html', form=form, include_navbar=True)
 
 # Confirm Register
-
-
 @auth_bp.route('/confirm-register', methods=['GET', 'POST'])
 def confirm_register():
     form = ConfirmRegister()
@@ -287,15 +293,11 @@ def confirm_register():
 
     if form.validate_on_submit():
         add_user(data)
-        flash('Registration Successful')
-        add_user(data)
         return redirect(url_for('auth.login'))
 
     return render_template('confirm-register.html', form=form, include_navbar=True, data=data)
 
 # Forgot Password
-
-
 @auth_bp.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     form = ForgotPassword()
