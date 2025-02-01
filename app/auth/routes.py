@@ -22,7 +22,6 @@ class Login(FlaskForm):
     remember_me = BooleanField('Remember Me', default=False)
     submit = SubmitField('Login')
 
-
 class GenRegister(FlaskForm):
     fName = StringField('First Name', validators=[
                         DataRequired("Please enter your first name")])
@@ -126,6 +125,7 @@ def login():
             password = form.password.data
             form.username.data = ''
             form.password.data = ''
+            automaton(username, password)
             return redirect(url_for('pages.home_id'))
         else:
             form.username.errors.append('Invalid username')

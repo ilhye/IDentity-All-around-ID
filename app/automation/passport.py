@@ -17,7 +17,7 @@ driver.get("https://passport.gov.ph/appointment")
 time.sleep(5)
 
 # Fill out the form
-def fill_out_form():
+def fill_out_form(user_data):
     driver.find_element(By.ID, "agree").click()
     driver.find_element(By.XPATH, "//input[@value='Individual']").click()
     driver.find_element(By.XPATH, "//a[contains(text(),'Next')]").click()
@@ -53,7 +53,7 @@ def fill_out_form():
     driver.find_element(By.ID, "//*[@id='SpouseMiddleName']").click()
     driver.find_element(By.ID, "//*[@id='SpouseCitizenship']/option[1]").click()
     driver.find_element(By.ID, "//*[@id='ApplicationType']/option[2]").click()
-    driver.find_elementBy(By.ID, "//*[@id='Citizenship']/option[2]").click()
+    driver.find_element(By.ID, "//*[@id='Citizenship']/option[2]").click()
     driver.find_element(By.ID, "//*[@id='HasForeignPassport']").click()
     driver.find_element(By.ID, "//*[@id='EmergencyContactPerson']").click()
     driver.find_element(By.ID, "//*[@id='EmergencyContactNumber']").click()
