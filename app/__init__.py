@@ -6,6 +6,7 @@ from app.auth import auth_bp
 
 def run_app():
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = "SecretKey"
 
     # Register the blueprint
     app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -13,6 +14,6 @@ def run_app():
 
     @app.route('/')
     def home():
-        return redirect(url_for('auth.get_started'))
+        return redirect(url_for('auth.get_started', include_navbar=True))
 
     return app

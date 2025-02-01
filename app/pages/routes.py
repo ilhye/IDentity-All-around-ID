@@ -8,3 +8,8 @@ def page_one():
 @pages_bp.route('/notifications')
 def notifications():
     return render_template('Notification.html')
+
+@pages_bp.route('/profile')
+def profile():
+    return render_template('profile.html')
+

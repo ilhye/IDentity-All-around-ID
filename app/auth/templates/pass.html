@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+  <h1>Registration Data</h1>
+  <p>Name: {{ fName }} {{ mName }} {{ lName }} {{ exName }}</p>
+  <p>Gender: {{ gender }}</p>
+  <p>Civil Status: {{ civilStatus }}</p>
+  <p>Nationality: {{ nationality }}</p>
+  <p>Birthday: {{ birthday }}</p>
+  <p>Birthplace: {{ birthplace }}</p>
+  <p>Occupation: {{ occupation }}</p>
+  <p>Father's Name: {{ fatherName }}</p>
+  <p>Father's Occupation: {{ fatherOccupation }}</p>
+  <p>Mother's Name: {{ motherName }}</p>
+  <p>Mother's Occupation: {{ motherOccupation }}</p>
+  <p>Username: {{ username }}</p>
+  <p>Email: {{ email }}</p>
+</div>
+{% endblock %}
