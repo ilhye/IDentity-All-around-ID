@@ -21,13 +21,12 @@ def check_username(username):
                 return True
         print(username)
     return False
-
-
+  
 def check_account_exists(username, password):
     users = db.order_by_child('username').get()
     if users:
         for key, value in users.items():
-            if value['username'] == username and value['password'] == password:
+            if value.get('username') == username and value.get('password') == password:
                 return True
     return False
 

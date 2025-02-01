@@ -24,7 +24,6 @@ class Login(FlaskForm):
     remember_me = BooleanField('Remember Me', default=False)
     submit = SubmitField('Login')
 
-
 class GenRegister(FlaskForm):
     fName = StringField('First Name', validators=[
                         DataRequired("Please enter your first name")])
@@ -136,8 +135,6 @@ def login():
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
-
-
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
 def gen_register():
     form = GenRegister()
