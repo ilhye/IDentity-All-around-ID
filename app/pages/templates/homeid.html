@@ -1,241 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ID Page</title>
-    <link rel="stylesheet" href="homeid.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="identity-rectangle">
-            <h2>IDentity</h2>
-        </div>
-        <ul class="nav">
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-id-card"></i> ID's
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-user"></i> Profile
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-bell"></i> Notification
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa-solid fa-gear"></i> Settings
-                </a>
-            </li>
-        </ul>
-    </aside>
+{% extends "layout.html" %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('pages.static', filename='css/homeid.css') }}"
+/>
+{% endblock %} {% block body %}
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="identity-rectangle">
+    <h2>IDentity</h2>
+  </div>
+  <ul class="nav">
+    <li>
+      <a href="#"> <i class="fa-solid fa-id-card"></i> ID's </a>
+    </li>
+    <li>
+      <a href="#"> <i class="fa-solid fa-user"></i> Profile </a>
+    </li>
+    <li>
+      <a href="#"> <i class="fa-solid fa-bell"></i> Notification </a>
+    </li>
+    <li>
+      <a href="#"> <i class="fa-solid fa-gear"></i> Settings </a>
+    </li>
+  </ul>
+</aside>
 
-    <!-- Main Content -->
-    <div class="idpage_content">
-        <!-- Welcome Header -->
-        <div class="welcome-header">
-            <div class="welcome-text">
-                <span class="welcome">Welcome </span>
-                <span class="name">Ashley Faye!</span>
-            </div>
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search here...">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-        </div>
-
-        <!-- ID Cards -->
-        <div class="id-card" data-name="National ID (PhilSys ID)" data-age="5 yrs old and up" data-new-application="https://maintenance.register.philsys.gov.ph/" data-renew-application="https://maintenance.register.philsys.gov.ph/">
-            <img src="PhilID.png" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">National ID (PhilSys ID)</div>
-                    <div class="id-description">
-                        The Philippine National ID (PhilSys ID) is the official government-issued identification card under the Philippine Identification System (PhilSys).
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Free</div>
-                        <div class="tag">Lifetime</div>
-                        <div class="tag">5 yrs old and up</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="id-card" data-name="Passport ID" data-age="All Ages Eligible" data-new-application="https://www.passport.gov.ph/" data-renew-application="https://www.passport.gov.ph/">
-            <img src="PassportID.png" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">Passport ID</div>
-                    <div class="id-description">
-                        The Philippine Passport is an official government-issued document that certifies a person's identity and citizenship, enabling international travel.
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Paid</div>
-                        <div class="tag">5-10 years</div>
-                        <div class="tag">All Ages Eligible</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="id-card" data-name="Postal ID" data-age="All Ages Eligible" data-new-application="https://www.postalidph.com/how-to-apply.html" data-renew-application="https://www.postalidph.com/how-to-apply.html">
-            <img src="PostalID.png" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">Postal ID</div>
-                    <div class="id-description">
-                        The Postal ID is a government-issued identification card issued by the Philippine Postal Corporation (PHLPost). 
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Paid</div>
-                        <div class="tag">3 years</div>
-                        <div class="tag">All Ages Eligible</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
+<!-- Main Content -->
+<div class="idpage_content">
+  <!-- Welcome Header -->
+  <div class="welcome-header">
+    <div class="welcome-text">
+      <span class="welcome">Welcome </span>
+      <span class="name">Ashley Faye!</span>
     </div>
-
-    <!-- Modals -->
-    <div id="applyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Choose Application Type</h2>
-            <button id="newApplication">New Application</button>
-            <button id="renewApplication">Renewal</button>
-        </div>
+    <div class="search-container">
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="Search here..."
+      />
+      <i class="fas fa-search search-icon"></i>
     </div>
+  </div>
 
-    <div id="checkModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Application Availability</h2>
-            <p id="availabilityText"></p>
-            <!-- Divider Line -->
-            <hr class="divider">
-            <!-- Links for Required Documents and Branches -->
-            <div class="modal-links">
-                <a id="requiredDocumentsLink" href="#" target="_blank">Required Documents</a>
-                <a id="branchesLink" href="#" target="_blank">Branches</a>
-            </div>
+  <!-- ID Cards -->
+  <div
+    class="id-card"
+    data-name="National ID (PhilSys ID)"
+    data-age="5 yrs old and up"
+    data-new-application="https://maintenance.register.philsys.gov.ph/"
+    data-renew-application="https://maintenance.register.philsys.gov.ph/"
+  >
+    <img
+      src="{{ url_for('pages.static', filename='images/PhilID.png') }}"
+      class="id-image"
+    />
+    <div class="id-content">
+      <div class="id-info">
+        <div class="id-title">National ID (PhilSys ID)</div>
+        <div class="id-description">
+          The Philippine National ID (PhilSys ID) is the official
+          government-issued identification card under the Philippine
+          Identification System (PhilSys).
         </div>
+        <div class="id-tags">
+          <div class="tag">Free</div>
+          <div class="tag">Lifetime</div>
+          <div class="tag">5 yrs old and up</div>
+        </div>
+      </div>
+      <div class="id-actions">
+        <button class="action-btn apply-btn">Apply</button>
+        <button class="action-btn check-btn">Check Availability</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const idCards = document.querySelectorAll('.id-card');
+  <form action="{{url_for(pages.home_id)}}">
+    <div
+      class="id-card"
+      data-name="Passport ID"
+      data-age="All Ages Eligible"
+      data-new-application="https://www.passport.gov.ph/"
+      data-renew-application="https://www.passport.gov.ph/"
+    >
+      <img
+        src="{{ url_for('pages.static', filename='images/PassportID.png') }}"
+        class="id-image"
+      />
+      <div class="id-content">
+        <div class="id-info">
+          <div class="id-title">Passport ID</div>
+          <div class="id-description">
+            The Philippine Passport is an official government-issued document
+            that certifies a person's identity and citizenship, enabling
+            international travel.
+          </div>
+          <div class="id-tags">
+            <div class="tag">Paid</div>
+            <div class="tag">5-10 years</div>
+            <div class="tag">All Ages Eligible</div>
+          </div>
+        </div>
+        <div class="id-actions">
+          <button class="action-btn apply-btn">Apply</button>
+          <button class="action-btn check-btn">Check Availability</button>
+        </div>
+      </div>
+    </div>
+  </form>
 
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
+  <div
+    class="id-card"
+    data-name="Postal ID"
+    data-age="All Ages Eligible"
+    data-new-application="https://www.postalidph.com/how-to-apply.html"
+    data-renew-application="https://www.postalidph.com/how-to-apply.html"
+  >
+    <img
+      src="{{ url_for('pages.static', filename='images/PostalID.png') }}"
+      class="id-image"
+    />
+    <div class="id-content">
+      <div class="id-info">
+        <div class="id-title">Postal ID</div>
+        <div class="id-description">
+          The Postal ID is a government-issued identification card issued by the
+          Philippine Postal Corporation (PHLPost).
+        </div>
+        <div class="id-tags">
+          <div class="tag">Paid</div>
+          <div class="tag">3 years</div>
+          <div class="tag">All Ages Eligible</div>
+        </div>
+      </div>
+      <div class="id-actions">
+        <button class="action-btn apply-btn">Apply</button>
+        <button class="action-btn check-btn">Check Availability</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-            idCards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const age = card.getAttribute('data-age').toLowerCase();
-                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+<!-- Modals -->
+<div id="applyModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Choose Application Type</h2>
+    <button id="newApplication">New Application</button>
+    <button id="renewApplication">Renewal</button>
+  </div>
+</div>
 
-                // Check if the search term matches the name, age, or any of the tags
-                if (name.includes(searchTerm) || age.includes(searchTerm) || tags.some(tag => tag.includes(searchTerm))) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Apply button functionality
-        const applyButtons = document.querySelectorAll('.apply-btn');
-        const applyModal = document.getElementById('applyModal');
-        const closeModal = document.querySelectorAll('.close');
-
-        let currentCard = null; // To store the ID card that triggered the modal
-
-        applyButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                currentCard = button.closest('.id-card'); // Store the clicked card
-                applyModal.style.display = 'flex'; // Show the modal
-            });
-        });
-
-        closeModal.forEach(button => {
-            button.addEventListener('click', () => {
-                applyModal.style.display = 'none';
-                checkModal.style.display = 'none';
-            });
-        });
-
-        document.getElementById('newApplication').addEventListener('click', () => {
-            if (currentCard) {
-                const newApplicationUrl = currentCard.getAttribute('data-new-application');
-                window.open(newApplicationUrl, '_blank'); // Open in a new tab
-            }
-        });
-
-        document.getElementById('renewApplication').addEventListener('click', () => {
-            if (currentCard) {
-                const renewApplicationUrl = currentCard.getAttribute('data-renew-application');
-                window.open(renewApplicationUrl, '_blank'); // Open in a new tab
-            }
-        });
-
-        // Check availability button functionality
-        const checkButtons = document.querySelectorAll('.check-btn');
-        const checkModal = document.getElementById('checkModal');
-        const availabilityText = document.getElementById('availabilityText');
-        const requiredDocumentsLink = document.getElementById('requiredDocumentsLink');
-        const branchesLink = document.getElementById('branchesLink');
-
-        checkButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const idName = button.closest('.id-card').getAttribute('data-name');
-                if (idName === "National ID (PhilSys ID)") {
-                    availabilityText.innerHTML = "The application process for the National ID (PhilSys ID) is available at designated branches.<br><br>Please refer to the provided link for the required application documents and a list of branches where you can apply.";
-                    requiredDocumentsLink.href = "https://philsys.gov.ph/supporting-documents/";
-                    branchesLink.href = "https://philsys.gov.ph/registration-center/";
-                } else if (idName === "Passport ID") {
-                    availabilityText.innerHTML = "The Passport application process is available onsite once you have completed the scheduled appointment and filled out the application form.<br><br>Please refer to the provided link for the required application documents and a list of branches where you can schedule an appointment.";
-                    requiredDocumentsLink.href = "https://consular.dfa.gov.ph/services/passport/requirements";
-                    branchesLink.href = "https://filipiknow.net/dfa-branches/";
-                } else if (idName === "Postal ID") {
-                    availabilityText.innerHTML = "The Postal ID application process is available onsite, where you can complete payment and have your ID captured after filling out the application form.<br><br>Please refer to the provided link for a list of required application documents and branches where you can make payment and have your ID captured.";
-                    requiredDocumentsLink.href = "https://www.postalidph.com/requirements.html";
-                    branchesLink.href = "https://www.postalidph.com/where-to-apply.html";
-                }
-                checkModal.style.display = 'flex'; // Show the modal
-            });
-        });
-
-        // Close modal when clicking outside of it
-        window.addEventListener('click', (event) => {
-            if (event.target === applyModal) {
-                applyModal.style.display = 'none';
-            }
-            if (event.target === checkModal) {
-                checkModal.style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
+<div id="checkModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Application Availability</h2>
+    <p id="availabilityText"></p>
+    <!-- Divider Line -->
+    <hr class="divider" />
+    <!-- Links for Required Documents and Branches -->
+    <div class="modal-links">
+      <a id="requiredDocumentsLink" href="#" target="_blank"
+        >Required Documents</a
+      >
+      <a id="branchesLink" href="#" target="_blank">Branches</a>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('pages.static', filename='js/homeid.js') }}"></script>
+{% endblock %}

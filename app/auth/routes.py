@@ -126,14 +126,12 @@ def login():
             password = form.password.data
             form.username.data = ''
             form.password.data = ''
-            return redirect(url_for('home'))
+            return redirect(url_for('pages.home_id'))
         else:
             form.username.errors.append('Invalid username')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
-
-
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
 def gen_register():
     form = GenRegister()
