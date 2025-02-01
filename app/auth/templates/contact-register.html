@@ -1,4 +1,8 @@
-{% extends 'layout.html' %} {% block body %}
+{% extends 'layout.html' %} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %}{% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
     <h1 class="text-center mb-1">Sign Up</h1>
@@ -103,9 +107,16 @@
         </div>
       </div>
     </form>
+
     <p id="speak-1" class="text-white d-none">
       Please enter email, phone number, city, barangay, block lot street, province, zipCode, country, region, and additional information
     </p>
+=======
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
+
   </div>
 </div>
 {% endblock %}

@@ -1,4 +1,8 @@
-{% extends 'layout.html' %} {% block body %}
+{% extends 'layout.html' %}{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %} {% block body %}
 <div class="identification d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 850px">
     <h1 class="text-center mb-1">Sign Up</h1>
@@ -37,15 +41,30 @@
           {{ form.birthCert.label(class="form-label") }}
         </div>
         <div class="col-md-8 mb-3">{{ form.birthCert(class="form-control")}}</div>
-
-        <div class="text-end">
+        <div class="col-md-6">
+          <div class="previous-page mt-2 p-2">
+            <a
+              href="{{url_for('auth.contact_register')}}"
+              class="text-decoration-none"
+            >Previous Page</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-end">
           {{ form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25") }}
         </div>
+        </div>
+        
       </div>
     </form>
     <p id="speak-1" class="text-white small d-none">
       Please enter your identification information
     </p>
+
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 m-auto w-50" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
   </div>
 </div>
 {%endblock%}

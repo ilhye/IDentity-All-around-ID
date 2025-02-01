@@ -1,4 +1,9 @@
 {% extends 'layout.html' %} 
+{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('auth.static', filename='register.css') }}"
+/>{% endblock %}
 {% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 500px">
@@ -17,30 +22,47 @@
       <div class="row form-section" id="form-section-1">
         <div class="col-md-12 mb-3">
           {{ form.username.label(class="form-label", for="username") }} {{
-          form.username (class="form-control" + (" is-invalid" if form.username.errors else ""), id="username",
-          placeholder="Enter your username") }} {% for error in form.username.errors %}
+          form.username (class="form-control" + (" is-invalid" if
+          form.username.errors else ""), id="username", placeholder="Enter your
+          username") }} {% for error in form.username.errors %}
           <div class="invalid-feedback d-block">* {{error}}</div>
           {% endfor %}
         </div>
         <div class="col-md-12 mb-3">
           {{ form.password.label(class="form-label", for="password") }} {{
-          form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), id="password",
-          placeholder="Enter your password") }} {% for error in form.password.errors %}
+          form.password(class="form-control" + (" is-invalid" if
+          form.password.errors else ""), id="password", placeholder="Enter your
+          password") }} {% for error in form.password.errors %}
           <div class="invalid-feedback d-block">* {{error}}</div>
           {% endfor %}
         </div>
         <div class="col-md-12 mb-3">
           {{ form.confirmPassword.label(class="form-label",
-          for="confirm-password") }} {{ form.confirmPassword(class="form-control" + (" is-invalid" if form.confirmPassword.errors else ""), id="confirm-password", placeholder="Enter your password") }} {% for error in
+          for="confirm-password") }} {{
+          form.confirmPassword(class="form-control" + (" is-invalid" if
+          form.confirmPassword.errors else ""), id="confirm-password",
+          placeholder="Enter your password") }} {% for error in
           form.confirmPassword.errors %}
           <div class="invalid-feedback">*{{error}}</div>
           {% endfor %}
         </div>
-        <div class="text-end">
-          {{ form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25") }}
+        <div class="col-md-6">
+          <div class="previous-page mt-2 p-2">
+            <a
+              href="{{url_for('auth.identity_register')}}"
+              class="text-decoration-none"
+              >Previous Page</a
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-end">
+            {{ form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25") }}
+          </div>
         </div>
       </div>
     </form>
+
     <p id="speak-1" class="text-white small d-none">
       Please enter username, password, and confirm password
     </p>
@@ -50,3 +72,11 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='voice.js') }}"></script>
 {% endblock %}
+
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
+  </div>
+</div>
+{% endblock %} {% block script %} {% endblock}
