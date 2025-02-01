@@ -7,7 +7,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from werkzeug.utils import secure_filename
 import os
 from . import auth_bp
-from app.backend.services import add_user, create_user_with_email_and_password, verify_user_with_email_and_password
+from app.backend.services import add_user, create_user_with_username_and_password, verify_user_with_username_and_password
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -123,7 +123,7 @@ def login():
         email = form.username.data
         password = form.password.data
 
-        user = verify_user_with_email_and_password(email, password)
+        user = verify_user_with_username_and_password(email, password)
         if user:
             form.username.data = ''
             form.password.data = ''
@@ -257,18 +257,18 @@ def account_register():
 
     # Check if form is submitted
     if form.validate_on_submit():
-        email = form.username.data
+        username = form.username.data
         password = form.password.data
         confirm_password = form.confirmPassword.data
 
         if password != confirm_password:
             form.confirmPassword.errors.append('Passwords do not match')
-        elif check_username(email):
+        elif check_username(username):
             flash('Email already exists. Please choose a different email.')
         else:
-            create_user_with_email_and_password(email, password)
+            create_user_with_username_and_password(username, password)
             session['account_register'] = {
-                'username': email,
+                'username': username,
                 'password': password,
                 'confirmPassword': confirm_password
             }

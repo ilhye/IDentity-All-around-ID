@@ -25,13 +25,14 @@ def update(username, password):
             return True
     return False
 
-def create_user_with_email_and_password(email, password):
-    user = auth.create_user(email=email, password=password)
+def create_user_with_username_and_password(username, password):
+    user = auth.create_user(username=username, password=password)
     return user
 
-def verify_user_with_email_and_password(email, password):
-    try:
-        user = auth.get_user_by_email(email)
-        return user
-    except auth.AuthError:
-        return None
+def verify_user_with_username_and_password(username, password):
+    users = db.order_by_child('username').get()
+    if users:
+        for key, value in users.items():
+            if value['username'] == username and value['password'] == password:
+                return True
+    return False
