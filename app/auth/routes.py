@@ -7,13 +7,15 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from werkzeug.utils import secure_filename
 import os
 from . import auth_bp
-from app.backend.services import add_user, create_user_with_username_and_password, verify_user_with_username_and_password
+from app.backend.services import add_user
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # These classes are used to create forms
+
+
 class Login(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired("Please enter your username")])
@@ -76,13 +78,17 @@ class ContactRegister(FlaskForm):
     addInfo = StringField('Additional Information')
     submit = SubmitField('Next')
 
+
 class IdentityRegister(FlaskForm):
-    profilePic = FileField('Profile Picture', validators=[FileRequired("Please upload your profile picture"), FileAllowed(['jpg', 'png'], 'Images only!')])
+    profilePic = FileField('Profile Picture', validators=[FileRequired(
+        "Please upload your profile picture"), FileAllowed(['jpg', 'png'], 'Images only!')])
     socialSecurity = StringField('Social Security Number')
     philHealth = StringField('PhilHealth Number')
     nationalID = StringField('National ID Number')
-    birthCert = FileField('Birth Certificate', validators=[FileAllowed(['pdf'], 'PDF only!')])
+    birthCert = FileField('Birth Certificate', validators=[
+                          FileAllowed(['pdf'], 'PDF only!')])
     submit = SubmitField('Next')
+
 
 class AccountRegister(FlaskForm):
     username = StringField('Username', validators=[
@@ -106,6 +112,8 @@ class ConfirmRegister(FlaskForm):
     submit = SubmitField('Submit')
 
 # Home
+
+
 @auth_bp.route('/get-started')
 def get_started():
     return render_template('get-started.html')
@@ -116,18 +124,20 @@ def login():
     form = Login()
 
     if form.validate_on_submit():
-        email = form.username.data
+        username = form.username.data
         password = form.password.data
-    
-        if check_account_exists(username, password):
-            form.username.data = ''
-            form.password.data = ''
-            return redirect(url_for('pages.page_one'))
-        else:
-            form.username.errors.append('Invalid email or password')
+
+    if check_account_exists(username, password):
+        form.username.data = ''
+        form.password.data = ''
+        return redirect(url_for('pages.page_one'))
+    else:
+        form.username.errors.append('Invalid username')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
+
+
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
 def gen_register():
     form = GenRegister()
@@ -170,6 +180,8 @@ def gen_register():
     return render_template('gen-register.html', form=form, include_navbar=True)
 
 # Contact Register
+
+
 @auth_bp.route('/contact-register', methods=['GET', 'POST'])
 def contact_register():
     form = ContactRegister()
@@ -204,10 +216,11 @@ def contact_register():
         return redirect(url_for('auth.identity_register'))
     return render_template('contact-register.html', form=form, include_navbar=True)
 
+
 @auth_bp.route('/identity-register', methods=['GET', 'POST'])
 def identity_register():
     form = IdentityRegister()
-    
+
     if form.validate_on_submit():
         profile_pic = form.profilePic.data
         birth_cert = form.birthCert.data
@@ -240,6 +253,8 @@ def identity_register():
     return render_template('identity-register.html', form=form, include_navbar=True)
 
 # Account Register
+
+
 @auth_bp.route('/account-register', methods=['GET', 'POST'])
 def account_register():
     form = AccountRegister()
@@ -252,18 +267,15 @@ def account_register():
 
         if password != confirm_password:
             form.confirmPassword.errors.append('Passwords do not match')
-        if check_username(username):
-            form.username.errors.append('Username already exists. Please choose a different username.')
-
-        if form.password.data != form.confirmPassword.data:
-            form.confirmPassword.errors.append('Passwords do not match')
+        elif check_username(username):
+            form.username.errors.append(
+                'Username already exists. Please choose a different username.')
         else:
-            create_user_with_username_and_password(username, password)
             session['account_register'] = {
                 'username': username,
                 'password': password,
-                'confirmPassword': confirm_password
-                'password': form.password.data,
+                'confirmPassword': confirm_password,
+                'password': form.password.data}
             # Reset form data
             form.username.data = ''
             form.password.data = ''
