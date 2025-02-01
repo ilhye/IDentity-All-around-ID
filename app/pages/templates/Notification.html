@@ -7,75 +7,92 @@
   href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
   rel="stylesheet"
 />
-{% endblock %} {% block body %}
-<div class="container">
-  <aside class="sidebar">
-    <span class="menu-item-identity-active">IDentity</span>
-    <div class="menu-item">
-      <i class="bx bx-id-card"></i>
-      <span>ID's</span>
-    </div>
-    <div class="menu-item">
-      <i class="bx bx-user-circle"></i>
-      <span>Profile</span>
-    </div>
-    <div class="menu-item-active">
-      <i class="bx bxs-bell"></i>
-      <span>Notification</span>
-    </div>
-    <div class="menu-item">
-      <i class="bx bx-cog"></i>
-      <span>Settings</span>
-    </div>
-  </aside>
-  <main class="main-content">
-    <header>
-      <h1>Notification</h1>
-      <div class="search-filter">
-        <div class="search-box">
-          <input type="text" placeholder="Search here..." />
-          <i class="bx bx-search"></i>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row">
+    <aside class="sidebar col-md-3">
+      <h2 class="text-center">IDentity</h2>
+      <nav>
+        <ul class="list-unstyled">
+          <li>
+            <i class="fa-solid fa-id-card"></i>
+            <a href="#id" class="id">ID's</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-user"></i>
+            <a href="#profile" class="profile">Profile</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-bell"></i>
+            <a href="#notifications" class="notification">Notification</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-gear"></i>
+            <a href="#settings" class="setting">Settings</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="col-md-9 ms-auto p-5">
+      <!-- Profile Header -->
+      <header class="header mb-4">
+        <h1 class="profile-title">Profile</h1>
+
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search here..."
+            aria-label="Search"
+          />
+          <button class="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
-        <div>
-          <i class="bx bx-filter-alt" onclick="openFilterModal()"></i>
-          <span>Filter</span>
+
+        <div class="header-icons">
+          <div>
+            <i class="bx bx-filter-alt" onclick="openFilterModal()"></i>
+            <span>Filter</span>
+          </div>
+          <div>
+            <i class="bx bxs-bell" onclick="openReminderModal()"></i>
+          </div>
         </div>
-        <div>
-          <i class="bx bxs-bell" onclick="openReminderModal()"></i>
+      </header>
+
+      <section class="notifications" id="notifications-container">
+        <!-- Dynamic notifications will be added here -->
+      </section>
+
+      <!-- Fixed notification sections -->
+      <section class="notifications">
+        <div class="notification-item" data-type="renewal" data-date="2025-01-10">
+          <div class="icon"></div>
+          <div class="details">
+            <p>Your Driver’s License ID is expired</p>
+            <label>
+              <button class="renew-button">Renewal</button>
+            </label>
+            <span class="timestamp">10:56 am 1/10/2025</span>
+          </div>
         </div>
-      </div>
-    </header>
-    <section class="notifications" id="notifications-container">
-      <!-- Dynamic notifications will be added here -->
-    </section>
-    <!-- Fixed notification sections -->
-    <section class="notifications">
-      <div class="notification-item" data-type="renewal" data-date="2025-01-10">
-        <div class="icon"></div>
-        <div class="details">
-          <p>Your Driver’s License ID is expired</p>
-          <label>
-            <button class="renew-button">Renewal</button>
-          </label>
-          <span class="timestamp">10:56 am 1/10/2025</span>
+        <div class="notification-item" data-type="application" data-date="2024-12-28">
+          <div class="icon"></div>
+          <div class="details">
+            <p>Check your UMID Application Status</p>
+            <label>
+              <button class="renew-button">Check Status</button>
+            </label>
+            <span class="timestamp">11:56 am 12/28/2024</span>
+          </div>
         </div>
-      </div>
-      <div
-        class="notification-item"
-        data-type="application"
-        data-date="2024-12-28"
-      >
-        <div class="icon"></div>
-        <div class="details">
-          <p>Check your UMID Application Status</p>
-          <label>
-            <button class="renew-button">Check Status</button>
-          </label>
-          <span class="timestamp">11:56 am 12/28/2024</span>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 </div>
 
 <!-- Reminder Modal -->
@@ -112,7 +129,9 @@
   <button onclick="applyFilter()">Apply Filter</button>
   <button onclick="closeFilterModal()">Close</button>
 </div>
-{% endblock %} {% block scripts %}
+{% endblock %}
+
+{% block scripts %}
 <script src="{{url_for('pages.static', filename='js/notification.js')}}"></script>
 <script src="{{url_for('static', filename='voice.js')}}"></script>
 {% endblock %}
