@@ -7,7 +7,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from werkzeug.utils import secure_filename
 import os
 from . import auth_bp
-from app.backend.services import add_user
+from app.backend.services import add_user, create_user_with_username_and_password, verify_user_with_username_and_password
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -116,16 +116,15 @@ def login():
     form = Login()
 
     if form.validate_on_submit():
-        username = form.username.data
+        email = form.username.data
         password = form.password.data
-
+    
         if check_account_exists(username, password):
-            
             form.username.data = ''
             form.password.data = ''
             return redirect(url_for('pages.page_one'))
         else:
-            form.username.errors.append('Invalid username')
+            form.username.errors.append('Invalid email or password')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
@@ -248,16 +247,23 @@ def account_register():
     # Check if form is submitted
     if form.validate_on_submit():
         username = form.username.data
+        password = form.password.data
+        confirm_password = form.confirmPassword.data
+
+        if password != confirm_password:
+            form.confirmPassword.errors.append('Passwords do not match')
         if check_username(username):
             form.username.errors.append('Username already exists. Please choose a different username.')
 
         if form.password.data != form.confirmPassword.data:
             form.confirmPassword.errors.append('Passwords do not match')
         else:
+            create_user_with_username_and_password(username, password)
             session['account_register'] = {
                 'username': username,
+                'password': password,
+                'confirmPassword': confirm_password
                 'password': form.password.data,
-            }
             # Reset form data
             form.username.data = ''
             form.password.data = ''
