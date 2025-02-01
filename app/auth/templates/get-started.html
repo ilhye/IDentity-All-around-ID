@@ -14,8 +14,8 @@
              alt="speech"
              onclick="textToSpeech(this)" />
     </h1>
-        <button class="impairment-btn fs-5" id="speak-2" onclick="setAccessibility('vision')"><a href="/auth/login">Impaired Vision</a></button>
-        <button class="impairment-btn fs-5" id="speak-3" onclick="setAccessibility('mobility')"><a href="/auth/login">Mobility</a></button>
+        <button class="impairment-btn fs-5" id="speak-2" onclick="setAccessibility('vision')"><a href="{{ url_for('auth.login') }}">Impaired Vision</a></button>
+        <button class="impairment-btn fs-5" id="speak-3" onclick="setAccessibility('mobility')"><a href="{{ url_for('auth.login') }}">Mobility</a></button>
 </div>
 
 {% block scripts %}

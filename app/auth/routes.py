@@ -125,14 +125,14 @@ def login():
 
     if form.validate_on_submit():
         username = form.username.data
-        password = form.password.data
 
-    if check_account_exists(username, password):
-        form.username.data = ''
-        form.password.data = ''
-        return redirect(url_for('pages.page_one'))
-    else:
-        form.username.errors.append('Invalid username')
+        if check_username(username): 
+            password = form.password.data
+            form.username.data = ''
+            form.password.data = ''
+            return redirect(url_for('pages.page_one'))
+        else:
+            form.username.errors.append('Invalid username or password')
     return render_template('login.html', form=form, include_navbar=True)
 
 # General Register
