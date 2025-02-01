@@ -14,6 +14,6 @@ def run_app():
 
     @app.route('/')
     def home():
-        return redirect(url_for('auth.get_started'))
+        return redirect(url_for('auth.get_started', include_navbar=True))
 
     return app
