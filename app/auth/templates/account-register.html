@@ -62,6 +62,17 @@
         </div>
       </div>
     </form>
+
+    <p id="speak-1" class="text-white small d-none">
+      Please enter username, password, and confirm password
+    </p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+{% endblock %}
+
     <div class="line text-secondary"></div>
     <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
       <i class="fa-brands fa-google me-3"></i>Login with Google

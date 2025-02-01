@@ -125,6 +125,11 @@
         <div class="text-end">
           {{form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25")}}
         </div>
+        <p id="speak-1" class="text-white">
+          Please enter your name, gender, civil status, nationality, birthday,
+          birthplace, occupation, father's name and his occupation, mother's
+          name and her occupation
+        </p>
       </div>
     </form>
     <div class="line text-secondary"></div>
@@ -133,4 +138,9 @@
     </button>
   </div>
 </div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+
+
 {% endblock %}

@@ -27,6 +27,17 @@
       </div>
       {% endif %} {% block body %}{% endblock %}
     </div>
-    {% block scripts %} {% endblock %}
+    {% block scripts %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const accessibility = sessionStorage.getItem('accessibility');
+        if (accessibility === 'vision' || accessibility === 'mobility') {
+          const script = document.createElement('script');
+          script.src = "{{ url_for('static', filename='voice.js') }}";
+          document.body.appendChild(script);
+        }
+      });
+    </script>
+    {% endblock %}
   </body>
 </html>

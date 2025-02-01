@@ -11,8 +11,8 @@
     </small>
     <form action="" method="post" novalidate>
       {{ form.hidden_tag() }}
-
-      <div class="mb-3 w-100 mt-3">
+        <p id="speak-1" class="text-white d-none">Please enter you username and password</p>
+      <div class="mb-3 w-100" style="margin-top:-30px">
         {{ form.username.label(class="form-label", for="username")}} {{
         form.username (class="form-control border border-dark" + (" is-invalid" if
         form.username.errors else ""), id="username", placeholder="Enter your
@@ -51,4 +51,7 @@
     </form>
   </div>
 </div>
-{% endblock %} {% block scripts %} {% endblock %}
+{% endblock %}
+{% block scripts %} 
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+{% endblock %} 
