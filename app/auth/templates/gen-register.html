@@ -2,7 +2,19 @@
 <link
   rel="stylesheet"
   href="{{ url_for('auth.static', filename='register.css') }}"
-/>{% endblock %}{% block body %}
+/>
+<style>
+  body {
+    font-size: 16px;
+  }
+  .form-section .col-md-12 {
+    margin-bottom: 1rem;
+  }
+  .form-section .col-md-6 {
+    margin-bottom: 1rem;
+  }
+</style>
+{% endblock %}{% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
     <h1 class="text-center mb-1">Sign Up</h1>
@@ -125,6 +137,11 @@
         <div class="text-end">
           {{form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25")}}
         </div>
+        <p id="speak-1" class="text-white">
+          Please enter your name, gender, civil status, nationality, birthday,
+          birthplace, occupation, father's name and his occupation, mother's
+          name and her occupation
+        </p>
       </div>
     </form>
     <div class="line text-secondary"></div>
@@ -133,4 +150,9 @@
     </button>
   </div>
 </div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+
+
 {% endblock %}
