@@ -4,60 +4,54 @@
 {% endblock %} 
 {% block body %}
 <div class="login d-flex justify-content-center align-items-center">
-  <div class="card p-4 shadow-lg bg-body rounded" style="width: 400px">
+  <div class="card p-5 shadow-lg bg-body rounded" style="width: 500px">
     <h1 class="text-center mb-1">Sign In</h1>
-    <small class="text-center d-block text-secondary">
+    <p class="text-center text-secondary small">
       Enter your credentials to sign in to your account
-    </small>
+    </p>
     <form action="" method="post" novalidate>
       {{ form.hidden_tag() }}
 
-        <p id="speak-1" class="text-white d-none">Please enter you username and password</p>
-
-      <div class="mb-3 w-100 mt-3">
-        {{ form.username.label(class="form-label", for="username")}} {{
-        form.username (class="form-control border border-dark" + (" is-invalid"
-        if form.username.errors else ""), id="username", placeholder="Enter your
-        username")}} {% for error in form.username.errors %}
-        <div class="invalid-feedback d-block">* {{error}}</div>
-        {%endfor%}
-      </div>
-      <div class="mb-1">
-        {{ form.password.label(class="form-label", for="password")}} {{
-        form.password (class="form-control border border-dark" + (" is-invalid"
-        if form.password.errors else ""), id="password", placeholder="Enter your
-        password")}} {% for error in form.password.errors %}
-        <div class="invalid-feedback d-block">* {{error}}</div>
-        {%endfor%}
-      </div>
-      <div class="row mb-2">
-        <div class="col">
-          {{form.remember_me (class="form-check-input border border-dark",
-          id="remember-password")}} {{form.remember_me.label
-          (class="form-check-label small")}}
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          {{ form.username.label(class="form-label", for="username")}} <br>
+          {{form.username (class="form-control border border-dark" + (" is-invalid"
+          if form.username.errors else ""), id="username", placeholder="Enter your
+          username")}} {% for error in form.username.errors %}
+          <div class="invalid-feedback d-block">* {{error}}</div>
+          {%endfor%}
         </div>
-        <div class="col text-end">
+        <div class="col-md-12">
+          {{ form.password.label(class="form-label", for="password")}} <br>
+          {{ form.password (class="form-control border border-dark" + (" is-invalid"
+          if form.password.errors else ""), id="password", placeholder="Enter your
+          password") }} {% for error in form.password.errors %}
+          <div class="invalid-feedback d-block">* {{error}}</div>
+          {%endfor%}
+        </div>
+        <div class="col-md-12 text-end  mb-3">
           <a
             href="{{ url_for('auth.forgot_password')}}"
-            class="text-decoration-none small text-body"
+            class="text-decoration-none small text-primary fw-bold"
             >Forgot Password?</a
           >
         </div>
+        <div class="col-md-12">
+          {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
+        </div>
+        <div class="col-md-12">
+          <div class="line text-secondary small"></div>
+        </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-outline-primary rounded p-2 w-100 m-auto" type="button">
+            <i class="fa-brands fa-google me-3"></i>Login with Google
+        </button>
+        </div>
+        <a href="{{url_for('auth.register')}}" class="small text-decoration-none text-dark text-center mt-2">Don't have an account? <span class="fw-bold text-primary">Sign Up</span></a>
       </div>
-      {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
-      <div class="text-center mt-1">
-        <a
-          href="{{url_for('auth.gen_register')}}"
-          class="text-decoration-none small text-body"
-        >
-          Don't have an account? <span>Sign Up</span>
-        </a>
-      </div>
-      <div class="line text-secondary"></div>
-      <button id="google-sign-in" class="btn btn-primary rounded p-2 w-100" type="button">
-        Sign in with Google
     </form>
   </div>
+  <p id="speak-1" class="text-white d-none">Please enter you username and password</p>
 </div>
 {% endblock %} 
 {% block scripts %}

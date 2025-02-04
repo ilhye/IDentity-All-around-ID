@@ -24,6 +24,12 @@ class Login(FlaskForm):
     remember_me = BooleanField('Remember Me', default=False)
     submit = SubmitField('Login')
 
+class Register(FlaskForm):
+    email = StringField('Email', validators=[DataRequired("Please enter your email address"), Email("Please enter a valid email address")])
+    password = PasswordField('Password', validators=[DataRequired("Please enter your password")])
+    confirmPassword = PasswordField('Confirm Password', validators=[DataRequired("Please confirm your password")])
+    submit = SubmitField('Register')
+
 class GenRegister(FlaskForm):
     fName = StringField('First Name', validators=[
                         DataRequired("Please enter your first name")])
@@ -133,6 +139,27 @@ def login():
         else:
             form.username.errors.append('Invalid username or password')
     return render_template('login.html', form=form, include_navbar=True)
+
+
+@auth_bp.route('/register')
+def register():
+    form = Register()
+
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        confirm_password = form.confirmPassword.data
+
+        if password != confirm_password:
+            form.confirmPassword.errors.append('Passwords do not match')
+        else:
+            session['register'] = {
+                'email': email,
+                'password': password,
+                'confirmPassword': confirm_password
+            }
+            return redirect(url_for('auth.gen_register'))
+    return render_template('register.html', form=form, include_navbar=True)
 
 # General Register
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
