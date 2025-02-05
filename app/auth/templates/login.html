@@ -1,60 +1,32 @@
-{% extends 'layout.html' %} 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('auth.static', filename='login.css') }}"/>
-{% endblock %} 
-{% block body %}
-<div class="login d-flex justify-content-center align-items-center">
-  <div class="card p-5 shadow-lg bg-body rounded" style="width: 500px">
-    <h1 class="text-center mb-1">Sign In</h1>
-    <p class="text-center text-secondary small">
-      Enter your credentials to sign in to your account
-    </p>
-    <form action="" method="post" novalidate>
-      {{ form.hidden_tag() }}
-
-      <div class="row">
-        <div class="col-md-12 mb-3">
-          {{ form.username.label(class="form-label", for="username")}} <br>
-          {{form.username (class="form-control border border-dark" + (" is-invalid"
-          if form.username.errors else ""), id="username", placeholder="Enter your
-          username")}} {% for error in form.username.errors %}
-          <div class="invalid-feedback d-block">* {{error}}</div>
-          {%endfor%}
-        </div>
-        <div class="col-md-12">
-          {{ form.password.label(class="form-label", for="password")}} <br>
-          {{ form.password (class="form-control border border-dark" + (" is-invalid"
-          if form.password.errors else ""), id="password", placeholder="Enter your
-          password") }} {% for error in form.password.errors %}
-          <div class="invalid-feedback d-block">* {{error}}</div>
-          {%endfor%}
-        </div>
-        <div class="col-md-12 text-end  mb-3">
-          <a
-            href="{{ url_for('auth.forgot_password')}}"
-            class="text-decoration-none small text-primary fw-bold"
-            >Forgot Password?</a
-          >
-        </div>
-        <div class="col-md-12">
-          {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
-        </div>
-        <div class="col-md-12">
-          <div class="line text-secondary small"></div>
-        </div>
-        <div class="col-md-12">
-          <button type="button" class="btn btn-outline-primary rounded p-2 w-100 m-auto" type="button">
-            <i class="fa-brands fa-google me-3"></i>Login with Google
-        </button>
-        </div>
-        <a href="{{url_for('auth.register')}}" class="small text-decoration-none text-dark text-center mt-2">Don't have an account? <span class="fw-bold text-primary">Sign Up</span></a>
-      </div>
-    </form>
-  </div>
-  <p id="speak-1" class="text-white d-none">Please enter you username and password</p>
+{% extends 'register-template.html' %} {% block header %} Sign In {% endblock %}
+{% block action %}{{url_for('auth.login')}}{% endblock %} {% block formBody %}
+<div class="col-md-12 mb-3">
+  {{ form.username.label(class="form-label", for="username")}} <br />
+  {{form.username (class="form-control border border-dark" + (" is-invalid" if
+  form.username.errors else ""), id="username", placeholder="Enter your
+  username")}} {% for error in form.username.errors %}
+  <div class="invalid-feedback d-block">* {{error}}</div>
+  {%endfor%}
 </div>
-{% endblock %} 
-{% block scripts %}
-<script src="{{ url_for('auth.static', filename='login.js') }}" type="module"></script>
-<script src="{{ url_for('static', filename='voice.js') }}"></script>
-{% endblock %} 
+<div class="col-md-12">
+  {{ form.password.label(class="form-label", for="password")}} <br />
+  {{ form.password (class="form-control border border-dark" + (" is-invalid" if
+  form.password.errors else ""), id="password", placeholder="Enter your
+  password") }} {% for error in form.password.errors %}
+  <div class="invalid-feedback d-block">* {{error}}</div>
+  {%endfor%}
+</div>
+<div class="col-md-12 text-end mb-3">
+  <a
+    href="{{ url_for('auth.forgot_password')}}"
+    class="text-decoration-none small text-primary fw-bold"
+    >Forgot Password?</a
+  >
+</div>
+<div class="col-md-12">
+  {{form.submit(class="btn btn-primary mt-2 p-2 w-100 border-0")}}
+</div>
+{% endblock %} {% block changePage %}{{url_for('auth.register')}}{% endblock %}
+{% block changePText %}Don't have an account?
+<span class="text-primary fw-bold">Sign Up</span>{% endblock %}
+{% block tts %}Please enter you username and password{% endblock %}

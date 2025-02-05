@@ -31,6 +31,7 @@
     </div>
   </div>
 {% endblock %}
+<p id="speak-1" class="text-white d-none">{% block tts %} {% endblock %}</p>
 {% block scripts %}
   <script src="{{ url_for('static', filename='voice.js') }}"></script>
 {% endblock %}

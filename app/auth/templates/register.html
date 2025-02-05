@@ -32,6 +32,3 @@
 {% endblock %}
 {% block changePage %}{{url_for('auth.login')}}{% endblock %}
 {% block changePText %}Already have an account? <span class="text-primary fw-bold">Sign In</span>{% endblock %}
-{% block scripts %}
-<script src="{{ url_for('static', filename='voice.js') }}"></script>
-{% endblock %}

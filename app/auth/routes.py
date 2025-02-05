@@ -28,7 +28,7 @@ class Register(FlaskForm):
     email = StringField('Email', validators=[DataRequired("Please enter your email address"), Email("Please enter a valid email address")])
     password = PasswordField('Password', validators=[DataRequired("Please enter your password")])
     confirmPassword = PasswordField('Confirm Password', validators=[DataRequired("Please confirm your password")])
-    submit = SubmitField('Register')
+    submit = SubmitField('Create account')
 
 class GenRegister(FlaskForm):
     fName = StringField('First Name', validators=[
