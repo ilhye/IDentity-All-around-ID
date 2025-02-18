@@ -159,7 +159,7 @@ def register():
                 'confirmPassword': confirm_password
             }
             return redirect(url_for('auth.gen_register'))
-    return render_template('register.html', form=form, include_navbar=True)
+    return render_template('register.html', form=form, include_navbar=True, include_sidebar=False)
 
 # General Register
 @auth_bp.route('/gen-register', methods=['GET', 'POST'])
