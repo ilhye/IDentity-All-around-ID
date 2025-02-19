@@ -15,6 +15,7 @@
     <div class="col-md-12 mt-3">
       <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
         {{ form.hidden_tag() }}
+        {{ form1.hidden_tag() }}
         <fieldset class="border border-dark p-5 rounded">
           <legend>General Information</legend>
           <div class="row row-gap-4">
@@ -152,6 +153,46 @@
             </div>
           </div>
           
+        </fieldset>
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <legend>Family Information</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-4">
+              {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
+              <br>
+              {{ form1.fatherLastName (class="form-control", id="father-last-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.fatherFirstName.label (class="form-label", for="father-first-name") }}
+              <br>
+              {{ form1.fatherFirstName (class="form-control", id="father-first-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.fatherMiddleName.label (class="form-label", for="father-middle-name") }}
+              <br>
+              {{ form1.fatherMiddleName (class="form-control", id="father-middle-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherLastName.label (class="form-label", for="mother-last-name") }}
+              <br>
+              {{ form1.motherLastName (class="form-control", id="mother-last-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherFirstName.label (class="form-label", for="mother-first-name") }}
+              <br>
+              {{ form1.motherFirstName (class="form-control", id="mother-first-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherMiddleName.label (class="form-label", for="mother-middle-name") }}
+              <br>
+              {{ form1.motherMiddleName (class="form-control", id="mother-middle-name")}}
+            </div>
+            <div class="col-md-6">
+              {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
+              <br>
+              {{ form1.numbeOfSiblings (class="form-control", id="number-of-siblings")}}
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>

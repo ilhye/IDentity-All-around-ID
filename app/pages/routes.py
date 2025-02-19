@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, session
 from . import pages_bp
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
-from wtforms.validators import DataRequired, Email, Length, Regexp
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField,IntegerField
+from wtforms.validators import DataRequired, Email, Length, Regexp, NumberRange
 
 class PersonalInfo(FlaskForm):
     lastName = StringField('Last name', validators=[DataRequired("Please enter your last name")])
@@ -39,7 +39,18 @@ class PersonalInfo(FlaskForm):
     presCity = StringField("City/Municipality", validators=[DataRequired("Please enter your city/municipality")])
     presBlkLot = StringField("Block Lot Unit Floor", validators=[DataRequired("Please enter your Block Lot Unit Floor")])
     sameAddress = BooleanField('Same as current address', default=False)
-    
+
+class FamilyInfo(FlaskForm):
+    fatherLastName=StringField("Father's Last name", validators=[DataRequired()])
+    fatherFirstName = StringField("Father's First name", validators=[DataRequired()])
+    fatherMiddleName = StringField("Father's Middle name", validators=[DataRequired()])
+
+    motherLastName = StringField("Mother's Maiden Last name", validators=[DataRequired()])
+    motherFirstName = StringField("Mother's Maiden first name", validators=[DataRequired()])
+    motherMiddleName = StringField("Mother's Maiden middle name", validators=[DataRequired()])
+
+    numbeOfSiblings = IntegerField("How many siblings do you have?", validators=[DataRequired()])
+
 class HomeID(FlaskForm):
     submit = SubmitField('Submit')
 
@@ -62,6 +73,7 @@ def notifications():
 @pages_bp.route('/profile')
 def profile():
     form = PersonalInfo()
+    form1 = FamilyInfo()
 
     if form.validate_on_submit():
         session['personal_info'] = {
@@ -97,4 +109,4 @@ def profile():
         form.motherName.data = ''
         form.motherOccupation.data = ''
         return redirect(url_for('pages.profile'))
-    return render_template('profile.html', form=form, include_sidebar=True)
+    return render_template('profile.html', form=form, form1=form1, include_sidebar=True)
