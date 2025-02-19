@@ -2,34 +2,44 @@ from flask import render_template, redirect, url_for, session
 from . import pages_bp
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField
-from wtforms.validators import DataRequired, Email
+from wtforms.validators import DataRequired, Email, Length, Regexp
 
 class PersonalInfo(FlaskForm):
-    fullname = StringField('Full name', validators=[
-                        DataRequired("Please enter your full name")])
-    gender = SelectField('Gender', choices=[
-                         (0, "Select Gender"), (1, "Male"), (2, "Female")])
-    civilStatus = SelectField('Civil Status', choices=[(
-        0, "Select Civil Status"), (1, "Single"), (2, "Married"), (3, "Widowed"), (4, "Separated")])
-    nationality = SelectField('Nationality', choices=[(0, "Select Nationality"), (1, "American"), (2, "Australian"), (3, "Brazilian"), (4, "British"), (5, "Canadian"), (6, "Chinese"), (7, "Filipino"), (8, "French"), (9, "German"), (10, "Indian"), (
-        11, "Indonesian"), (12, "Italian"), (13, "Japanese"), (14, "Korean"), (15, "Malaysian"), (16, "Mexican"), (17, "Russian"), (18, "Singaporean"), (19, "South African"), (20, "Spanish"), (21, "Swiss"), (22, "Thai"), (23, "Vietnamese")])
-    birthday = DateTimeField('Birthday', validators=[DataRequired(
-        "Please enter your birthday")], format='%Y-%m-%d')
-    birthplace = StringField('Birthplace', validators=[
-                             DataRequired("Please enter your birthplace")])
-    occupation = StringField('Occupation', validators=[
-                             DataRequired("Please enter your occupation")])
-    fatherName = StringField('Father Name', validators=[
-                             DataRequired("Please enter your father's name")])
-    fatherOccupation = StringField('Father Occupation', validators=[
-                                   DataRequired("Please enter your father's occupation")])
-    motherName = StringField('Mother Name', validators=[
-                             DataRequired("Please enter your mother's name")])
-    motherOccupation = StringField('Mother Occupation', validators=[
-                                   DataRequired("Please enter your mother's occupation")])
-    submit = SubmitField('Next')
+    lastName = StringField('Last name', validators=[DataRequired("Please enter your last name")])
+    firstName = StringField('First name', validators=[DataRequired("Please entery your first name")])
+    middleName = StringField('Middle name', validators=[DataRequired("Please enter your middle name")])
 
+    birthCountry = StringField("Place of birth (country)", validators=[DataRequired("Please enter your birth country")])
+    birthCity = StringField("Place of birth(city/municipality)", validators=[DataRequired("Please enter your birth city/province")])
+    birthProvince = StringField("Place of birth(province)", validators=[DataRequired("Please enter your birth province")])
 
+    birthday = DateTimeField('Birthday', validators=[DataRequired("Please enter your birthday")], format='%Y-%m-%d')
+    sex = SelectField('Sex', choices=[(0, "Select Sex"), (1, "Male"), (2, "Female")])
+    civilStatus = SelectField('Civil Status', choices=[(0, "Select Civil Status"), (1, "Single"), (2, "Married"), (3, "Widowed"), (4, "Separated")])
+
+    nationality = SelectField('Nationality', choices=[(0, "Select Nationality"), (1, "American"), (2, "Australian"), (3, "Brazilian"), (4, "British"), (5, "Canadian"), (6, "Chinese"), (7, "Filipino"), (8, "French"), (9, "German"), (10, "Indian"), (11, "Indonesian"), (12, "Italian"), (13, "Japanese"), (14, "Korean"), (15, "Malaysian"), (16, "Mexican"), (17, "Russian"), (18, "Singaporean"), (19, "South African"), (20, "Spanish"), (21, "Swiss"), (22, "Thai"), (23, "Vietnamese")])
+    religion = StringField('Religion', validators=[DataRequired("Please enter your religion")])
+    occupation = StringField('Occupation', validators=[DataRequired("Please enter your occupation")])
+    
+    bloodType = SelectField('Blood type', choices=[(0, "Select blood type"), (1, "O+"), (2, "O-"), (3, "A+"), (4, "A-"), (5, "B+"), (6, "B-"), (7, "AB+"), (8, "AB-"), (9, "Others")])
+    height = StringField('Height(cm)', validators=[DataRequired("Please enter your height in cm")])
+    weight = StringField('Weight(kg)', validators=[DataRequired("Please enter your weight in kg")])
+
+    email = StringField('Email', validators=[DataRequired("Please enter your email address"), Email("Please enter a valid email address")])
+    phoneNum = StringField('Phone Number', validators=[DataRequired("Please enter your phone number"), Length(max=11, message="Phone number must be between 10 and 15 characters")])
+    telNum = StringField('Telephone Number', validators=[Regexp(r'\+\d{10}', message="Invalid telephone number")])
+
+    curBarangay = StringField("Barangay", validators=[DataRequired("Please enter your barangay")])
+    curProvince = StringField("Province", validators=[DataRequired("Please enter your province")])
+    curCity = StringField("City/Municipality", validators=[DataRequired("Please enter your city/municipality")])
+    curBlkLot = StringField("Block Lot Unit Floor", validators=[DataRequired("Please enter your Block Lot Unit Floor")])
+    
+    presBarangay = StringField("Barangay", validators=[DataRequired("Please enter your barangay")])
+    presProvince = StringField("Province", validators=[DataRequired("Please enter your province")])
+    presCity = StringField("City/Municipality", validators=[DataRequired("Please enter your city/municipality")])
+    presBlkLot = StringField("Block Lot Unit Floor", validators=[DataRequired("Please enter your Block Lot Unit Floor")])
+    sameAddress = BooleanField('Same as current address', default=False)
+    
 class HomeID(FlaskForm):
     submit = SubmitField('Submit')
 

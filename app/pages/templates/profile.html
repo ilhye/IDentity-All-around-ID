@@ -15,47 +15,143 @@
     <div class="col-md-12 mt-3">
       <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
         {{ form.hidden_tag() }}
-        <fieldset class="border border-1 p-5 rounded">
-          <legend>Personal Information</legend>
-          <div class="row g-4">
-            <div class="col-md-6">
-              {{ form.fullname.label(class="form-label", for="fullname") }}
-              <br />
-              {{ form.fullname(class="form-control", id="fullname") }}
+        <fieldset class="border border-dark p-5 rounded">
+          <legend>General Information</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-4">
+              {{ form.lastName.label (class="form-label", for="last-name") }}
+              <br>
+              {{ form.lastName (class="form-control border-dark", id="last-name") }}
             </div>
-            <div class="col-md-6">
-              {{ form.gender.label (class="form-label") }} <br />
-              {{ form.gender (class="form-select") }}
+            <div class="col-md-4">
+              {{ form.firstName.label (class="form-label", for="first-name") }}
+              <br>
+              {{ form.firstName (class="form-control border-dark", id="first-name") }}
             </div>
-            <div class="col-md-6">
-              {{ form.civilStatus.label (class="form-label", for="civil-status")
-              }} <br />
-              {{ form.civilStatus (class="form-select", id="civil-status") }}
+            <div class="col-md-4">
+              {{ form.middleName.label (class="form-label", for="middle-name") }}
+              <br>
+              {{ form.middleName (class="form-control border-dark", id="middle-name") }}
             </div>
-            <div class="col-md-6">
-              {{ form.nationality.label (class="form-label", for="nationality")
-              }} <br />
-              {{ form.nationality (class="form-select", id="nationality") }}
+            <div class="col-md-4">
+              {{ form.birthCountry.label (class="form-label", for="birth-country") }}
+              <br>
+              {{ form.birthCountry (class="form-control border-dark", id="birth-country") }}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+              {{ form.birthCity.label (class="form-label", for="birth-city") }}
+              <br>
+              {{ form.birthCity (class="form-control border-dark", id="birth-city") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthProvince.label (class="form-label", for="birth-province") }}
+              <br>
+              {{ form.birthProvince (class="form-control border-dark", id="birth-province") }}
+            </div>
+            <div class="col-md-4">
               {{ form.birthday.label (class="form-label", for="birthday") }}
-              <br />
-              {{ form.birthday (class="form-control", id="birthday", type="date") }}
+              <br>
+              {{ form.birthday (class="form-control border-dark", id="birthday", type="date") }}
             </div>
-            <div class="col-md-6">
-              {{ form.birthplace.label (class="form-label", for="birthplace") }}
-              <br />
-              {{ form.birthplace (class="form-control", id="birthplace") }}
+            <div class="col-md-4">
+              {{ form.sex.label (class="form-label", for="sex") }}
+              <br>
+              {{ form.sex (class="form-select border-dark", id="sex") }}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+              {{ form.civilStatus.label (class="form-label", for="civil-status") }}
+              <br>
+              {{ form.civilStatus (class="form-select border-dark", id="civil-status")}}
+            </div>
+            <div class="col-md-4">
+              {{ form.nationality.label (class="form-label", for="nationality") }}
+              <br>
+              {{ form.nationality (class="form-select border-dark", id="nationality") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.religion.label (class="form-label", for="religion") }}
+              <br>
+              {{ form.religion (class="form-control border-dark", id="religion")}}
+            </div>
+            <div class="col-md-4">
               {{ form.occupation.label (class="form-label", for="occupation") }}
               <br>
-              {{ form.occupation (class="form-control" , id="occupation")}}
+              {{ form.occupation (class="form-control border-dark", id="occupation") }}
             </div>
-            <div class="col-md-6">
-              <p>tina</p>
+            <div class="col-md-4">
+              {{ form.bloodType.label (class="form-label", for="blood-type") }}
+              <br>
+              {{ form.bloodType (class="form-select border-dark", id="blood-type") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.height.label (class="form-label", for="height") }}
+              <br>
+              {{ form.height (class="form-control border-dark", id="height") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.weight.label (class="form-label", for="weight") }}
+              <br>
+              {{ form.weight (class="form-control border-dark", id="weight") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.email.label (class="form-label", for="email") }}
+              <br>
+              {{ form.email (class="form-control border-dark", id="email") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.phoneNum.label (class="form-label", for="phone-number") }}
+              <br>
+              {{ form.phoneNum (class="form-control border-dark", id="phone-number") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.telNum.label (class="form-label", for="tel-number") }}
+              <br>
+              {{ form.telNum (class="form-control border-dark", id="tel-number") }}
+            </div>
+            <p>Current Address</p>
+            <div class="col-md-3">
+              {{ form.curBarangay.label (class="form-label", for="current-barangay") }}
+              <br>
+              {{ form.curBarangay (class="form-control border-dark", id="current-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curProvince.label (class="form-label", for="current-province") }}
+              <br>
+              {{ form.curProvince (class="form-control border-dark", id="current-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curCity.label (class="form-label", for="current-city") }}
+              <br>
+              {{ form.curCity (class="form-control border-dark", id="current-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curBlkLot.label (class="form-label", for="current-blkLot") }}
+              <br>
+              {{ form.curBlkLot (class="form-control border-dark", id="current-blkLot") }}
+            </div>
+            <p>Present Address</p>
+            <div class="col-md-3">
+              {{ form.presBarangay.label (class="form-label", for="present-barangay") }}
+              <br>
+              {{ form.presBarangay (class="form-control border-dark", id="present-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presProvince.label (class="form-label", for="present-province") }}
+              <br>
+              {{ form.presProvince (class="form-control border-dark", id="present-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presCity.label (class="form-label", for="present-city") }}
+              <br>
+              {{ form.presCity (class="form-control border-dark", id="present-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presBlkLot.label (class="form-label", for="present-blkLot") }}
+              <br>
+              {{ form.presBlkLot (class="form-control border-dark", id="present-blkLot") }}
             </div>
           </div>
+          
         </fieldset>
       </form>
     </div>
