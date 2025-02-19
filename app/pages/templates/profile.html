@@ -16,6 +16,9 @@
       <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
         {{ form.hidden_tag() }}
         {{ form1.hidden_tag() }}
+        {{ form2.hidden_tag() }}
+        {{ form3.hidden_tag() }}
+        {{ form4.hidden_tag() }}
         <fieldset class="border border-dark p-5 rounded">
           <legend>General Information</legend>
           <div class="row row-gap-4">
@@ -160,37 +163,97 @@
             <div class="col-md-4">
               {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
               <br>
-              {{ form1.fatherLastName (class="form-control", id="father-last-name")}}
+              {{ form1.fatherLastName (class="form-control border-dark", id="father-last-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.fatherFirstName.label (class="form-label", for="father-first-name") }}
               <br>
-              {{ form1.fatherFirstName (class="form-control", id="father-first-name")}}
+              {{ form1.fatherFirstName (class="form-control border-dark", id="father-first-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.fatherMiddleName.label (class="form-label", for="father-middle-name") }}
               <br>
-              {{ form1.fatherMiddleName (class="form-control", id="father-middle-name")}}
+              {{ form1.fatherMiddleName (class="form-control border-dark", id="father-middle-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherLastName.label (class="form-label", for="mother-last-name") }}
               <br>
-              {{ form1.motherLastName (class="form-control", id="mother-last-name")}}
+              {{ form1.motherLastName (class="form-control border-dark", id="mother-last-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherFirstName.label (class="form-label", for="mother-first-name") }}
               <br>
-              {{ form1.motherFirstName (class="form-control", id="mother-first-name")}}
+              {{ form1.motherFirstName (class="form-control border-dark", id="mother-first-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherMiddleName.label (class="form-label", for="mother-middle-name") }}
               <br>
-              {{ form1.motherMiddleName (class="form-control", id="mother-middle-name")}}
+              {{ form1.motherMiddleName (class="form-control border-dark", id="mother-middle-name")}}
             </div>
             <div class="col-md-6">
               {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
               <br>
-              {{ form1.numbeOfSiblings (class="form-control", id="number-of-siblings")}}
+              {{ form1.numbeOfSiblings (class="form-control border-dark", id="number-of-siblings")}}
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <legend>Emergency Contact</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-4">
+              {{ form2.lastName.label (class="form-label", for="last-name") }}
+              <br>
+              {{ form2.lastName (class="form-control border-dark", id="last-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.firstName.label (class="form-label", for="first-name") }}
+              <br>
+              {{ form2.firstName (class="form-control border-dark", id="first-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.middleName.label (class="form-label", for="middle-name") }}
+              <br>
+              {{ form2.middleName (class="form-control border-dark", id="middle-name") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.connection.label (class="form-label", for="user-connection") }}
+              <br>
+              {{ form2.connection (class="form-control border-dark", id="user-connection") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.phoneNum.label (class="form-label", for="phone-number") }}
+              <br>
+              {{ form2.phoneNum (class="form-control border-dark", id="phone-number") }}
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <legend>Identification</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-12">
+              {{ form3.profilePhoto.label (class="form-label", for="profile-photo") }}
+              {{ form3.profilePhoto (class="form-control border-dark", id="profile-photo") }}
+            </div>
+            <div class="col-md-12">
+              {{ form3.governmentIssuedID.label (class="form-label", for="government-ID") }}
+              {{ form3.governmentIssuedID (class="form-control border-dark", id="government-ID") }}
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <legend>Account Details</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-12">
+              {{ form4.username.label (class="form-label", for="username") }}
+              {{ form4.username (class="form-control border-dark", id="username") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.password.label (class="form-label", for="password") }}
+              {{ form4.password (class="form-control border-dark", id="password") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.confirmPass.label (class="form-label", for="confirm-password") }}
+              {{ form4.confirmPass (class="form-control border-dark", id="confirm-password") }}
             </div>
           </div>
         </fieldset>
