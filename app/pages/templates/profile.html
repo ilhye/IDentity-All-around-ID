@@ -1,360 +1,202 @@
-{% extends 'layout.html' %} 
-{% block styles %}
-  <!--CSS file-->
-    <link rel="stylesheet" href="{{url_for('pages.static', filename='css/homeprofile.css')}}"/>
-{% endblock %}    
-    
-{% block body %}  
-<title>Profile Page</title>
-    
-    <div class="container-fluid">
-      <div class="row">
-
-        <!-- Sidebar -->
-        <aside class="sidebar col-md-3">
-          <h2 class="text-center">IDentity</h2>
-          <nav>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fa-solid fa-id-card"></i>
-                <a href="{{url_for('pages.templates', homeid)}}" class="id">ID's</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-user"></i>
-                <a href="{{url_for('pages.templates', profile)}}" class="profile">Profile</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-bell"></i>
-                <a href="{{url_for('pages.templates', Notifications)}}" class="notification">Notification</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-gear"></i>
-                <a href="{{url_for('pages.templates', settings)}}" class="setting">Settings</a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="col-md-9 ms-auto p-5">
-          <!-- Profile Header -->
-          <header class="header mb-4">
-            <h1 class="profile-title">Profile</h1>
-
-            <div class="search-container">
-              <input
-                type="text"
-                class="search-bar"
-                placeholder="Search here..."
-                aria-label="Search" />
-              <button class="search-button"><i
-                  class="fa-solid fa-magnifying-glass"></i></button>
+{% extends 'layout.html' %} {% block main %}
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-md-8"><h1>Profile</h1></div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search..." />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3">
+      <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form1.hidden_tag() }}
+        <fieldset class="border border-dark p-5 rounded">
+          <legend>General Information</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-4">
+              {{ form.lastName.label (class="form-label", for="last-name") }}
+              <br>
+              {{ form.lastName (class="form-control border-dark", id="last-name") }}
             </div>
-          </header>
-
-          <!-- Profile Section -->
-          <section id="profile" class="container-fluid">
-            <div class="row justify-content-start">
-              <div class="col-md-12">
-              </div>
-              <div class="col-md-2">
-                <div class="profile-header">
-                  <div class="rounded-circle"
-                    style="width: 100px; height: 100px;"></div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="profile-header2">
-                  <h2>@username</h2>
-                  <p>John Doe</p>
-                </div>
-              </div>
+            <div class="col-md-4">
+              {{ form.firstName.label (class="form-label", for="first-name") }}
+              <br>
+              {{ form.firstName (class="form-control border-dark", id="first-name") }}
             </div>
-          </section>
-
-          <!-- Personal Information Section -->
-          <div class="personal-info-section">
-            <div
-              class="section-header">
-              <h3 class="section-title mb-0">Personal Information</h3>
-              <button class="edit-btn btn btn-primary">
-                Edit <i class="fa-solid fa-pencil"></i>
-              </button>
+            <div class="col-md-4">
+              {{ form.middleName.label (class="form-label", for="middle-name") }}
+              <br>
+              {{ form.middleName (class="form-control border-dark", id="middle-name") }}
             </div>
-            <form>
-              <div class="row g-3">
-                <!-- Row 1: First Name, Middle Name, Last Name, Extension -->
-                <div class="col-md-10">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <label for="first-name" class="form-label">First
-                        Name:</label>
-                      <input type="text" class="form-control" id="first-name"
-                        name="first-name">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="middle-name" class="form-label">Middle
-                        Name:</label>
-                      <input type="text" class="form-control" id="middle-name"
-                        name="middle-name">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="last-name" class="form-label">Last
-                        Name:</label>
-                      <input type="text" class="form-control" id="last-name"
-                        name="last-name">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-2">
-                  <label for="extension" class="form-label">Extension:</label>
-                  <input type="text" class="form-control" id="extension"
-                    name="extension">
-                </div>
-
-                <!-- Row 2: Sex, Civil Status, Nationality -->
-                <div class="col-md-4">
-                  <label for="sex" class="form-label">Sex:</label>
-                  <input type="text" class="form-control" id="sex" name="sex">
-                </div>
-                <div class="col-md-4">
-                  <label for="civil-status" class="form-label">Civil
-                    Status:</label>
-                  <input type="text" class="form-control" id="civil-status"
-                    name="civil-status">
-                </div>
-                <div class="col-md-4">
-                  <label for="nationality"
-                    class="form-label">Nationality:</label>
-                  <input type="text" class="form-control" id="nationality"
-                    name="nationality">
-                </div>
-
-                <!-- Row 3: Birthday, Birthplace, Occupation -->
-                <div class="col-md-4">
-                  <label for="birthdate" class="form-label">Birthday:</label>
-                  <input type="date" class="form-control" id="birthdate"
-                    name="birthdate">
-                </div>
-                <div class="col-md-4">
-                  <label for="birthplace"
-                    class="form-label">Birthplace:</label>
-                  <input type="text" class="form-control" id="birthplace"
-                    name="birthplace">
-                </div>
-                <div class="col-md-4">
-                  <label for="occupation"
-                    class="form-label">Occupation:</label>
-                  <input type="text" class="form-control" id="occupation"
-                    name="occupation">
-                </div>
-
-                <!-- Row 4: Father's Name, Occupation -->
-                <div class="col-md-8">
-                  <label for="father-name" class="form-label">Father's
-                    Name:</label>
-                  <input type="text" class="form-control" id="father-name"
-                    name="father-name">
-                </div>
-                <div class="col-md-4">
-                  <label for="father-occupation"
-                    class="form-label">Occupation:</label>
-                  <input type="text" class="form-control"
-                    id="father-occupation" name="father-occupation">
-                </div>
-
-                <!-- Row 5: Mother's Name, Occupation -->
-                <div class="col-md-8">
-                  <label for="mother-name" class="form-label">Mother's
-                    Name:</label>
-                  <input type="text" class="form-control" id="mother-name"
-                    name="mother-name">
-                </div>
-                <div class="col-md-4">
-                  <label for="mother-occupation"
-                    class="form-label">Occupation:</label>
-                  <input type="text" class="form-control"
-                    id="mother-occupation" name="mother-occupation">
-                </div>
-              </div>
-            </form>
+            <div class="col-md-4">
+              {{ form.birthCountry.label (class="form-label", for="birth-country") }}
+              <br>
+              {{ form.birthCountry (class="form-control border-dark", id="birth-country") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthCity.label (class="form-label", for="birth-city") }}
+              <br>
+              {{ form.birthCity (class="form-control border-dark", id="birth-city") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthProvince.label (class="form-label", for="birth-province") }}
+              <br>
+              {{ form.birthProvince (class="form-control border-dark", id="birth-province") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthday.label (class="form-label", for="birthday") }}
+              <br>
+              {{ form.birthday (class="form-control border-dark", id="birthday", type="date") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.sex.label (class="form-label", for="sex") }}
+              <br>
+              {{ form.sex (class="form-select border-dark", id="sex") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.civilStatus.label (class="form-label", for="civil-status") }}
+              <br>
+              {{ form.civilStatus (class="form-select border-dark", id="civil-status")}}
+            </div>
+            <div class="col-md-4">
+              {{ form.nationality.label (class="form-label", for="nationality") }}
+              <br>
+              {{ form.nationality (class="form-select border-dark", id="nationality") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.religion.label (class="form-label", for="religion") }}
+              <br>
+              {{ form.religion (class="form-control border-dark", id="religion")}}
+            </div>
+            <div class="col-md-4">
+              {{ form.occupation.label (class="form-label", for="occupation") }}
+              <br>
+              {{ form.occupation (class="form-control border-dark", id="occupation") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.bloodType.label (class="form-label", for="blood-type") }}
+              <br>
+              {{ form.bloodType (class="form-select border-dark", id="blood-type") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.height.label (class="form-label", for="height") }}
+              <br>
+              {{ form.height (class="form-control border-dark", id="height") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.weight.label (class="form-label", for="weight") }}
+              <br>
+              {{ form.weight (class="form-control border-dark", id="weight") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.email.label (class="form-label", for="email") }}
+              <br>
+              {{ form.email (class="form-control border-dark", id="email") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.phoneNum.label (class="form-label", for="phone-number") }}
+              <br>
+              {{ form.phoneNum (class="form-control border-dark", id="phone-number") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.telNum.label (class="form-label", for="tel-number") }}
+              <br>
+              {{ form.telNum (class="form-control border-dark", id="tel-number") }}
+            </div>
+            <p>Current Address</p>
+            <div class="col-md-3">
+              {{ form.curBarangay.label (class="form-label", for="current-barangay") }}
+              <br>
+              {{ form.curBarangay (class="form-control border-dark", id="current-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curProvince.label (class="form-label", for="current-province") }}
+              <br>
+              {{ form.curProvince (class="form-control border-dark", id="current-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curCity.label (class="form-label", for="current-city") }}
+              <br>
+              {{ form.curCity (class="form-control border-dark", id="current-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curBlkLot.label (class="form-label", for="current-blkLot") }}
+              <br>
+              {{ form.curBlkLot (class="form-control border-dark", id="current-blkLot") }}
+            </div>
+            <p>Present Address</p>
+            <div class="col-md-3">
+              {{ form.presBarangay.label (class="form-label", for="present-barangay") }}
+              <br>
+              {{ form.presBarangay (class="form-control border-dark", id="present-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presProvince.label (class="form-label", for="present-province") }}
+              <br>
+              {{ form.presProvince (class="form-control border-dark", id="present-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presCity.label (class="form-label", for="present-city") }}
+              <br>
+              {{ form.presCity (class="form-control border-dark", id="present-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presBlkLot.label (class="form-label", for="present-blkLot") }}
+              <br>
+              {{ form.presBlkLot (class="form-control border-dark", id="present-blkLot") }}
+            </div>
           </div>
-
-          <!-- Contact Information -->
-          <div class="contact-info">
-            <div class="section-header">
-              <h3>Contact Information</h3>
-              <button class="edit-btn">
-                Edit <i class="fa fa-pencil"></i>
-              </button>
+          
+        </fieldset>
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <legend>Family Information</legend>
+          <div class="row row-gap-4">
+            <div class="col-md-4">
+              {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
+              <br>
+              {{ form1.fatherLastName (class="form-control", id="father-last-name")}}
             </div>
-            <form>
-              <!-- Email -->
-              <div class="mb-3 row">
-                <label for="email" class="col-md-2">Email:</label>
-                <div class="col-md-7">
-                  <input type="email" id="email" name="email"
-                    class="form-control">
-                </div>
-              </div>
-
-              <!-- Phone Number -->
-              <div class="mb-3 row">
-                <label for="phone-number" class="col-md-2">Phone Number:</label>
-                <div class="col-md-7">
-                  <input type="text" id="phone" name="phone"
-                    class="form-control">
-                </div>
-              </div>
-
-              <!-- Current Address -->
-              <div class="mb-3 row">
-                <label for="current-address" class="col-md-2">Current
-                  Address:</label>
-                <div class="col-md-7">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <input type="text" id="country" name="country"
-                        class="form-control" placeholder="Country">
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="region" name="region"
-                        class="form-control" placeholder="Region">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-6">
-                      <input type="text" id="city" name="city"
-                        class="form-control" placeholder="City/Municipality">
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="province" name="province"
-                        class="form-control" placeholder="Province">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-6">
-                      <input type="text" id="barangay" name="barangay"
-                        class="form-control" placeholder="Barangay">
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="street" name="street"
-                        class="form-control"
-                        placeholder="Block, Lot, Street, Floor">
-                    </div>
-                  </div>
-
-                  <div class="row mt-2">
-                    <div class="col-md-6">
-                      <input type="text" id="zip" name="zip"
-                        class="form-control" placeholder="ZIP Code">
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" id="additional" name="additional"
-                        class="form-control"
-                        placeholder="Additional Information">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </form>
-          </div>
-
-          <!-- Account Information -->
-          <div class="account-info">
-            <div
-              class="section-header">
-              <h3 class="section-title mb-0">Account Information</h3>
-              <button class="edit-btn btn btn-primary">
-                Edit <i class="fa-solid fa-pencil"></i>
-              </button>
+            <div class="col-md-4">
+              {{ form1.fatherFirstName.label (class="form-label", for="father-first-name") }}
+              <br>
+              {{ form1.fatherFirstName (class="form-control", id="father-first-name")}}
             </div>
-            <form>
-              <div class="mb-3 row">
-                <label for="phone-number" class="col-md-3">Username:</label>
-                <div class="col-md-6">
-                  <input type="text" id="username" name="username"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label for="password" class="col-md-3">Password:</label>
-                <div class="col-md-6">
-                  <input type="password" id="password" name="password"
-                    class="form-control">
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label for="password-confirmation" class="col-md-3">Confirm
-                  Password:</label>
-                <div class="col-md-6">
-                  <input type="password" id="password-confirmation"
-                    name="password-confirmation" class="form-control">
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <!-- Identification Details -->
-          <div class="identification-info">
-            <div
-              class="section-header">
-              <h3 class="section-title mb-0">Identification Details</h3>
-              <button class="edit-btn btn btn-primary">
-                Edit <i class="fa-solid fa-pencil"></i>
-              </button>
+            <div class="col-md-4">
+              {{ form1.fatherMiddleName.label (class="form-label", for="father-middle-name") }}
+              <br>
+              {{ form1.fatherMiddleName (class="form-control", id="father-middle-name")}}
             </div>
-            <form>
-              <div class="mb-3 row">
-                <label for="profile-photo" class="col-md-3">Profile
-                  Photo:</label>
-                <div class="col-md-6">
-                  <input type="file" class="form-control" id="profile-photo"
-                    name="profile-photo">
-                </div>
-              </div>
-
-              <div class="mb-3 row">
-                <label for="ss-number" class="col-md-3">Social Security
-                  Number:</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="ss-number"
-                    name="ss-number">
-                </div>
-              </div>
-
-              <div class="mb-3 row">
-                <label for="ph-number" class="col-md-3">PhilHealth
-                  Number:</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="ph-number"
-                    name="ph-number">
-                </div>
-              </div>
-
-              <div class="mb-3 row">
-                <label for="philsys-number" class="col-md-3">National ID
-                  Number:</label>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" id="philsys-number"
-                    name="philsys-number">
-                </div>
-              </div>
-
-              <div class="mb-3 row">
-                <label for="birth-certificate" class="col-md-3">Birth
-                  Certificate:</label>
-                <div class="col-md-6">
-                  <input type="file" class="form-control" id="birth-certificate"
-                    name="birth-certificate">
-                </div>
-              </div>
-
-            </form>
+            <div class="col-md-4">
+              {{ form1.motherLastName.label (class="form-label", for="mother-last-name") }}
+              <br>
+              {{ form1.motherLastName (class="form-control", id="mother-last-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherFirstName.label (class="form-label", for="mother-first-name") }}
+              <br>
+              {{ form1.motherFirstName (class="form-control", id="mother-first-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherMiddleName.label (class="form-label", for="mother-middle-name") }}
+              <br>
+              {{ form1.motherMiddleName (class="form-control", id="mother-middle-name")}}
+            </div>
+            <div class="col-md-6">
+              {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
+              <br>
+              {{ form1.numbeOfSiblings (class="form-control", id="number-of-siblings")}}
+            </div>
           </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
 
-{% endblock %} 
+{% endblock %}
