@@ -1,2 +1,4 @@
-Flask
+flask
+flask-wtf
 firebase-admin
+selenium
