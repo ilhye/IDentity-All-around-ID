@@ -1,21 +1,4 @@
 {% extends 'layout.html' %} 
-{% block styles %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('auth.static', filename='register.css') }}"
-/>
-<style>
-  body {
-    font-size: 16px;
-  }
-  .form-section .col-md-12 {
-    margin-bottom: 1rem;
-  }
-  .form-section .col-md-6 {
-    margin-bottom: 1rem;
-  }
-</style>
-{% endblock %}
 {% block body %}
 <div class="register d-flex justify-content-center align-items-center">
   <div class="card p-5 shadow-lg bg-body rounded" style="width: 500px">

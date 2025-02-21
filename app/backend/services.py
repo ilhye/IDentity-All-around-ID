@@ -1,8 +1,10 @@
 from firebase_admin import credentials, initialize_app
 from firebase_admin import db as firebase_db
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+'''
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.options import Options
+'''
 import time
 
 cred = credentials.Certificate('credentials.json')

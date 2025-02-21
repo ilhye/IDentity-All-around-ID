@@ -4,7 +4,6 @@ from firebase_admin import auth, exceptions
 from firebase_config import *
 
 app = Flask(__name__)
-\
 
 @app.route('/')
 def index():
