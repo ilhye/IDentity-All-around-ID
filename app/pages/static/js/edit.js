@@ -1,23 +1,13 @@
-const edits = document.querySelectorAll('[id^="edit-"]')
-    const saves = document.querySelectorAll('[id^="save-"]')
-    const cancels = document.querySelectorAll('[id^="cancel-"]')
+function toggleEditState(id, state) {
+  const edit = document.getElementById(`edit-${id}`);
+  const save = document.getElementById(`save-${id}`);
+  const cancel = document.getElementById(`cancel-${id}`);
 
-function edit() {
-    edits.forEach((edit, index) => {
-        edit.addEventListener("click", event => {
-            saves[index].classList.remove("d-none");
-            cancels[index].classList.remove("d-none");
-        })
-    });
+  if (state === "edit") {
+    save.classList.remove("d-none");
+    cancel.classList.remove("d-none");
+  } else if (state === "cancel") {
+    save.classList.add("d-none");
+    cancel.classList.add("d-none");
+  }
 }
-
-function cancel() {
-    cancels.forEach((cancel, index) => {
-        cancel.addEventListener("click", event => {
-            saves[index].classList.add("d-none");
-            cancels[index].classList.add("d-none");
-        })
-    });
-}
-document.addEventListener("DOMContentLoaded", edit);
-document.addEventListener("DOMContentLoaded", cancel)
