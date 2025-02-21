@@ -3,6 +3,8 @@ from . import pages_bp
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField,IntegerField
 from wtforms.validators import DataRequired, Email, Length, Regexp, NumberRange
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from flask_reuploads import UploadSet, IMAGES
 
 class PersonalInfo(FlaskForm):
     lastName = StringField('Last name', validators=[DataRequired("Please enter your last name")])
@@ -51,6 +53,23 @@ class FamilyInfo(FlaskForm):
 
     numbeOfSiblings = IntegerField("How many siblings do you have?", validators=[DataRequired()])
 
+class EmergencyContact(FlaskForm):
+    emergencyLastName = StringField("Last name", validators=[DataRequired()])
+    emergencyFirstName = StringField("First name", validators=[DataRequired()])
+    emergencyMiddleName = StringField("Middle name", validators=[DataRequired()])
+    connection = StringField("Connection to the user", validators=[DataRequired()])
+    emergencyPhoneNum = IntegerField("Phone number", validators=[DataRequired(), Length(max=11, message="Invalid phone number")])
+
+photos  = UploadSet('photos', IMAGES)
+class Identification(FlaskForm):
+    profilePhoto = FileField('Profile Photo', validators=[FileAllowed(photos, 'Images only'), FileRequired()])
+    governmentIssuedID = FileField('Government Issued ID', validators=[FileAllowed(photos, 'Images only'), FileRequired()])
+
+class AccountDetails(FlaskForm):
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    confirmPass = PasswordField("Confirm Password", validators=[DataRequired()])
+
 class HomeID(FlaskForm):
     submit = SubmitField('Submit')
 
@@ -74,6 +93,9 @@ def notifications():
 def profile():
     form = PersonalInfo()
     form1 = FamilyInfo()
+    form2 = EmergencyContact()
+    form3 = Identification()
+    form4 = AccountDetails()
 
     if form.validate_on_submit():
         session['personal_info'] = {
@@ -109,4 +131,4 @@ def profile():
         form.motherName.data = ''
         form.motherOccupation.data = ''
         return redirect(url_for('pages.profile'))
-    return render_template('profile.html', form=form, form1=form1, include_sidebar=True)
+    return render_template('profile.html', form=form, form1=form1, form2=form2, form3=form3, form4=form4, include_sidebar=True)

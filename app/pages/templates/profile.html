@@ -1,4 +1,5 @@
-{% extends 'layout.html' %} {% block main %}
+{% extends 'layout.html' %} 
+{% block main %}
 <div class="container-fluid h-100">
   <div class="row">
     <div class="col-md-8"><h1>Profile</h1></div>
@@ -16,9 +17,17 @@
       <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
         {{ form.hidden_tag() }}
         {{ form1.hidden_tag() }}
+        {{ form2.hidden_tag() }}
+        {{ form3.hidden_tag() }}
+        {{ form4.hidden_tag() }}
         <fieldset class="border border-dark p-5 rounded">
-          <legend>General Information</legend>
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>General Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-1" type="button" onclick="toggleEditState(1, 'edit')">Edit</button>
+            </div>
             <div class="col-md-4">
               {{ form.lastName.label (class="form-label", for="last-name") }}
               <br>
@@ -151,46 +160,159 @@
               <br>
               {{ form.presBlkLot (class="form-control border-dark", id="present-blkLot") }}
             </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-1" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-1" type="button" onclick="toggleEditState(1, 'cancel')">Cancel</button>
+            </div>
           </div>
-          
         </fieldset>
-        <fieldset class="border border-dark p-5 rounded mt-4">
-          <legend>Family Information</legend>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">   
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Family Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-2" type="button" onclick="toggleEditState(2, 'edit')">Edit</button>
+            </div>
             <div class="col-md-4">
               {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
               <br>
-              {{ form1.fatherLastName (class="form-control", id="father-last-name")}}
+              {{ form1.fatherLastName (class="form-control border-dark", id="father-last-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.fatherFirstName.label (class="form-label", for="father-first-name") }}
               <br>
-              {{ form1.fatherFirstName (class="form-control", id="father-first-name")}}
+              {{ form1.fatherFirstName (class="form-control border-dark", id="father-first-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.fatherMiddleName.label (class="form-label", for="father-middle-name") }}
               <br>
-              {{ form1.fatherMiddleName (class="form-control", id="father-middle-name")}}
+              {{ form1.fatherMiddleName (class="form-control border-dark", id="father-middle-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherLastName.label (class="form-label", for="mother-last-name") }}
               <br>
-              {{ form1.motherLastName (class="form-control", id="mother-last-name")}}
+              {{ form1.motherLastName (class="form-control border-dark", id="mother-last-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherFirstName.label (class="form-label", for="mother-first-name") }}
               <br>
-              {{ form1.motherFirstName (class="form-control", id="mother-first-name")}}
+              {{ form1.motherFirstName (class="form-control border-dark", id="mother-first-name")}}
             </div>
             <div class="col-md-4">
               {{ form1.motherMiddleName.label (class="form-label", for="mother-middle-name") }}
               <br>
-              {{ form1.motherMiddleName (class="form-control", id="mother-middle-name")}}
+              {{ form1.motherMiddleName (class="form-control border-dark", id="mother-middle-name")}}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
               <br>
-              {{ form1.numbeOfSiblings (class="form-control", id="number-of-siblings")}}
+              {{ form1.numbeOfSiblings (class="form-control border-dark", id="number-of-siblings")}}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-2" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-2" type="button" onclick="toggleEditState(2, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Emergency Contact</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-3" type="button" onclick="toggleEditState(3, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyLastName.label (class="form-label", for="emergency-last-name") }}
+              <br>
+              {{ form2.emergencyLastName (class="form-control border-dark", id="emergency-last-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyFirstName.label (class="form-label", for="emergency-first-name") }}
+              <br>
+              {{ form2.emergencyFirstName (class="form-control border-dark", id="emergency-first-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyMiddleName.label (class="form-label", for="emergency-middle-name") }}
+              <br>
+              {{ form2.emergencyMiddleName (class="form-control border-dark", id="emergency-middle-name") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.connection.label (class="form-label", for="user-connection") }}
+              <br>
+              {{ form2.connection (class="form-control border-dark", id="user-connection") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.emergencyPhoneNum.label (class="form-label", for="emergency-phone-number") }}
+              <br>
+              {{ form2.emergencyPhoneNum (class="form-control border-dark", id="emergency-phone-number") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-3" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-3" type="button" onclick="toggleEditState(3, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+        
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Identification</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-4" type="button" onclick="toggleEditState(4, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-12">
+              {{ form3.profilePhoto.label (class="form-label", for="profile-photo") }}
+              {{ form3.profilePhoto (class="form-control border-dark", id="profile-photo") }}
+            </div>
+            <div class="col-md-12">
+              {{ form3.governmentIssuedID.label (class="form-label", for="government-ID") }}
+              {{ form3.governmentIssuedID (class="form-control border-dark", id="government-ID") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-4" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-4" type="button" onclick="toggleEditState(4, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Account Details</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-5" type="button" onclick="toggleEditState(5, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-12">
+              {{ form4.username.label (class="form-label", for="username") }}
+              {{ form4.username (class="form-control border-dark", id="username") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.password.label (class="form-label", for="password") }}
+              {{ form4.password (class="form-control border-dark", id="password") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.confirmPass.label (class="form-label", for="confirm-password") }}
+              {{ form4.confirmPass (class="form-control border-dark", id="confirm-password") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-5" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-5" type="button" onclick="toggleEditState(5, 'cancel')">Cancel</button>
             </div>
           </div>
         </fieldset>
@@ -198,5 +320,5 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
+{% block script %} {{ url_for('pages.static', filename='js/edit.js') }} {% endblock %}
