@@ -54,11 +54,11 @@ class FamilyInfo(FlaskForm):
     numbeOfSiblings = IntegerField("How many siblings do you have?", validators=[DataRequired()])
 
 class EmergencyContact(FlaskForm):
-    lastName = StringField("Last name", validators=[DataRequired()])
-    firstName = StringField("First name", validators=[DataRequired()])
-    middleName = StringField("Middle name", validators=[DataRequired()])
+    emergencyLastName = StringField("Last name", validators=[DataRequired()])
+    emergencyFirstName = StringField("First name", validators=[DataRequired()])
+    emergencyMiddleName = StringField("Middle name", validators=[DataRequired()])
     connection = StringField("Connection to the user", validators=[DataRequired()])
-    phoneNum = IntegerField("Phone number", validators=[DataRequired(), Length(max=11, message="Invalid phone number")])
+    emergencyPhoneNum = IntegerField("Phone number", validators=[DataRequired(), Length(max=11, message="Invalid phone number")])
 
 photos  = UploadSet('photos', IMAGES)
 class Identification(FlaskForm):

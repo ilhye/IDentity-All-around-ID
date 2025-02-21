@@ -1,4 +1,5 @@
-{% extends 'layout.html' %} {% block main %}
+{% extends 'layout.html' %} 
+{% block main %}
 <div class="container-fluid h-100">
   <div class="row">
     <div class="col-md-8"><h1>Profile</h1></div>
@@ -20,8 +21,13 @@
         {{ form3.hidden_tag() }}
         {{ form4.hidden_tag() }}
         <fieldset class="border border-dark p-5 rounded">
-          <legend>General Information</legend>
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>General Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-1" type="button">Edit</button>
+            </div>
             <div class="col-md-4">
               {{ form.lastName.label (class="form-label", for="last-name") }}
               <br>
@@ -154,12 +160,24 @@
               <br>
               {{ form.presBlkLot (class="form-control border-dark", id="present-blkLot") }}
             </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-1" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-1" type="button">Cancel</button>
+            </div>
           </div>
-          
         </fieldset>
+
         <fieldset class="border border-dark p-5 rounded mt-4">
-          <legend>Family Information</legend>
+          
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Family Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-2" type="button">Edit</button>
+            </div>
             <div class="col-md-4">
               {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
               <br>
@@ -190,30 +208,42 @@
               <br>
               {{ form1.motherMiddleName (class="form-control border-dark", id="mother-middle-name")}}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
               <br>
               {{ form1.numbeOfSiblings (class="form-control border-dark", id="number-of-siblings")}}
             </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-2" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-2" type="button">Cancel</button>
+            </div>
           </div>
         </fieldset>
+
         <fieldset class="border border-dark p-5 rounded mt-4">
-          <legend>Emergency Contact</legend>
           <div class="row row-gap-4">
-            <div class="col-md-4">
-              {{ form2.lastName.label (class="form-label", for="last-name") }}
-              <br>
-              {{ form2.lastName (class="form-control border-dark", id="last-name") }}
+            <div class="col-md-6">
+              <legend>Emergency Contact</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-3" type="button">Edit</button>
             </div>
             <div class="col-md-4">
-              {{ form2.firstName.label (class="form-label", for="first-name") }}
+              {{ form2.emergencyLastName.label (class="form-label", for="emergency-last-name") }}
               <br>
-              {{ form2.firstName (class="form-control border-dark", id="first-name") }}
+              {{ form2.emergencyLastName (class="form-control border-dark", id="emergency-last-name") }}
             </div>
             <div class="col-md-4">
-              {{ form2.middleName.label (class="form-label", for="middle-name") }}
+              {{ form2.emergencyFirstName.label (class="form-label", for="emergency-first-name") }}
               <br>
-              {{ form2.middleName (class="form-control border-dark", id="middle-name") }}
+              {{ form2.emergencyFirstName (class="form-control border-dark", id="emergency-first-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyMiddleName.label (class="form-label", for="emergency-middle-name") }}
+              <br>
+              {{ form2.emergencyMiddleName (class="form-control border-dark", id="emergency-middle-name") }}
             </div>
             <div class="col-md-6">
               {{ form2.connection.label (class="form-label", for="user-connection") }}
@@ -221,15 +251,27 @@
               {{ form2.connection (class="form-control border-dark", id="user-connection") }}
             </div>
             <div class="col-md-6">
-              {{ form2.phoneNum.label (class="form-label", for="phone-number") }}
+              {{ form2.emergencyPhoneNum.label (class="form-label", for="emergency-phone-number") }}
               <br>
-              {{ form2.phoneNum (class="form-control border-dark", id="phone-number") }}
+              {{ form2.emergencyPhoneNum (class="form-control border-dark", id="emergency-phone-number") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-3" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-3" type="button">Cancel</button>
             </div>
           </div>
         </fieldset>
+        
         <fieldset class="border border-dark p-5 rounded mt-4">
-          <legend>Identification</legend>
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Identification</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-4" type="button">Edit</button>
+            </div>
             <div class="col-md-12">
               {{ form3.profilePhoto.label (class="form-label", for="profile-photo") }}
               {{ form3.profilePhoto (class="form-control border-dark", id="profile-photo") }}
@@ -238,11 +280,23 @@
               {{ form3.governmentIssuedID.label (class="form-label", for="government-ID") }}
               {{ form3.governmentIssuedID (class="form-control border-dark", id="government-ID") }}
             </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-4" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-4" type="button">Cancel</button>
+            </div>
           </div>
         </fieldset>
+
         <fieldset class="border border-dark p-5 rounded mt-4">
-          <legend>Account Details</legend>
           <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Account Details</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-5" type="button">Edit</button>
+            </div>
             <div class="col-md-12">
               {{ form4.username.label (class="form-label", for="username") }}
               {{ form4.username (class="form-control border-dark", id="username") }}
@@ -255,11 +309,17 @@
               {{ form4.confirmPass.label (class="form-label", for="confirm-password") }}
               {{ form4.confirmPass (class="form-control border-dark", id="confirm-password") }}
             </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-5" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-5" type="button">Cancel</button>
+            </div>
           </div>
         </fieldset>
       </form>
     </div>
   </div>
 </div>
-
 {% endblock %}
+{% block script %} {{ url_for('pages.static', filename='js/edit.js') }} {% endblock %}
