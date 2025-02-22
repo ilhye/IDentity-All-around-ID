@@ -2,3 +2,4 @@ flask
 flask-wtf
 firebase-admin
 selenium
+flask-reuploads

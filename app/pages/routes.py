@@ -70,20 +70,13 @@ class AccountDetails(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     confirmPass = PasswordField("Confirm Password", validators=[DataRequired()])
 
-class HomeID(FlaskForm):
-    submit = SubmitField('Submit')
-
 @pages_bp.route('/page-one')
 def page_one():
     return "Page One"
 
 @pages_bp.route('/home-id')
 def home_id():
-    form=HomeID()
-
-    if form.validate_on_submit():
-        return redirect(url_for('pages.home_id'))
-    return render_template('homeid.html')
+    return render_template('homeid.html', include_sidebar=True)
 
 @pages_bp.route('/notifications')
 def notifications():

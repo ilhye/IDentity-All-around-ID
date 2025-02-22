@@ -1,144 +1,83 @@
-{% extends "layout.html" %}
-{% block styles %}
-    <link rel="stylesheet" href="{{ url_for('pages.static', filename='css/homeid.css') }}">
-{% endblock %}
-{% block body %}
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="identity-rectangle">
-            <h2>IDentity</h2>
-        </div>
-        <ul class="nav">
-            <li>
-                <a href="{{url_for('pages.templates', homeid)}}">
-                    <i class="fa-solid fa-id-card"></i> ID's
-                </a>
-            </li>
-            <li>
-                <a href="{{url_for('pages.templates', homeid)}}">
-                    <i class="fa-solid fa-user"></i> Profile
-                </a>
-            </li>
-            <li>
-                <a href="{{url_for('pages.templates', profile)}}">
-                    <i class="fa-solid fa-bell"></i> Notification
-                </a>
-            </li>
-            <li>
-                <a href="{{url_for('pages.templates', Notification)}}">
-                    <i class="fa-solid fa-gear"></i> Settings
-                </a>
-            </li>
-        </ul>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="idpage_content">
-        <!-- Welcome Header -->
-        <div class="welcome-header">
-            <div class="welcome-text">
-                <span class="welcome">Welcome </span>
-                <span class="name">Ashley Faye!</span>
-            </div>
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search here...">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-        </div>
-
-        <!-- ID Cards -->
-        <div class="id-card" data-name="National ID (PhilSys ID)" data-age="5 yrs old and up" data-new-application="https://maintenance.register.philsys.gov.ph/" data-renew-application="https://maintenance.register.philsys.gov.ph/">
-            <img src="{{ url_for('pages.static', filename='images/PhilID.png') }}" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">National ID (PhilSys ID)</div>
-                    <div class="id-description">
-                        The Philippine National ID (PhilSys ID) is the official government-issued identification card under the Philippine Identification System (PhilSys).
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Free</div>
-                        <div class="tag">Lifetime</div>
-                        <div class="tag">5 yrs old and up</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
-
-        <form action="{{url_for(pages.home_id)}}">
-            <div class="id-card" data-name="Passport ID" data-age="All Ages Eligible" data-new-application="https://www.passport.gov.ph/" data-renew-application="https://www.passport.gov.ph/">
-            <img src="{{ url_for('pages.static', filename='images/PassportID.png') }}" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">Passport ID</div>
-                    <div class="id-description">
-                        The Philippine Passport is an official government-issued document that certifies a person's identity and citizenship, enabling international travel.
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Paid</div>
-                        <div class="tag">5-10 years</div>
-                        <div class="tag">All Ages Eligible</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
-        </form>
-        
-
-        <div class="id-card" data-name="Postal ID" data-age="All Ages Eligible" data-new-application="https://www.postalidph.com/how-to-apply.html" data-renew-application="https://www.postalidph.com/how-to-apply.html">
-            <img src="{{ url_for('pages.static', filename='images/PostalID.png') }}" class="id-image">
-            <div class="id-content">
-                <div class="id-info">
-                    <div class="id-title">Postal ID</div>
-                    <div class="id-description">
-                        The Postal ID is a government-issued identification card issued by the Philippine Postal Corporation (PHLPost). 
-                    </div>
-                    <div class="id-tags">
-                        <div class="tag">Paid</div>
-                        <div class="tag">3 years</div>
-                        <div class="tag">All Ages Eligible</div>
-                    </div>
-                </div>
-                <div class="id-actions">
-                    <button class="action-btn apply-btn">Apply</button>
-                    <button class="action-btn check-btn">Check Availability</button>
-                </div>
-            </div>
-        </div>
+{% extends 'layout.html' %} {% block main %}
+<div class="row row-gap-4">
+  <div class="col-md-8"><h1>Profile</h1></div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..." />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
     </div>
-
-    <!-- Modals -->
-    <div id="applyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Choose Application Type</h2>
-            <button id="newApplication">New Application</button>
-            <button id="renewApplication">Renewal</button>
-        </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+        <img
+          src="{{ url_for('pages.static', filename='images/PhilID.png') }}"
+          class="img-fluid"
+          alt="PhilID"
+        />
+      </div>
+      <div class="col-md-7">
+        <h4 class="card-title">Philippine National ID</h4>
+        <p class="card-text">
+          The Philippine National ID (PhilSys ID) is the official
+          government-issued identification card under the Philippine
+          Identification System (PhilSys).
+        </p>
+      </div>
+      <div class="col-md-3 d-flex flex-column gap-3">
+        <button class="btn btn-primary">Apply Now</button>
+        <button class="btn btn-primary">Check Availability</button>
+      </div>
     </div>
-
-    <div id="checkModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Application Availability</h2>
-            <p id="availabilityText"></p>
-            <!-- Divider Line -->
-            <hr class="divider">
-            <!-- Links for Required Documents and Branches -->
-            <div class="modal-links">
-                <a id="requiredDocumentsLink" href="#" target="_blank">Required Documents</a>
-                <a id="branchesLink" href="#" target="_blank">Branches</a>
-            </div>
-        </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+      <img
+        src="{{ url_for('pages.static', filename='images/PassportID.png') }}"
+        class="img-fluid"
+        alt="Passport ID"
+      />
     </div>
-{% endblock %}
-{% block scripts %}
-    <script src="{{ url_for('pages.static', filename='js/homeid.js') }}"></script>
+    <div class="col-md-7">
+      <h4 class="card-title">Passport ID</h4>
+      <p class="cad-text">
+        The Philippine Passport is an official government-issued document that
+        certifies a person's identity and citizenship, enabling international
+        travel.
+      </p>
+    </div>
+    <div class="col-md-3 d-flex flex-column gap-3">
+      <button class="btn btn-primary">Apply Now</button>
+      <button class="btn btn-primary">Check Availability</button>
+    </div>
+   </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+        <img
+          src="{{ url_for('pages.static', filename='images/PostalID.png') }}"
+          class="img-fluid"
+          alt="Postal ID"
+        />
+      </div>
+      <div class="col-md-7">
+        <h4 class="card-title">Postal ID</h4>
+        <p class="card-text">
+          The Postal ID is a government-issued identification card issued by the
+          Philippine Postal Corporation (PHLPost).
+        </p>
+      </div>
+      <div class="col-md-3 d-flex flex-column gap-3">
+        <button class="btn btn-primary">Apply Now</button>
+        <button class="btn btn-primary">Check Availability</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
