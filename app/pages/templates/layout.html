@@ -20,13 +20,13 @@
     <title>IDentity-all-around-ID</title>
   </head>
   <body>
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 vh-100">
       {% if include_navbar %}
       <div class="logo mb-2">
         <h5 class="logo-text text-center m-0 text-white">IDentity</h5>
       </div>
       {% endif %} {% block auth %}{% endblock %} {% if include_sidebar %}
-      <div class="container-fluid d-flex p-0" style="height: 100vh; ">
+      <div class="container-fluid d-flex p-0">
         <div
         id="sidebar"
         class="d-flex flex-column flex-shrink-0 p-3 bg-primary text-white offcanvas-md offcanvas-start w-25"
