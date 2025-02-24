@@ -1,10 +1,11 @@
 from flask import render_template, redirect, url_for, session
 from . import pages_bp
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField,IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateTimeField, IntegerField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, Length, Regexp, NumberRange
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from flask_reuploads import UploadSet, IMAGES
+from wtforms.widgets import ListWidget, CheckboxInput
 
 class PersonalInfo(FlaskForm):
     lastName = StringField('Last name', validators=[DataRequired("Please enter your last name")])
@@ -70,6 +71,10 @@ class AccountDetails(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     confirmPass = PasswordField("Confirm Password", validators=[DataRequired()])
 
+class Settings(FlaskForm):
+    time = StringField("Select time")
+    alarm = SelectMultipleField("Repeat", choices=[("0", "Select occurrence"), ("1", "Monday"), ("2", "Tuesday"), ("3", "Wednesday"), ("4", "Thursday"), ("5","Friday"), ("6", "Saturday"), ("7", "Sunday")], option_widget=CheckboxInput(), widget=ListWidget(prefix_label=False))
+
 @pages_bp.route('/page-one')
 def page_one():
     return "Page One"
@@ -80,7 +85,12 @@ def home_id():
 
 @pages_bp.route('/notifications')
 def notifications():
-    return render_template('Notification.html', include_sidebar=True)
+    return render_template('notification.html', include_sidebar=True)
+
+@pages_bp.route('/settings')
+def settings():
+    form = Settings()
+    return render_template('settings.html', form = form, include_sidebar=True)
 
 @pages_bp.route('/profile')
 def profile():
