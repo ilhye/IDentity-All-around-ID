@@ -80,7 +80,7 @@ def home_id():
 
 @pages_bp.route('/notifications')
 def notifications():
-    return render_template('Notification.html')
+    return render_template('Notification.html', include_sidebar=True)
 
 @pages_bp.route('/profile')
 def profile():

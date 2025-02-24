@@ -1,137 +1,42 @@
-{% block styles %}
-<link
-  rel="stylesheet"
-  href="{{url_for('pages.static', filename='/css/Notification.css')}}"
-/>
-<link
-  href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
-  rel="stylesheet"
-/>
-{% endblock %}
-
-{% block body %}
-<div class="container-fluid">
-  <div class="row">
-    <aside class="sidebar col-md-3">
-      <h2 class="text-center">IDentity</h2>
-      <nav>
-        <ul class="list-unstyled">
-          <li>
-            <i class="fa-solid fa-id-card"></i>
-            <a href="{{url_for('pages.templates', homeid)}}" class="id">ID's</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-user"></i>
-            <a href="{{url_for('pages.templates', profile)}}" class="profile">Profile</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-bell"></i>
-            <a href="{{url_for('pages.templates', Notification)}}" class="notification">Notification</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-gear"></i>
-            <a href="#settings" class="setting">Settings</a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="col-md-9 ms-auto p-5">
-      <!-- Profile Header -->
-      <header class="header mb-4">
-        <h1 class="profile-title">Notifications</h1>
-
-        <div class="search-container">
-          <input
-            type="text"
-            class="search-bar"
-            placeholder="Search here..."
-            aria-label="Search"
-          />
-          <button class="search-button">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
-
-        <div class="header-icons">
-          <div>
-            <i class="bx bx-filter-alt" onclick="openFilterModal()"></i>
-            <span>Filter</span>
-          </div>
-          <div>
-            <i class="bx bxs-bell" onclick="openReminderModal()"></i>
-          </div>
-        </div>
-      </header>
-
-      <section class="notifications" id="notifications-container">
-        <!-- Dynamic notifications will be added here -->
-      </section>
-
-      <!-- Fixed notification sections -->
-      <section class="notifications">
-        <div class="notification-item" data-type="renewal" data-date="2025-01-10">
-          <div class="icon"></div>
-          <div class="details">
-            <p>Your Driver’s License ID is expired</p>
-            <label>
-              <button class="renew-button">Renewal</button>
-            </label>
-            <span class="timestamp">10:56 am 1/10/2025</span>
-          </div>
-        </div>
-        <div class="notification-item" data-type="application" data-date="2024-12-28">
-          <div class="icon"></div>
-          <div class="details">
-            <p>Check your UMID Application Status</p>
-            <label>
-              <button class="renew-button">Check Status</button>
-            </label>
-            <span class="timestamp">11:56 am 12/28/2024</span>
-          </div>
-        </div>
-      </section>
-    </main>
+{% extends 'layout.html' %} {% block main %}
+<div class="notification vh-100">
+  <div class="row row-gap-3">
+  <div class="col-md-8"><h1>Notification</h1></div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..." />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-12">
+    <div class="card-body row">
+      <div class="col-md-2">
+        <img src="https://placehold.jp/100x100.png" alt="expired" />
+      </div>
+      <div class="col-md-10">
+        <h5 class="card-title">Your Driver's License ID is expired</h5>
+        <span class="badge rounded-pill text-bg-primary">Renewal</span>
+        <p class="card-text small timestamp">10:56 am 1/10/2025</p>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-12">
+    <div class="card-body row">
+      <div class="col-md-2">
+        <img src="https://placehold.jp/100x100.png" alt="expired" />
+      </div>
+      <div class="col-md-10">
+        <h5 class="card-title">Check your UMID Application Status</h5>
+        <span class="badge rounded-pill text-bg-primary">Check Status</span>
+        <p class="card-text small timestamp">11:56 am 12/28/20245</p>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- Reminder Modal -->
-<div class="modal-overlay" id="reminder-modal-overlay"></div>
-<div class="modal" id="reminder-modal">
-  <h2>Set Reminder Frequency</h2>
-  <select id="reminder-frequency">
-    <option value="1">Every Day</option>
-    <option value="3">Every 3 Days</option>
-    <option value="7" selected>Every Week</option>
-    <option value="custom">Custom (in days)</option>
-  </select>
-  <input
-    type="number"
-    id="custom-interval"
-    placeholder="Enter days"
-    style="display: none"
-  />
-  <button onclick="setReminder()">Set Reminder</button>
-  <button onclick="closeReminderModal()">Close</button>
 </div>
 
-<!-- Filter Modal -->
-<div class="modal-overlay" id="filter-modal-overlay"></div>
-<div class="modal" id="filter-modal">
-  <h2>Filter Notifications</h2>
-  <select id="filter-option">
-    <option value="all">All</option>
-    <option value="date">By Date</option>
-    <option value="application">By Application</option>
-    <option value="renewal">By Renewal</option>
-  </select>
-  <input type="date" id="filter-date" style="display: none" />
-  <button onclick="applyFilter()">Apply Filter</button>
-  <button onclick="closeFilterModal()">Close</button>
-</div>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{url_for('pages.static', filename='js/notification.js')}}"></script>
-<script src="{{url_for('static', filename='voice.js')}}"></script>
 {% endblock %}
