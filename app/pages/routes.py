@@ -74,6 +74,8 @@ class AccountDetails(FlaskForm):
 class Settings(FlaskForm):
     time = StringField("Select time")
     alarm = SelectMultipleField("Repeat", choices=[("0", "Select occurrence"), ("1", "Monday"), ("2", "Tuesday"), ("3", "Wednesday"), ("4", "Thursday"), ("5","Friday"), ("6", "Saturday"), ("7", "Sunday")], option_widget=CheckboxInput(), widget=ListWidget(prefix_label=False))
+    textToSpeech = BooleanField("Text-to-Speech", default = False)
+    speechToText = BooleanField("Speech-to-Text", default = False)
 
 @pages_bp.route('/page-one')
 def page_one():

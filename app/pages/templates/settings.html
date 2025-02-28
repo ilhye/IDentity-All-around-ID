@@ -15,8 +15,8 @@
     <div class="col-md-12">
       <form action="{{ url_for('pages.settings' )}}">
         {{ form.hidden_tag() }}
-        <fieldset class="border-bottom pb-2">
-          <legend class="h6">Notification</legend>
+        <fieldset>
+          <legend>Notification</legend>
           <div class="row row-gap-4">
             <div class="col-md-2">
               {{ form.time.label (class="form-label", for="alarm-time")}}
@@ -39,6 +39,18 @@
             </div>
           </div>
         </fieldset>
+        <fieldset>
+          <legend>Accessibility</legend>
+          <div class="form-check form-switch">
+            {{ form.textToSpeech.label (class="form-check-label", for="tts") }}
+            {{ form.textToSpeech (class="form-check-input border-dark", id="tts", type="checkbox", role="switch") }}
+          </div>
+          <div class="form-check form-switch">
+            {{ form.speechToText.label (class="form-check-label", for="stt") }}
+            {{ form.speechToText (class="form-check-input border-dark", id="stt", type="checkbox", role="switch") }}
+          </div>
+        </fieldset>
+        <button class="btn btn-danger mt-4">Delete Account</button>
       </form>
     </div>
   </div>
