@@ -72,6 +72,7 @@ class AccountDetails(FlaskForm):
     confirmPass = PasswordField("Confirm Password", validators=[DataRequired()])
 
 class Settings(FlaskForm):
+    turnAlarm = BooleanField("Alarm", default=False)
     time = StringField("Select time")
     alarm = SelectMultipleField("Repeat", choices=[("0", "Select occurrence"), ("1", "Monday"), ("2", "Tuesday"), ("3", "Wednesday"), ("4", "Thursday"), ("5","Friday"), ("6", "Saturday"), ("7", "Sunday")], option_widget=CheckboxInput(), widget=ListWidget(prefix_label=False))
     textToSpeech = BooleanField("Text-to-Speech", default = False)

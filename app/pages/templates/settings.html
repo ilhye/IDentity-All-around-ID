@@ -17,6 +17,10 @@
         {{ form.hidden_tag() }}
         <fieldset>
           <legend>Notification</legend>
+          <div class="form-check form-switch">
+            {{ form.turnAlarm.label (class="form-check-label", for="turn-on-alarm") }}
+            {{ form.turnAlarm (class="form-check-input border-dark", id="turn-on-alarm", type="checkbox", role="switch") }}
+          </div>
           <div class="row row-gap-4">
             <div class="col-md-2">
               {{ form.time.label (class="form-label", for="alarm-time")}}
