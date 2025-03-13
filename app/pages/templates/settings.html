@@ -18,8 +18,16 @@
         <fieldset>
           <legend>Notification</legend>
           <div class="form-check form-switch">
-            {{ form.turnAlarm.label (class="form-check-label", for="turn-on-alarm") }}
-            {{ form.turnAlarm (class="form-check-input border-dark", id="turn-on-alarm", type="checkbox", role="switch") }}
+            <div class="row">
+              <div class="col">
+                {{ form.turnAlarm.label (class="form-check-label",
+                for="turn-on-alarm") }}
+              </div>
+              <div class="col">
+                {{ form.turnAlarm (class="form-check-input border-dark",
+                id="turn-on-alarm", type="checkbox", role="switch") }}
+              </div>
+            </div>
           </div>
           <div class="row row-gap-4">
             <div class="col-md-2">
@@ -47,11 +55,13 @@
           <legend>Accessibility</legend>
           <div class="form-check form-switch">
             {{ form.textToSpeech.label (class="form-check-label", for="tts") }}
-            {{ form.textToSpeech (class="form-check-input border-dark", id="tts", type="checkbox", role="switch") }}
+            {{ form.textToSpeech (class="form-check-input border-dark",
+            id="tts", type="checkbox", role="switch") }}
           </div>
           <div class="form-check form-switch">
             {{ form.speechToText.label (class="form-check-label", for="stt") }}
-            {{ form.speechToText (class="form-check-input border-dark", id="stt", type="checkbox", role="switch") }}
+            {{ form.speechToText (class="form-check-input border-dark",
+            id="stt", type="checkbox", role="switch") }}
           </div>
         </fieldset>
         <button class="btn btn-danger mt-4">Delete Account</button>
