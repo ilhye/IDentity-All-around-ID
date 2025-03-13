@@ -1,0 +1,72 @@
+{% extends 'layout.html' %} {% block main %}
+<div class="settings vh-100">
+  <div class="row row-gap-3">
+    <div class="col-md-8"><h1>Settings</h1></div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search..." />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <form action="{{ url_for('pages.settings' )}}">
+        {{ form.hidden_tag() }}
+        <fieldset>
+          <legend>Notification</legend>
+          <div class="form-check form-switch">
+            <div class="row">
+              <div class="col">
+                {{ form.turnAlarm.label (class="form-check-label",
+                for="turn-on-alarm") }}
+              </div>
+              <div class="col">
+                {{ form.turnAlarm (class="form-check-input border-dark",
+                id="turn-on-alarm", type="checkbox", role="switch") }}
+              </div>
+            </div>
+          </div>
+          <div class="row row-gap-4">
+            <div class="col-md-2">
+              {{ form.time.label (class="form-label", for="alarm-time")}}
+            </div>
+            <div class="col-md-10">
+              {{ form.time (class="form-control w-25 border-dark",
+              id="alarm-time", type="time") }}
+            </div>
+            <div class="col-md-2">
+              {{ form.alarm.label (class="form-label", id="alarm-day") }}
+            </div>
+            <div class="col-md-10">
+              {% for subfield in form.alarm %}
+              <div class="form-check">
+                {{ subfield(class="form-check-input border-dark",
+                type="checkbox") }}
+                <label class="form-check-label">{{ subfield.label }}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Accessibility</legend>
+          <div class="form-check form-switch">
+            {{ form.textToSpeech.label (class="form-check-label", for="tts") }}
+            {{ form.textToSpeech (class="form-check-input border-dark",
+            id="tts", type="checkbox", role="switch") }}
+          </div>
+          <div class="form-check form-switch">
+            {{ form.speechToText.label (class="form-check-label", for="stt") }}
+            {{ form.speechToText (class="form-check-input border-dark",
+            id="stt", type="checkbox", role="switch") }}
+          </div>
+        </fieldset>
+        <button class="btn btn-danger mt-4">Delete Account</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
