@@ -1,0 +1,37 @@
+{% extends 'layout.html' %} 
+{% block styles %} 
+  <link
+      rel="stylesheet"
+      href="{{ url_for('auth.static', filename='register.css') }}"
+  />
+{% endblock %}
+{% block auth %}
+  <div class="register d-flex justify-content-center align-items-center">
+    <div class="card p-5 shadow-lg bg-body rounded" style="width: 500px">
+      <h1 class="text-center">{% block header %} {% endblock %}</h1>
+      <p class="text-center text-secondary small"
+        >Enter your credentials to sign in to your account</p
+      >
+      <form action="{% block action %}#{% endblock %}"  method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="row">
+          {% block formBody %} 
+          {% endblock %}
+        </div>
+        <div class="col-md-12">
+          <div class="line text-secondary small"></div>
+          <button type="button" class="btn btn-outline-primary rounded p-2 w-100 m-auto" type="button">
+            <i class="fa-brands fa-google me-3"></i>Login with Google
+          </button>
+        </div>
+        <div class="text-center mt-2">
+          <a href="{% block changePage %}#{% endblock %}" class="text-center text-decoration-none text-dark small">{% block changePText %}{% endblock %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+<p id="speak-1" class="text-white d-none">{% block tts %} {% endblock %}</p>
+{% block scripts %}
+  <script src="{{ url_for('static', filename='voice.js') }}"></script>
+{% endblock %}

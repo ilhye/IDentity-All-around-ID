@@ -1,0 +1,42 @@
+{% extends 'layout.html' %} {% block main %}
+<div class="notification vh-100">
+  <div class="row row-gap-3">
+  <div class="col-md-8"><h1>Notification</h1></div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..." />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-12">
+    <div class="card-body row">
+      <div class="col-md-1">
+        <img src="https://placehold.jp/50x80.png" alt="expired" />
+      </div>
+      <div class="col-md-11">
+        <h6 class="card-title">Your Driver's License ID is expired</h6>
+        <span class="badge rounded-pill text-bg-primary p-2 mb-2">Renewal</span>
+        <p class="card-text small timestamp">10:56 am 1/10/2025</p>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-12">
+    <div class="card-body row">
+      <div class="col-md-1">
+        <img src="https://placehold.jp/50x80.png" alt="expired" />
+      </div>
+      <div class="col-md-11">
+        <h6 class="card-title">Check your UMID Application Status</h6>
+        <span class="badge rounded-pill text-bg-primary p-2 mb-2">Check Status</span>
+        <p class="card-text small timestamp">11:56 am 12/28/20245</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

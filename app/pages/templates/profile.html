@@ -1,0 +1,324 @@
+{% extends 'layout.html' %} 
+{% block main %}
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-md-8"><h1>Profile</h1></div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search..." />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-3">
+      <form action="{{ url_for('pages.profile' )}}" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form1.hidden_tag() }}
+        {{ form2.hidden_tag() }}
+        {{ form3.hidden_tag() }}
+        {{ form4.hidden_tag() }}
+        <fieldset class="border border-dark p-5 rounded">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>General Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-1" type="button" onclick="toggleEditState(1, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-4">
+              {{ form.lastName.label (class="form-label", for="last-name") }}
+              <br>
+              {{ form.lastName (class="form-control border-dark", id="last-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.firstName.label (class="form-label", for="first-name") }}
+              <br>
+              {{ form.firstName (class="form-control border-dark", id="first-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.middleName.label (class="form-label", for="middle-name") }}
+              <br>
+              {{ form.middleName (class="form-control border-dark", id="middle-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthCountry.label (class="form-label", for="birth-country") }}
+              <br>
+              {{ form.birthCountry (class="form-control border-dark", id="birth-country") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthCity.label (class="form-label", for="birth-city") }}
+              <br>
+              {{ form.birthCity (class="form-control border-dark", id="birth-city") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthProvince.label (class="form-label", for="birth-province") }}
+              <br>
+              {{ form.birthProvince (class="form-control border-dark", id="birth-province") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.birthday.label (class="form-label", for="birthday") }}
+              <br>
+              {{ form.birthday (class="form-control border-dark", id="birthday", type="date") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.sex.label (class="form-label", for="sex") }}
+              <br>
+              {{ form.sex (class="form-select border-dark", id="sex") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.civilStatus.label (class="form-label", for="civil-status") }}
+              <br>
+              {{ form.civilStatus (class="form-select border-dark", id="civil-status")}}
+            </div>
+            <div class="col-md-4">
+              {{ form.nationality.label (class="form-label", for="nationality") }}
+              <br>
+              {{ form.nationality (class="form-select border-dark", id="nationality") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.religion.label (class="form-label", for="religion") }}
+              <br>
+              {{ form.religion (class="form-control border-dark", id="religion")}}
+            </div>
+            <div class="col-md-4">
+              {{ form.occupation.label (class="form-label", for="occupation") }}
+              <br>
+              {{ form.occupation (class="form-control border-dark", id="occupation") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.bloodType.label (class="form-label", for="blood-type") }}
+              <br>
+              {{ form.bloodType (class="form-select border-dark", id="blood-type") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.height.label (class="form-label", for="height") }}
+              <br>
+              {{ form.height (class="form-control border-dark", id="height") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.weight.label (class="form-label", for="weight") }}
+              <br>
+              {{ form.weight (class="form-control border-dark", id="weight") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.email.label (class="form-label", for="email") }}
+              <br>
+              {{ form.email (class="form-control border-dark", id="email") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.phoneNum.label (class="form-label", for="phone-number") }}
+              <br>
+              {{ form.phoneNum (class="form-control border-dark", id="phone-number") }}
+            </div>
+            <div class="col-md-4">
+              {{ form.telNum.label (class="form-label", for="tel-number") }}
+              <br>
+              {{ form.telNum (class="form-control border-dark", id="tel-number") }}
+            </div>
+            <p>Current Address</p>
+            <div class="col-md-3">
+              {{ form.curBarangay.label (class="form-label", for="current-barangay") }}
+              <br>
+              {{ form.curBarangay (class="form-control border-dark", id="current-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curProvince.label (class="form-label", for="current-province") }}
+              <br>
+              {{ form.curProvince (class="form-control border-dark", id="current-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curCity.label (class="form-label", for="current-city") }}
+              <br>
+              {{ form.curCity (class="form-control border-dark", id="current-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.curBlkLot.label (class="form-label", for="current-blkLot") }}
+              <br>
+              {{ form.curBlkLot (class="form-control border-dark", id="current-blkLot") }}
+            </div>
+            <p>Present Address</p>
+            <div class="col-md-3">
+              {{ form.presBarangay.label (class="form-label", for="present-barangay") }}
+              <br>
+              {{ form.presBarangay (class="form-control border-dark", id="present-barangay") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presProvince.label (class="form-label", for="present-province") }}
+              <br>
+              {{ form.presProvince (class="form-control border-dark", id="present-province") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presCity.label (class="form-label", for="present-city") }}
+              <br>
+              {{ form.presCity (class="form-control border-dark", id="present-city") }}
+            </div>
+            <div class="col-md-3">
+              {{ form.presBlkLot.label (class="form-label", for="present-blkLot") }}
+              <br>
+              {{ form.presBlkLot (class="form-control border-dark", id="present-blkLot") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-1" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-1" type="button" onclick="toggleEditState(1, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">   
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Family Information</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-2" type="button" onclick="toggleEditState(2, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-4">
+              {{ form1.fatherLastName.label (class="form-label", for="father-last-name") }}
+              <br>
+              {{ form1.fatherLastName (class="form-control border-dark", id="father-last-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.fatherFirstName.label (class="form-label", for="father-first-name") }}
+              <br>
+              {{ form1.fatherFirstName (class="form-control border-dark", id="father-first-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.fatherMiddleName.label (class="form-label", for="father-middle-name") }}
+              <br>
+              {{ form1.fatherMiddleName (class="form-control border-dark", id="father-middle-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherLastName.label (class="form-label", for="mother-last-name") }}
+              <br>
+              {{ form1.motherLastName (class="form-control border-dark", id="mother-last-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherFirstName.label (class="form-label", for="mother-first-name") }}
+              <br>
+              {{ form1.motherFirstName (class="form-control border-dark", id="mother-first-name")}}
+            </div>
+            <div class="col-md-4">
+              {{ form1.motherMiddleName.label (class="form-label", for="mother-middle-name") }}
+              <br>
+              {{ form1.motherMiddleName (class="form-control border-dark", id="mother-middle-name")}}
+            </div>
+            <div class="col-md-12">
+              {{ form1.numbeOfSiblings.label (class="form-label", for="number-of-siblings") }}
+              <br>
+              {{ form1.numbeOfSiblings (class="form-control border-dark", id="number-of-siblings")}}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-2" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-2" type="button" onclick="toggleEditState(2, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Emergency Contact</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-3" type="button" onclick="toggleEditState(3, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyLastName.label (class="form-label", for="emergency-last-name") }}
+              <br>
+              {{ form2.emergencyLastName (class="form-control border-dark", id="emergency-last-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyFirstName.label (class="form-label", for="emergency-first-name") }}
+              <br>
+              {{ form2.emergencyFirstName (class="form-control border-dark", id="emergency-first-name") }}
+            </div>
+            <div class="col-md-4">
+              {{ form2.emergencyMiddleName.label (class="form-label", for="emergency-middle-name") }}
+              <br>
+              {{ form2.emergencyMiddleName (class="form-control border-dark", id="emergency-middle-name") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.connection.label (class="form-label", for="user-connection") }}
+              <br>
+              {{ form2.connection (class="form-control border-dark", id="user-connection") }}
+            </div>
+            <div class="col-md-6">
+              {{ form2.emergencyPhoneNum.label (class="form-label", for="emergency-phone-number") }}
+              <br>
+              {{ form2.emergencyPhoneNum (class="form-control border-dark", id="emergency-phone-number") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-3" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-3" type="button" onclick="toggleEditState(3, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+        
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Identification</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-4" type="button" onclick="toggleEditState(4, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-12">
+              {{ form3.profilePhoto.label (class="form-label", for="profile-photo") }}
+              {{ form3.profilePhoto (class="form-control border-dark", id="profile-photo") }}
+            </div>
+            <div class="col-md-12">
+              {{ form3.governmentIssuedID.label (class="form-label", for="government-ID") }}
+              {{ form3.governmentIssuedID (class="form-control border-dark", id="government-ID") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-4" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-4" type="button" onclick="toggleEditState(4, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="border border-dark p-5 rounded mt-4">
+          <div class="row row-gap-4">
+            <div class="col-md-6">
+              <legend>Account Details</legend>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary w-25" id="edit-5" type="button" onclick="toggleEditState(5, 'edit')">Edit</button>
+            </div>
+            <div class="col-md-12">
+              {{ form4.username.label (class="form-label", for="username") }}
+              {{ form4.username (class="form-control border-dark", id="username") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.password.label (class="form-label", for="password") }}
+              {{ form4.password (class="form-control border-dark", id="password") }}
+            </div>
+            <div class="col-md-12">
+              {{ form4.confirmPass.label (class="form-label", for="confirm-password") }}
+              {{ form4.confirmPass (class="form-control border-dark", id="confirm-password") }}
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100 d-none" id="save-5" type="button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-secondary w-100 d-none" id="cancel-5" type="button" onclick="toggleEditState(5, 'cancel')">Cancel</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %} <script src="{{ url_for('pages.static', filename='js/edit.js') }}"></script> {% endblock %}

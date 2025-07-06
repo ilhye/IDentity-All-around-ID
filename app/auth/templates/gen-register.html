@@ -1,0 +1,142 @@
+{% extends 'layout.html' %}{% block body %}
+<div class="register d-flex justify-content-center align-items-center">
+  <div class="card p-5 shadow-lg bg-body rounded" style="width: 1050px">
+    <h1 class="text-center mb-1">Sign Up</h1>
+    <small class="text-center d-block description mb-4"
+      >Enter your credentials to sign in to your account</small
+    >
+
+    <h4 class="text-primary">A. General Information</h4>
+    <form action="{{ url_for('auth.gen_register') }}" method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="row">
+        <div class="col-md-3 mb-3 mt-2">
+          {{ form.fName.label(class="form-label", for="first-name") }} {{
+          form.fName (class="form-control" + (" is-invalid" if form.fName.errors
+          else ""), id="first-name", placeholder="Enter your first name") }} {%
+          for error in form.fName.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-3 mb-3 mt-2">
+          {{ form.mName.label(class="form-label", for="middle-name") }} {{
+          form.mName(class="form-control" + (" is-invalid" if form.mName.errors
+          else ""), id="middle-name", placeholder="Enter your middle name") }}
+          {% for error in form.mName.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-3 mb-3 mt-2">
+          {{ form.lName.label(class="form-label", for="last-name") }} {{
+          form.lName(class="form-control" + (" is-invalid" if form.lName.errors
+          else ""), id="last-name", placeholder="Enter your last name") }} {%
+          for error in form.lName.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-3 mb-3 mt-2">
+          {{ form.exName.label(class="form-label", for="extension-name") }} {{
+          form.exName(class="form-control", id="extension-name",
+          placeholder="(optional)") }}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.gender.label(class="form-label") }}<br />
+          {{ form.gender(class="form-select is-invalid" if form.gender.errors
+          else "form-control")}} {% for error in form.gender.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.civilStatus.label(class="form-label") }}<br />
+          {{ form.civilStatus(class="form-select is-invalid" if
+          form.civilStatus.errors else "form-control")}} {% for error in
+          form.civilStatus.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.nationality.label(class="form-label") }}<br />
+          {{ form.nationality(class="form-select is-invalid" if
+          form.nationality.errors else "form-control")}} {% for error in
+          form.nationality.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.birthday.label(class="form-label") }}<br />
+          {{ form.birthday(class="form-control" + (" is-invalid" if
+          form.birthday.errors else ""), type="date" )}} {% for error in
+          form.birthday.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.birthplace.label(class="form-label") }}<br />
+          {{ form.birthplace(class="form-control is-invalid" if
+          form.birthplace.errors else "form-control")}} {% for error in
+          form.birthplace.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 mb-3">
+          {{ form.occupation.label(class="form-label") }}<br />
+          {{ form.occupation(class="form-control is-invalid" if
+          form.occupation.errors else "form-control")}} {% for error in
+          form.occupation.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+          {{ form.fatherName.label(class="form-label") }}<br />
+          {{ form.fatherName(class="form-control is-invalid" if
+          form.fatherName.errors else "form-control")}} {% for error in
+          form.fatherName.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+          {{ form.fatherOccupation.label(class="form-label") }}<br />
+          {{ form.fatherOccupation(class="form-control is-invalid" if
+          form.fatherOccupation.errors else "form-control")}} {% for error in
+          form.fatherOccupation.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+          {{ form.motherName.label(class="form-label") }}<br />
+          {{ form.motherName(class="form-control is-invalid" if
+          form.motherName.errors else "form-control")}} {% for error in
+          form.motherName.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+          {{ form.motherOccupation.label(class="form-label") }}<br />
+          {{ form.motherOccupation(class="form-control" if
+          form.motherOccupation.errors else "form-control")}} {% for error in
+          form.motherOccupation.errors %}
+          <div class="invalid-feedback d-block">* {{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="text-end">
+          {{form.submit(class="btn btn-primary mt-2 p-2 border-0 w-25")}}
+        </div>
+        <p id="speak-1" class="text-white">
+          Please enter your name, gender, civil status, nationality, birthday,
+          birthplace, occupation, father's name and his occupation, mother's
+          name and her occupation
+        </p>
+      </div>
+    </form>
+    <div class="line text-secondary"></div>
+    <button type="button" class="btn btn-primary rounded p-2 w-50 m-auto" type="button">
+      <i class="fa-brands fa-google me-3"></i>Login with Google
+    </button>
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='voice.js') }}"></script>
+
+
+{% endblock %}

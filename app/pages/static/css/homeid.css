@@ -1,0 +1,404 @@
+/* GLOBAL STYLES */
+* {
+    /* Reset default styles and set base font */
+    font-family: 'Lexend', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Main page layout setup */
+    position: relative;
+    min-height: 100vh;
+    background: #ffffff;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* SIDEBAR COMPONENT */
+.sidebar {
+    /* Fixed navigation panel styling */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 355px;
+    height: 100vh;
+    background: #0461CF;
+    padding: 6px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 24px;
+}
+
+.identity-rectangle {
+    /* Logo container styling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 232px;
+    height: 60px;
+    border-radius: 10px;
+    margin: 45px 67px 51px 56px; /* top right bottom left */
+}
+
+.identity-rectangle h2 {
+    /* Logo text styling */
+    color: #0461cf;
+    margin: 0;
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+.nav {
+    /* Navigation list container */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    /* Individual navigation items */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #0461CF;
+    width: 244px;
+    height: 54px;
+}
+
+.nav li a {
+    /* Navigation link styling */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav li a:hover {
+    /* Hover effect for navigation items */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav li:hover {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 350px;
+}
+
+.nav li:hover i,
+.nav li:hover a {
+    color: #0461CF;
+}
+
+.tooltip {
+    /* Tooltip styling for navigation items */
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 110%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.nav li:hover .tooltip {
+    /* Show tooltip on hover */
+    visibility: visible;
+    opacity: 1;
+}
+
+/* MAIN CONTENT AREA */
+.idpage_content {
+    /* Main content container */
+    margin-left: 355px; /* Offset by sidebar width */
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main-content {
+    width: 80%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 100px;
+}
+
+/* HEADER COMPONENTS */
+.welcome-header {
+    /* Header section with welcome message and search */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0px 30px 0px;
+}
+
+.welcome-text {
+    /* Welcome message styling */
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.welcome-text .name {
+    /* Emphasized name in welcome message */
+    font-weight: 700;
+}
+
+/* SEARCH COMPONENT */
+.search-container {
+    /* Search bar container */
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 8px 16px;
+    width: 380px;
+    height: 60px;
+}
+
+.search-container input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.search-container .search-button {
+    padding: 8px 15px;
+    background-color: white;
+    color: #0461CF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container .search-button i {
+    font-size: 40px;
+    color: #5C95E6;
+}
+
+/* ID Content */
+.id-card {
+    /* ID card container */
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: stretch; /* Ensure children stretch to match height */
+}
+
+.id-image {
+    /* Image styling */
+    width: 120px; /* Fixed width */
+    height: auto; /* Allow height to adjust based on parent */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    transform: rotate(180deg); /* Rotate the image 180 degrees */
+}
+
+.id-content {
+    /* Content area within ID card */
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center; /* Center content vertically */
+}
+
+.id-info {
+    /* Container for ID Name, Description, and Tags */
+    flex: 1;
+}
+
+.id-title {
+    /* ID title styling */
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.id-description {
+    /* ID description text */
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.id-tags {
+    /* Tags container */
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    /* Individual tag styling */
+    background: #CCCCCC;
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 300;
+    width: 105px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.id-actions {
+    /* Action buttons container */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center; /* Center buttons vertically */
+}
+
+.action-btn {
+    /* Action button styling */
+    background: #0461CF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 144px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.action-btn:hover {
+    /* Hover state for buttons */
+    background-color: #034ea3;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative; /* For positioning the close button */
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #0461CF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #034ea3;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+}
+
+.close:hover {
+    color: #0461CF;
+}
+
+/* Divider Line */
+.divider {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+/* Modal Links */
+.modal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-links a {
+    color: #0461CF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.modal-links a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: flex-start;
+    padding-left: 5px;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

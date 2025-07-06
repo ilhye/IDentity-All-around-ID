@@ -1,0 +1,96 @@
+{% extends 'layout.html' %} {% block main %}
+<div class="row row-gap-4">
+  <div class="col-md-8"><h1>Profile</h1></div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..." />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+        <img
+          src="{{ url_for('pages.static', filename='images/PhilID.png') }}"
+          class="img-fluid"
+          alt="PhilID"
+        />
+      </div>
+      <div class="col-md-7">
+        <h4 class="card-title">Philippine National ID</h4>
+        <p class="card-text">
+          The Philippine National ID (PhilSys ID) is the official
+          government-issued identification card under the Philippine
+          Identification System (PhilSys).
+        </p>
+        <span class="badge rounded-pill text-bg-info">Free</span>
+        <span class="badge rounded-pill text-bg-info">Lifetime</span>
+        <span class="badge rounded-pill text-bg-info">5 yrs old and up</span>
+      </div>
+      <div class="col-md-3 d-flex flex-column gap-3">
+        <button class="btn btn-primary">Apply Now</button>
+        <button class="btn btn-primary">Check Availability</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+        <img
+          src="{{ url_for('pages.static', filename='images/PassportID.png') }}"
+          class="img-fluid"
+          alt="Passport ID"
+        />
+      </div>
+      <div class="col-md-7">
+        <h4 class="card-title">Passport ID</h4>
+        <p class="cad-text">
+          The Philippine Passport is an official government-issued document that
+          certifies a person's identity and citizenship, enabling international
+          travel.
+        </p>
+        <span class="badge rounded-pill text-bg-info">Paid</span>
+        <span class="badge rounded-pill text-bg-info">5-10 years</span>
+        <span class="badge rounded-pill text-bg-info"
+          >All Ages Eligible</span
+        >
+      </div>
+      <div class="col-md-3 d-flex flex-column gap-3">
+        <button class="btn btn-primary">Apply Now</button>
+        <button class="btn btn-primary">Check Availability</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body row">
+      <div class="col-md-2 text-center">
+        <img
+          src="{{ url_for('pages.static', filename='images/PostalID.png') }}"
+          class="img-fluid"
+          alt="Postal ID"
+        />
+      </div>
+      <div class="col-md-7">
+        <h4 class="card-title">Postal ID</h4>
+        <p class="card-text">
+          The Postal ID is a government-issued identification card issued by the
+          Philippine Postal Corporation (PHLPost).
+        </p>
+        <span class="badge rounded-pill text-bg-info">Paid</span>
+        <span class="badge rounded-pill text-bg-info">3 years</span>
+        <span class="badge rounded-pill text-bg-info"
+          >All Ages Eligible</span
+        >
+      </div>
+      <div class="col-md-3 d-flex flex-column gap-3">
+        <button class="btn btn-primary">Apply Now</button>
+        <button class="btn btn-primary">Check Availability</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
