@@ -76,3 +76,10 @@
 -- CASE:
     1. automatic tts without trigger [ pending ]
     2. 
+
+-- COMMANDS:
+   * python -m venv venv
+   * pip install -r requirements.txt
+   * npm install bootstrap
+   * npm install
+   * python run.py

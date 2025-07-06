@@ -3,62 +3,69 @@
   rel="stylesheet"
   href="{{ url_for('auth.static', filename='login.css') }}"
 />{% endblock %} {% block body %}
-<div class="login">
-  <h1 class="text-center mb-1">Sign In</h1>
-  <small class="text-center d-block description"
-    >Enter your credentials to sign in to your account</small
-  >
-  <form
-    action=""
-    class="login-form m-auto d-flex justify-content-center align-items-center flex-column pt-3"
-  >
-    <div class="mb-4 form-field">
-      <label for="username" class="form-label">Username:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Enter your username"
-      />
-    </div>
-    <div class="mb-1 form-field">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="text"
-        class="form-control"
-        id="password"
-        placeholder="Enter your password"
-      />
-    </div>
 
-    <div class="row login-extras">
-      <div class="col-6 form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="remember-password"
-        />
-        <label class="form-check-label remember-pass" for="remember-password">
-          Remember me
-        </label>
-      </div>
+{% include 'navbar.html' %}
 
-      <div class="col-6">
-        <p class="text-end reset-pass">Forgot password?</p>
-      </div>
-    </div>
-
-    <button type="button" class="btn btn-primary mt-2 p-2">Sign In</button>
-    <a href="" class="text-decoration-none mt-2 sign-up"
-      >Don't have an account? <span>Sign Up</span></a
+<div class="card p-4 m-auto" style="width: 500px;">
+  <div class="card-body">
+    <h1 class="card-title text-center mb-1">Sign In</h1>
+    <small class="card-text text-center d-block description"
+      >Enter your credentials to sign in to your account</small
     >
+    <form action="" class="mt-3">
+      <div class="mb-4 form-field">
+        <label for="username" class="form-label">Username:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Enter your username"
+        />
+      </div>
+      <div class="mb-1 form-field">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="text"
+          class="form-control"
+          id="password"
+          placeholder="Enter your password"
+        />
+      </div>
 
-    <div class="line"></div>
+      <div class="row login-extras">
+        <div class="col-6 form-check ms-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="remember-password"
+          />
+          <label
+            class="form-check-label remember-pass small"
+            for="remember-password"
+          >
+            Remember me
+          </label>
+        </div>
 
-    <div class="login-option">
-      <button class="p-2">Google</button>
-    </div>
-  </form>
+        <div class="col">
+          <p class="text-end reset-pass small">Forgot password?</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary mt-2 p-2 w-100">
+        Sign In
+      </button>
+      <a
+        href=""
+        class="text-decoration-none mt-2 sign-up d-flex justify-content-center small text-black"
+        >Don't have an account?<span class="fw-bold"> Sign Up</span></a
+      >
+
+      <div class="line"></div>
+
+      <button class="btn btn-secondary p-2 w-100">Google</button>
+    </form>
+  </div>
 </div>
 {% endblock %} {% block scripts %} {% endblock %}
